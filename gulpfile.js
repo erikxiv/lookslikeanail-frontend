@@ -46,12 +46,14 @@ gulp.task('docker-up', ['tar'], function() {
     // Set boot2docker environment variables
     var stdout = child_process.execSync('boot2docker shellinit', { stdio: 'pipe' });
     var envs = stdout.toString().match(/(DOCKER.*=\S+)/g);
-    envs.forEach(function (e) {
-      var key = e.split('=')[0];
-      var value = e.split('=')[1];
-      gutil.log('Setting environment variable ' + key + '=' + value);
-      process.env[key] = value;
-    });
+    if (envs) {
+      envs.forEach(function (e) {
+        var key = e.split('=')[0];
+        var value = e.split('=')[1];
+        gutil.log('Setting environment variable ' + key + '=' + value);
+        process.env[key] = value;
+      });
+    }
   }
   // Start docker-compose
   gutil.log('Starting docker-compose');
@@ -62,9 +64,9 @@ gulp.task('docker-up', ['tar'], function() {
 // Pack current directory (for swift copy to docker container)
 /////
 gulp.task('tar', function () {
-    return gulp.src(['**/*', '**/.*', '!tmp/**'])
-        .pipe(tar('init.tar'))
-        .pipe(gulp.dest('tmp'));
+  return gulp.src(['**/*', '**/.*', '!tmp/**'])
+      .pipe(tar('init.tar'))
+      .pipe(gulp.dest('tmp'));
 });
 
 //////
