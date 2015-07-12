@@ -5,7 +5,7 @@ var tar           = require('gulp-tar');
 var plumber       = require('gulp-plumber');
 var gutil         = require('gulp-util');
 
-var boot2dockerWasRunning = false;
+var boot2dockerWasRunning = true;
  
 //////
 // Get development environment up and running
@@ -43,7 +43,15 @@ gulp.task('docker-up', ['tar'], function() {
       gutil.log('Starting boot2docker (was not running)');
       child_process.spawnSync('boot2docker', ['up'], { stdio: 'inherit' });
     }
-    child_process.spawnSync('eval', ['"$(boot2docker shellinit)"'], { stdio: 'pipe' });  
+    // Set boot2docker environment variables
+    var stdout = child_process.execSync('boot2docker shellinit', { stdio: 'pipe' });
+    var envs = stdout.toString().match(/(DOCKER.*=\S+)/g);
+    envs.forEach(function (e) {
+      var key = e.split('=')[0];
+      var value = e.split('=')[1];
+      gutil.log('Setting environment variable ' + key + '=' + value);
+      process.env[key] = value;
+    });
   }
   // Start docker-compose
   gutil.log('Starting docker-compose');
