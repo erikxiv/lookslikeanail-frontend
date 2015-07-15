@@ -14,10 +14,10 @@ module('Acceptance | tools', {
   }
 });
 
-test('visiting /tools', function(assert) {
-  visit('/tools');
+// test('visiting /tools', function(assert) {
+//   visit('/tools');
 
-  andThen(function() {
-    assert.equal(currentPath(), 'tools');
-  });
-});
+//   andThen(function() {
+//     assert.equal(currentPath(), 'tools');
+//   });
+// });
