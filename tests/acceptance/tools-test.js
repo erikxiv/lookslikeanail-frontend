@@ -18,6 +18,6 @@ test('visiting /tools', function(assert) {
   visit('/tools');
 
   andThen(function() {
-    assert.equal(currentURL(), '/tools');
+    assert.equal(currentPath(), 'tools');
   });
 });
