@@ -76,10 +76,10 @@ gulp.task('watch', ['docker-up'], function() {
   watch(['**/*', '**/.*', '!tmp/**'], function(file) {
     gutil.log('watch: ' + file.event + ' ' + file.relative);
     if (file.event === 'unlink') {
-      child_process.exec('docker exec lookslikeanailfrontend_ember_1 rm /myapp/'+file.relative, { stdio: 'inherit' }, log_errors);
+      child_process.exec('docker exec lookslikeanailfrontend_ember_1 rm -rf /myapp/'+file.relative, { stdio: 'inherit' }, log_errors);
     }
     else {
-      child_process.exec('docker exec lookslikeanailfrontend_ember_1 cp /tmp/myapp/'+file.relative+' /myapp/'+file.relative, { stdio: 'inherit' }, log_errors);
+      child_process.exec('docker exec lookslikeanailfrontend_ember_1 cp -R /tmp/myapp/'+file.relative+' /myapp/'+file.relative, { stdio: 'inherit' }, log_errors);
     }
   });
 });
