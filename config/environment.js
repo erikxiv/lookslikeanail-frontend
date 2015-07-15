@@ -17,7 +17,7 @@ module.exports = function(environment) {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' boot2docker:35729",
       'font-src': "'self'",
-      'connect-src': "'self' ws://boot2docker:35729 api",
+      'connect-src': "'self' ws://boot2docker:35729 looks-like-a-nail-backend.herokuapp.com",
       'img-src': "'self'",
       'style-src': "'self' 'unsafe-inline'",
       'frame-src': ""
@@ -52,7 +52,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-      ENV.APP.API_HOST = 'looks-like-a-nail-backend.herokuapp.com';
+      ENV.APP.API_HOST = 'http://looks-like-a-nail-backend.herokuapp.com';
       ENV.APP.API_NAMESPACE = 'api/v1';
   }
 
