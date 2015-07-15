@@ -4,8 +4,19 @@ var watch         = require('gulp-watch');
 var tar           = require('gulp-tar');
 var plumber       = require('gulp-plumber');
 var gutil         = require('gulp-util');
+var yaml          = require('yamljs');
+var path          = require('path');
 
+var mainDockerName = 'ember';
+var mainDockerPath = '/myapp';
+
+var dockerCompose = yaml.load('docker-compose.yml');
+var pwd = __dirname;
+var projectName = __dirname.split(path.sep).pop();
+var mainDockerImage = dockerCompose[mainDockerName].image;
+var mainContainerName = projectName.replace(/\W/g, '')+'_'+mainDockerName+'_1';
 var boot2dockerWasRunning = true;
+var dockerComposeWasStarted = false;
  
 //////
 // Get development environment up and running
@@ -15,13 +26,29 @@ gulp.task('up', ['docker-up', 'watch'], function () {
 })
 
 //////
+// Execute an ember task in the container
+// Usage: gulp run --cmd "help generate"
+//////
+gulp.task('run', ['boot2docker-up'], function () {
+  if (gutil.env.cmd) {
+    var args = 'run --rm -t -v ' + pwd + ':' + mainDockerPath + ' ' + mainDockerImage + ' ' + gutil.env.cmd;
+    gutil.log('cmd: docker ' + args);
+    child_process.spawn('docker', args.split(' '), { stdio: 'inherit' });
+  }
+  else
+    gutil.log(gutil.colors.red('Usage: gulp run --cmd "some command to run"'));
+})
+
+//////
 // Catch Ctrl-C to clean up
 // E.g. stop docker
 //////
 process.on('SIGINT', function() {
   // Stop docker-compose
-  gutil.log('Stopping docker-compose');
-  child_process.spawnSync('docker-compose', ['stop'], { stdio: 'pipe' });
+  if (dockerComposeWasStarted) {
+    gutil.log('Stopping docker-compose');
+    child_process.spawnSync('docker-compose', ['stop'], { stdio: 'pipe' });
+  }
   // Stop boot2docker if it wasn't running
   if (process.platform === 'darwin' && ! boot2dockerWasRunning) {
     gutil.log('Stopping boot2docker');
@@ -34,7 +61,17 @@ process.on('SIGINT', function() {
 /////
 // Start docker
 /////
-gulp.task('docker-up', ['tar'], function() {
+gulp.task('docker-up', ['tar', 'boot2docker-up'], function() {
+  // Start docker-compose
+  gutil.log('Starting docker-compose');
+  child_process.spawn('docker-compose', ['up'], { stdio: 'inherit' });
+  dockerComposeWasStarted = true;
+});
+
+/////
+// Start boot2docker
+/////
+gulp.task('boot2docker-up', function() {
   // If on Mac, start boot2docker if needed
   if (process.platform === 'darwin') {
     var b2dstatus = child_process.spawnSync('boot2docker', ['status'], { stdio: 'pipe' })
@@ -55,9 +92,6 @@ gulp.task('docker-up', ['tar'], function() {
       });
     }
   }
-  // Start docker-compose
-  gutil.log('Starting docker-compose');
-  child_process.spawn('docker-compose', ['up'], { stdio: 'inherit' });  
 });
 
 /////
@@ -76,10 +110,10 @@ gulp.task('watch', ['docker-up'], function() {
   watch(['**/*', '**/.*', '!tmp/**'], function(file) {
     gutil.log('watch: ' + file.event + ' ' + file.relative);
     if (file.event === 'unlink') {
-      child_process.exec('docker exec lookslikeanailfrontend_ember_1 rm -rf /myapp/'+file.relative, { stdio: 'inherit' }, log_errors);
+      child_process.exec('docker exec '+mainContainerName+' rm -rf ' + mainDockerPath + '/' + file.relative, { stdio: 'inherit' }, log_errors);
     }
     else {
-      child_process.exec('docker exec lookslikeanailfrontend_ember_1 cp -R /tmp/myapp/'+file.relative+' /myapp/'+file.relative, { stdio: 'inherit' }, log_errors);
+      child_process.exec('docker exec '+mainContainerName+' cp -R /tmp/project/'+file.relative+' ' + mainDockerPath + '/'+file.relative, { stdio: 'inherit' }, log_errors);
     }
   });
 });

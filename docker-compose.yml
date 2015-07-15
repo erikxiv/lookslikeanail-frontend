@@ -4,7 +4,7 @@ ember:
    - "80:4200"
    - "35729:35729"
   volumes:
-   - .:/tmp/myapp
+   - .:/tmp/project
   entrypoint:
    - sh
-  command: -c "tar -xmf /tmp/myapp/tmp/init.tar && ember server"
+  command: -c "tar -xmf /tmp/project/tmp/init.tar && ember server"

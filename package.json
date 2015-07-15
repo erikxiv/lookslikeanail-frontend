@@ -38,6 +38,7 @@
     "gulp-plumber": "^1.0.1",
     "gulp-tar": "^1.4.0",
     "gulp-util": "^3.0.6",
-    "gulp-watch": "^4.2.4"
+    "gulp-watch": "^4.2.4",
+    "yamljs": "^0.2.3"
   }
 }
