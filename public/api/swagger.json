@@ -1,128 +1,183 @@
 {
-    "swagger": "2.0", 
+    "swagger": "2.0",
     "produces": [
         "application/json"
-    ], 
-    "host": "looks-lika-a-nail-backend.herokuapp.com", 
+    ],
+    "host": "looks-lika-a-nail-backend.herokuapp.com",
     "info": {
-        "description": "An API to discover and contribute information about software tools", 
-        "version": "0.1.0", 
+        "description": "An API to discover and contribute information about software tools",
+        "version": "0.1.0",
         "title": "Tool Directory API"
-    }, 
-    "basePath": "/api/v1", 
+    },
+    "basePath": "/api/v1",
     "consumes": [
         "application/json"
-    ], 
+    ],
     "paths": {
         "/tools": {
             "post": {
-                "description": "Creates a new tool", 
+                "description": "Creates a new tool",
+                "tags": [
+                    "tool"
+                ],
                 "parameters": [
                     {
-                        "name": "tool", 
-                        "in": "body", 
-                        "description": "Tool to add", 
+                        "name": "tool",
+                        "in": "body",
+                        "description": "Tool to add",
                         "schema": {
                             "$ref": "#/definitions/tool"
-                        }, 
+                        },
                         "required": true
                     }
-                ], 
+                ],
                 "produces": [
                     "application/json"
-                ], 
-                "operationId": "addTool", 
+                ],
+                "operationId": "addTool",
                 "responses": {
-                    "default": {
-                        "description": "unexpected error", 
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }, 
                     "200": {
-                        "description": "tiik response", 
+                        "description": "tool response",
                         "schema": {
                             "$ref": "#/definitions/tool"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
                         }
                     }
                 }
-            }, 
+            },
             "get": {
-                "description": "Returns all tools", 
+                "description": "Returns all tools",
+                "tags": [
+                    "tool"
+                ],
                 "produces": [
                     "application/json"
-                ], 
-                "operationId": "findTools", 
+                ],
+                "operationId": "findTools",
                 "responses": {
-                    "default": {
-                        "description": "unexpected error", 
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }, 
                     "200": {
-                        "description": "tool response", 
+                        "description": "tool response",
                         "schema": {
                             "items": {
                                 "$ref": "#/definitions/tool"
-                            }, 
+                            },
                             "type": "array"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
                         }
                     }
                 }
             }
-        }, 
+        },
         "/tools/{id}": {
             "get": {
-                "description": "Returns a tool based on ID", 
+                "description": "Returns a tool based on ID",
+                "tags": [
+                    "tool"
+                ],
                 "parameters": [
                     {
-                        "in": "path", 
-                        "format": "int64", 
-                        "name": "id", 
-                        "description": "ID of tool to fetch", 
-                        "type": "integer", 
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of tool to fetch",
+                        "type": "integer",
                         "required": true
                     }
-                ], 
+                ],
                 "produces": [
                     "application/json"
-                ], 
-                "operationId": "findToolById", 
+                ],
+                "operationId": "findToolById",
                 "responses": {
-                    "default": {
-                        "description": "unexpected error", 
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }, 
                     "200": {
-                        "description": "tool response", 
+                        "description": "tool response",
                         "schema": {
                             "$ref": "#/definitions/tool"
                         }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
                     }
                 }
-            }, 
-            "delete": {
-                "description": "deletes a single tool based on the ID supplied", 
+            },
+            "put": {
+                "description": "Update tool",
+                "tags": [
+                    "tool"
+                ],
                 "parameters": [
                     {
-                        "in": "path", 
-                        "format": "int64", 
-                        "name": "id", 
-                        "description": "ID of tool to delete", 
-                        "type": "integer", 
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of tool to update",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "tool",
+                        "in": "body",
+                        "description": "Tool properties to update",
+                        "schema": {
+                            "$ref": "#/definitions/tool"
+                        },
                         "required": true
                     }
-                ], 
-                "operationId": "deleteTool", 
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "updateTool",
+                "responses": {
+                    "200": {
+                        "description": "tool response",
+                        "schema": {
+                            "$ref": "#/definitions/tool"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "deletes a single tool based on the ID supplied",
+                "tags": [
+                    "tool"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of tool to delete",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "operationId": "deleteTool",
                 "responses": {
                     "204": {
                         "description": "tool deleted"
-                    }, 
+                    },
                     "default": {
-                        "description": "unexpected error", 
+                        "description": "unexpected error",
                         "schema": {
                             "$ref": "#/definitions/errorModel"
                         }
@@ -130,61 +185,61 @@
                 }
             }
         }
-    }, 
+    },
     "schemes": [
         "http"
-    ], 
+    ],
     "definitions": {
         "tool": {
             "properties": {
                 "title": {
-                    "description": "Human readable title", 
+                    "description": "Human readable title",
                     "type": "string"
-                }, 
+                },
                 "subTitle": {
-                    "description": "Human readable sub title", 
+                    "description": "Human readable sub title",
                     "type": "string"
-                }, 
+                },
                 "updated": {
-                    "description": "When this item was last modified", 
-                    "format": "dateTime", 
+                    "description": "When this item was last modified",
+                    "format": "dateTime",
                     "type": "string"
-                }, 
+                },
                 "id": {
-                    "description": "Unique identifier", 
+                    "description": "Unique identifier",
                     "type": "number"
-                }, 
+                },
                 "description": {
-                    "description": "A description of this item", 
+                    "description": "A description of this item",
                     "type": "string"
-                }, 
+                },
                 "created": {
-                    "description": "When this item was created", 
-                    "format": "dateTime", 
+                    "description": "When this item was created",
+                    "format": "dateTime",
                     "type": "string"
-                }, 
+                },
                 "keywords": {
-                    "description": "List of applicable keywords", 
-                    "type": "array", 
+                    "description": "List of applicable keywords",
+                    "type": "array",
                     "items": {
-                        "description": "keyword / alias", 
+                        "description": "keyword / alias",
                         "type": "string"
                     }
                 }
             }
-        }, 
+        },
         "errorModel": {
             "properties": {
                 "message": {
                     "type": "string"
-                }, 
+                },
                 "code": {
-                    "format": "int32", 
+                    "format": "int32",
                     "type": "integer"
                 }
-            }, 
+            },
             "required": [
-                "code", 
+                "code",
                 "message"
             ]
         }

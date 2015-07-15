@@ -18,7 +18,7 @@ module.exports = function(environment) {
       'script-src': "'self' 'unsafe-inline'",
       'font-src': "'self'",
       'connect-src': "'self'",
-      'img-src': "'self' online.swagger.io",
+      'img-src': "'self'",
       'style-src': "'self' 'unsafe-inline'",
       'frame-src': ""
     },
