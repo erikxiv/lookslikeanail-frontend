@@ -13,6 +13,16 @@ module.exports = function(environment) {
       }
     },
 
+    contentSecurityPolicy: {
+      'default-src': "'none'",
+      'script-src': "'self' 'unsafe-inline'",
+      'font-src': "'self'",
+      'connect-src': "'self'",
+      'img-src': "'self' online.swagger.io",
+      'style-src': "'self' 'unsafe-inline'",
+      'frame-src': ""
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created

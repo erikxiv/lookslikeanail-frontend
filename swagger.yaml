@@ -1,0 +1,130 @@
+swagger: '2.0'
+info:
+  version: '0.1.0'
+  title: Tool Directory API
+  description: An API to discover and contribute information about software tools
+host: looks-lika-a-nail-backend.herokuapp.com
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /tools:
+    get:
+      description: Returns all tools
+      operationId: findTools
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: tool response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/tool'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    post:
+      description: Creates a new tool
+      operationId: addTool
+      produces:
+        - application/json
+      parameters:
+        - name: tool
+          in: body
+          description: Tool to add
+          required: true
+          schema:
+            $ref: '#/definitions/tool'
+      responses:
+        '200':
+          description: tiik response
+          schema:
+            $ref: '#/definitions/tool'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /tools/{id}:
+    get:
+      description: Returns a tool based on ID
+      operationId: findToolById
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: ID of tool to fetch
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: tool response
+          schema:
+            $ref: '#/definitions/tool'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      description: deletes a single tool based on the ID supplied
+      operationId: deleteTool
+      parameters:
+        - name: id
+          in: path
+          description: ID of tool to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: tool deleted
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+definitions:
+  tool:
+    properties:
+      id:
+        type: number
+        description: Unique identifier
+      title:
+        type: string
+        description: Human readable title
+      subTitle:
+        type: string
+        description: Human readable sub title
+      keywords:
+        type: array
+        description: List of applicable keywords
+        items:
+          type: string
+          description: keyword / alias
+      description:
+        type: string
+        description: A description of this item
+      created:
+        type: string
+        format: dateTime
+        description: When this item was created
+      updated:
+        type: string
+        format: dateTime
+        description: When this item was last modified
+  errorModel:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
