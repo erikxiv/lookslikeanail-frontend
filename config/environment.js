@@ -15,9 +15,9 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline'",
+      'script-src': "'self' 'unsafe-inline' boot2docker:35729",
       'font-src': "'self'",
-      'connect-src': "'self'",
+      'connect-src': "'self' ws://boot2docker:35729 api",
       'img-src': "'self'",
       'style-src': "'self' 'unsafe-inline'",
       'frame-src': ""
@@ -26,6 +26,8 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      API_HOST: null,
+      API_NAMESPACE: 'api'
     }
   };
 
@@ -50,7 +52,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+      ENV.APP.API_HOST = 'looks-like-a-nail-backend.herokuapp.com';
+      ENV.APP.API_NAMESPACE = 'api/v1';
   }
 
   return ENV;

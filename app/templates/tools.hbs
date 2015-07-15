@@ -1,1 +1,18 @@
-{{outlet}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>title</th>
+      <th>subTitle</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#each model as |tool|}}
+    <tr>
+      <td>{{tool.id}}</td>
+      <td>{{#link-to 'tool' tool}}{{tool.title}}{{/link-to}}</td>
+      <td>{{tool.subTitle}}</td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
