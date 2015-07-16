@@ -26,7 +26,11 @@
                         "in": "body",
                         "description": "Tool to add",
                         "schema": {
-                            "$ref": "#/definitions/tool"
+                            "properties": {
+                                "tool": {
+                                    "$ref": "#/definitions/tool"
+                                }
+                            }
                         },
                         "required": true
                     }
@@ -39,7 +43,11 @@
                     "200": {
                         "description": "tool response",
                         "schema": {
-                            "$ref": "#/definitions/tool"
+                            "properties": {
+                                "tool": {
+                                    "$ref": "#/definitions/tool"
+                                }
+                            }
                         }
                     },
                     "default": {
@@ -63,10 +71,14 @@
                     "200": {
                         "description": "tool response",
                         "schema": {
-                            "items": {
-                                "$ref": "#/definitions/tool"
-                            },
-                            "type": "array"
+                            "properties": {
+                                "tools": {
+                                    "items": {
+                                        "$ref": "#/definitions/tool"
+                                    },
+                                    "type": "array"
+                                }
+                            }
                         }
                     },
                     "default": {
@@ -102,7 +114,17 @@
                     "200": {
                         "description": "tool response",
                         "schema": {
-                            "$ref": "#/definitions/tool"
+                            "properties": {
+                                "tool": {
+                                    "$ref": "#/definitions/tool"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No tool with specified id exist",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
                         }
                     },
                     "default": {
@@ -132,7 +154,11 @@
                         "in": "body",
                         "description": "Tool properties to update",
                         "schema": {
-                            "$ref": "#/definitions/tool"
+                            "properties": {
+                                "tool": {
+                                    "$ref": "#/definitions/tool"
+                                }
+                            }
                         },
                         "required": true
                     }
