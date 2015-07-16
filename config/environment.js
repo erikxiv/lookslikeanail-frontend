@@ -52,7 +52,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-      ENV.APP.API_HOST = 'http://looks-like-a-nail-backend.herokuapp.com';
+      // ENV.APP.API_HOST = 'http://looks-like-a-nail-backend.herokuapp.com';
       ENV.APP.API_NAMESPACE = 'api/v1';
   }
 

@@ -3,7 +3,7 @@
     "produces": [
         "application/json"
     ],
-    "host": "api.tool.directory",
+    "host": "tool.directory",
     "info": {
         "description": "An API to discover and contribute information about software tools",
         "version": "0.1.0",
