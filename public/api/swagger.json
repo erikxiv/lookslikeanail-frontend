@@ -3,7 +3,7 @@
     "produces": [
         "application/json"
     ],
-    "host": "tool.directory",
+    "host": "looks-like-a-nail-backend.herokuapp.com",
     "info": {
         "description": "An API to discover and contribute information about software tools",
         "version": "0.1.0",
