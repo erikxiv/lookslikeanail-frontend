@@ -1,23 +1,45 @@
-<h1><strong>{{model.title}}</strong> ({{model.subTitle}})</h1>
+{{!-- <h1><strong>{{model.title}}</strong> ({{model.subTitle}})</h1> --}}
+<h1>{{title}}</h1>
 <p>{{model.description}}</p>
-
-<table class="table">
+<p><i>Double-click a properties to change the value</i></p>
+<table class="table table-hover">
   <tbody>
-    <tr>
-      <th>title</th>
-      <td>{{model.title}}</td>
+    <tr {{action "edit" "Title" on="doubleClick"}}>
+      <th>Title</th>
+      {{#if isEditingTitle}}
+        <td>{{input id="inputTitle" type="text" value=model.title enter="save" focus-out="save" autofocus="autofocus"}}</td>
+      {{else}}
+        <td>{{model.title}}</td>
+      {{/if}}
+      <td><i>Somewhat canonical name of tool, e.g. Java</i></td>
+    </tr>
+    <tr {{action "edit" "Subtitle" on="doubleClick"}}>
+      <th>Subtitle</th>
+      {{#if isEditingSubtitle}}
+        <td>{{input id="inp" type="text" value=model.subTitle enter="save" focus-out="save" autofocus="autofocus"}}</td>
+      {{else}}
+        <td>{{model.subTitle}}</td>
+      {{/if}}
+      <td><i>Subtitle, or type of tool, to differentiate between tools of similar name, e.g. Programming Language</i></td>
+    </tr>
+    <tr {{action "edit" "Description" on="doubleClick"}}>
+      <th>Description</th>
+      {{#if isEditingDescription}}
+        <td>{{input type="text" value=model.description enter="save" focus-out="save" autofocus="autofocus"}}</td>
+      {{else}}
+        <td>{{model.description}}</td>
+      {{/if}}
+      <td><i>Description of tool in markdown syntax</i></td>
     </tr>
     <tr>
-      <th>subTitle</th>
-      <td>{{model.subTitle}}</td>
-    </tr>
-    <tr>
-      <th>created</th>
+      <th>Created</th>
       <td>{{model.created}}</td>
+      <td><i>Date/time of the directory entries creation</i></td>
     </tr>
     <tr>
-      <th>updated</th>
+      <th>Updated</th>
       <td>{{model.updated}}</td>
+      <td><i>Date/time of the directory entries last update</i></td>
     </tr>
   </tbody>
 </table>

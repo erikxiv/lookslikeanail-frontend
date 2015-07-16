@@ -21,6 +21,7 @@ module.exports = function(app) {
       'keywords': []
     }
   ];
+  var index = tools.length;
 
   toolsRouter.get('/', function(req, res) {
     res.send({
@@ -29,13 +30,13 @@ module.exports = function(app) {
   });
 
   toolsRouter.post('/', function(req, res) {
-    res.status(201).end();
+    res.send(req.body);
   });
 
   toolsRouter.get('/:id', function(req, res) {
     if (req.params.id > 0 && req.params.id <= tools.length) {
       res.send({
-        'tools': tools[req.params.id-1]
+        'tool': tools[req.params.id-1]
       });
     }
     else {
@@ -45,7 +46,7 @@ module.exports = function(app) {
 
   toolsRouter.put('/:id', function(req, res) {
     res.send({
-      'tools': {
+      'tool': {
         id: req.params.id
       }
     });
