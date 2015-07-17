@@ -1,8 +1,19 @@
 /* global require, module */
+var env = process.env.EMBER_ENV;
+var config = require('./config/environment')(env);
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-var app = new EmberApp();
+var app = new EmberApp({
+  inlineContent: {
+    "rollbar" : {
+      file: "bower_components/rollbar/dist/rollbar.snippet.js",
+      postProcess: function(content) {
+        return 'var _rollbarConfig = { accessToken: "' + config.rollbarToken + '", verbose: "' + config.rollbarVerbose + '", captureUncaught: true, payload: { environment: "' + config.environment + '" } };\n' + content;
+      }
+    }
+  }
+});
 
 // Use `app.import` to add additional libraries to the generated
 // output files.

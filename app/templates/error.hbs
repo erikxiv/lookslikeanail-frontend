@@ -1,1 +1,10 @@
-Error: {{model.message}}
+<h1>Oh, snap!</h1>
+<p>That did not work out as intended.</p>
+
+<p>
+{{#if model.status}}
+<div><strong>{{model.status}}</strong> {{model.statusText}}</div>
+{{else}}
+<div><strong>{{model.name}}:</strong> {{model.message}}</div>
+{{/if}}
+</p>

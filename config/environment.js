@@ -6,6 +6,10 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+
+    rollbarToken: "f439d4bed0564ed9b93509e8834b71fd",
+    rollbarVerbose: false,
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -15,9 +19,9 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' boot2docker:35729",
+      'script-src': "'self' 'unsafe-inline' boot2docker:35729 *.cloudfront.net",
       'font-src': "'self'",
-      'connect-src': "'self' ws://boot2docker:35729 looks-like-a-nail-backend.herokuapp.com",
+      'connect-src': "'self' ws://boot2docker:35729 looks-like-a-nail-backend.herokuapp.com api.rollbar.com",
       'img-src': "'self'",
       'style-src': "'self' 'unsafe-inline'",
       'frame-src': ""
@@ -37,6 +41,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.rollbarVerbose = true
   }
 
   if (environment === 'test') {
