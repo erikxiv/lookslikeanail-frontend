@@ -22,7 +22,7 @@ Ember.onerror = function(error) {
   //     otherInformation: 'exception message'
   //   }
   // });
-}
+};
 
 loadInitializers(App, config.modulePrefix);
 
