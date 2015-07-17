@@ -1,3 +1,5 @@
+var jsonBody = require('body/json');
+
 module.exports = function(app) {
   var express = require('express');
   var toolsRouter = express.Router();
@@ -21,7 +23,7 @@ module.exports = function(app) {
       'keywords': []
     }
   ];
-  var index = tools.length;
+  var index = tools.length+1;
 
   toolsRouter.get('/', function(req, res) {
     res.send({
@@ -30,7 +32,12 @@ module.exports = function(app) {
   });
 
   toolsRouter.post('/', function(req, res) {
-    res.send(req.body);
+    jsonBody(req, res, function(err, body) {
+      console.log(body);
+      body.tool['id'] = index++;
+      tools.push(body.tool);
+      res.send(body);
+    })
   });
 
   toolsRouter.get('/:id', function(req, res) {
@@ -40,16 +47,17 @@ module.exports = function(app) {
       });
     }
     else {
-      res.send(404, 'Not found');
+      res.status(404).send('Not found');
     }
   });
 
   toolsRouter.put('/:id', function(req, res) {
-    res.send({
-      'tool': {
-        id: req.params.id
-      }
-    });
+    jsonBody(req, res, function(err, body) {
+      console.log(body);
+      body.tool['id'] = req.params.id
+      tools[req.params.id-1] = body.tool;
+      res.send(body);
+    })
   });
 
   toolsRouter.delete('/:id', function(req, res) {
