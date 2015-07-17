@@ -28,6 +28,10 @@ export default Ember.Controller.extend({
         this.set('isEditing', false);
         this.model.save();
       }
+    },
+    delete: function() {
+      this.model.destroyRecord();
+      this.transitionToRoute('tools');
     }
   }
 });
