@@ -1,0 +1,18 @@
+<p>Can't find the task you are looking for? Contribute by {{#link-to 'task' 'new'}}adding it{{/link-to}} to the directory.</p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Subtitle</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#each model as |task|}}
+    <tr {{action 'details' task on="click"}}>
+      <td>{{task.title}}</td>
+      <td>{{task.subTitle}}</td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
