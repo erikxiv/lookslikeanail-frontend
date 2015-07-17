@@ -210,6 +210,203 @@
                     }
                 }
             }
+        },
+        "/tasks": {
+            "post": {
+                "description": "Creates a new task",
+                "tags": [
+                    "task"
+                ],
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "body",
+                        "description": "Task to add",
+                        "schema": {
+                            "properties": {
+                                "task": {
+                                    "$ref": "#/definitions/task"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "addTask",
+                "responses": {
+                    "200": {
+                        "description": "task response",
+                        "schema": {
+                            "properties": {
+                                "task": {
+                                    "$ref": "#/definitions/task"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Returns all tasks",
+                "tags": [
+                    "task"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "findTasks",
+                "responses": {
+                    "200": {
+                        "description": "task response",
+                        "schema": {
+                            "properties": {
+                                "tasks": {
+                                    "items": {
+                                        "$ref": "#/definitions/task"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/tasks/{id}": {
+            "get": {
+                "description": "Returns a task based on ID",
+                "tags": [
+                    "task"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of task to fetch",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "findTaskById",
+                "responses": {
+                    "200": {
+                        "description": "task response",
+                        "schema": {
+                            "properties": {
+                                "task": {
+                                    "$ref": "#/definitions/task"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No task with specified id exist",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update task",
+                "tags": [
+                    "task"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of task to update",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "task",
+                        "in": "body",
+                        "description": "Task properties to update",
+                        "schema": {
+                            "properties": {
+                                "task": {
+                                    "$ref": "#/definitions/task"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "updateTask",
+                "responses": {
+                    "200": {
+                        "description": "task response",
+                        "schema": {
+                            "$ref": "#/definitions/task"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "deletes a single task based on the ID supplied",
+                "tags": [
+                    "task"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of task to delete",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "operationId": "deleteTask",
+                "responses": {
+                    "204": {
+                        "description": "task deleted"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
         }
     },
     "schemes": [
@@ -217,6 +414,44 @@
     ],
     "definitions": {
         "tool": {
+            "properties": {
+                "title": {
+                    "description": "Human readable title",
+                    "type": "string"
+                },
+                "subTitle": {
+                    "description": "Human readable sub title",
+                    "type": "string"
+                },
+                "updated": {
+                    "description": "When this item was last modified",
+                    "format": "dateTime",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier",
+                    "type": "number"
+                },
+                "description": {
+                    "description": "A description of this item",
+                    "type": "string"
+                },
+                "created": {
+                    "description": "When this item was created",
+                    "format": "dateTime",
+                    "type": "string"
+                },
+                "keywords": {
+                    "description": "List of applicable keywords",
+                    "type": "array",
+                    "items": {
+                        "description": "keyword / alias",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "task": {
             "properties": {
                 "title": {
                     "description": "Human readable title",
