@@ -30,8 +30,10 @@ export default Ember.Controller.extend({
       }
     },
     delete: function() {
-      this.model.destroyRecord();
-      this.transitionToRoute('tasks');
+      var that = this;
+      this.model.destroyRecord().then(function() {
+        that.transitionToRoute('tasks');
+      });
     }
   }
 });
