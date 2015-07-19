@@ -30,7 +30,7 @@ module.exports = function(environment) {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' boot2docker:35729 *.cloudfront.net cdn.ravenjs.com",
       'font-src': "'self'",
-      'connect-src': "'self' ws://boot2docker:35729 looks-like-a-nail-backend.herokuapp.com api.rollbar.com",
+      'connect-src': "'self' ws://boot2docker:35729 looks-like-a-nail-backend.herokuapp.com api.rollbar.com boot2dockerapi",
       'img-src': "'self' sentry.tool.directory",
       'style-src': "'self' 'unsafe-inline'",
       'frame-src': ""
@@ -45,6 +45,11 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    // ENV.APP.API_HOST = 'http://looks-like-a-nail-backend.herokuapp.com';
+    // ENV.APP.API_NAMESPACE = 'api/v1';
+    ENV.APP.API_HOST = 'http://boot2dockerapi';
+    ENV.APP.API_NAMESPACE = 'api';
+
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;

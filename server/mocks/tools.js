@@ -1,4 +1,5 @@
 var jsonBody = require('body/json');
+var cors = require('cors');
 
 module.exports = function(app) {
   var express = require('express');
@@ -26,43 +27,66 @@ module.exports = function(app) {
   var index = tools.length+1;
 
   toolsRouter.get('/', function(req, res) {
-    res.send({
-      'tools': tools
-    });
+    setTimeout(function() {
+      console.log('yes?');
+      res.send({
+        'tools': tools
+      });
+    },req.query.sleep || 1000);
   });
 
   toolsRouter.post('/', function(req, res) {
-    jsonBody(req, res, function(err, body) {
-      console.log(body);
-      body.tool['id'] = index++;
-      tools.push(body.tool);
-      res.send(body);
-    })
+    setTimeout(function() {
+      jsonBody(req, res, function(err, body) {
+        console.log(body);
+        body.tool['id'] = index++;
+        tools.push(body.tool);
+        res.send(body);
+      })
+    },req.query.sleep || 1000);
   });
 
   toolsRouter.get('/:id', function(req, res) {
-    if (req.params.id > 0 && req.params.id <= tools.length) {
-      res.send({
-        'tool': tools[req.params.id-1]
-      });
-    }
-    else {
-      res.status(404).send('Not found');
-    }
+    setTimeout(function() {
+      var tool = tools.filter(function(element) { return element.id == req.params.id }).pop();
+      if (tool) {
+        res.send({
+          'tool': tool
+        });
+      }
+      else {
+        res.status(404).send('Not found');
+      }
+    },req.query.sleep || 1000);
   });
 
   toolsRouter.put('/:id', function(req, res) {
-    jsonBody(req, res, function(err, body) {
-      console.log(body);
-      body.tool['id'] = req.params.id
-      tools[req.params.id-1] = body.tool;
-      res.send(body);
-    })
+    setTimeout(function() {
+      var tool = tools.filter(function(element) { return element.id == req.params.id }).pop();
+      if (tool) {
+        jsonBody(req, res, function(err, body) {
+          body.tool['id'] = req.params.id;
+          tools = tools.map(function(element) {
+            return (element.id == req.params.id) ? body.tool : element;
+          });
+          res.send(body);
+        })
+      }
+      else {
+        res.status(404).send('Not found');
+      }
+    },req.query.sleep || 1000);
   });
 
   toolsRouter.delete('/:id', function(req, res) {
-    res.status(204).end();
+    setTimeout(function() {
+      tools = tools.filter(function(element) {
+        return element.id != req.params.id;
+      });
+      res.status(200).send({"task": {}});
+    },req.query.sleep || 1000);
   });
 
+  app.use(cors());
   app.use('/api/tools', toolsRouter);
 };
