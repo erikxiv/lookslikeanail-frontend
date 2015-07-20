@@ -413,6 +413,41 @@
         "http"
     ],
     "definitions": {
+        "feature" : {
+            "properties": {
+                "title": {
+                    "description": "Human readable title, e.g. \"Elixir Hosting\"",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A description of the feature.",
+                    "type": "string"
+                },
+                "updated": {
+                    "description": "When this item was last modified",
+                    "format": "dateTime",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier",
+                    "type": "number"
+                },
+                "created": {
+                    "description": "When this item was created",
+                    "format": "dateTime",
+                    "type": "string"
+                },
+                "keywords": {
+                    "description": "List of applicable keywords",
+                    "type": "array",
+                    "items": {
+                        "description": "keyword / alias",
+                        "type": "string"
+                    }
+                }
+            }
+
+        },
         "tool": {
             "properties": {
                 "title": {
