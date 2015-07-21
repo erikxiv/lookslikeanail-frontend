@@ -7,113 +7,130 @@ WITH DISTINCT timestamp() as t
 // Tools
 //
 CREATE (java:Tool {
+  id: 101,
   title: 'Java',
   subTitle: 'Programming Language',
   description: 'JavaDescription'
-}) SET java.id = id(java), java.created = timestamp(), java.updated = timestamp()
+}) SET java.created = timestamp(), java.updated = timestamp()
 
 CREATE (tortoise:Tool {
+  id: 102,
   title: 'TortoiseSVN',
   subTitle: 'Application',
   description: 'TortoiseSVNDescription'
-}) SET tortoise.id = id(tortoise), tortoise.created = timestamp(), tortoise.updated = timestamp()
+}) SET tortoise.created = timestamp(), tortoise.updated = timestamp()
 
 CREATE (mix:Tool {
+  id: 103,
   title: 'Mix',
   subTitle: 'Build Tool',
   description: 'MixDescription'
-}) SET mix.id = id(mix), mix.created = timestamp(), mix.updated = timestamp()
+}) SET mix.created = timestamp(), mix.updated = timestamp()
 
 CREATE (elixir:Tool {
+  id: 104,
   title: 'Elixir',
   subTitle: 'Programming Langugage',
   description: 'Elixir is a functional, concurrent, general-purpose programming language that runs on the Erlang virtual machine (BEAM). Elixir builds on top of Erlang to provide distributed, fault-tolerant, soft real-time, non-stop applications but also extends it to support metaprogramming with macros and polymorphism via protocols.'
-}) SET elixir.id = id(elixir), elixir.created = timestamp(), elixir.updated = timestamp()
+}) SET elixir.created = timestamp(), elixir.updated = timestamp()
 
 CREATE (postgres:Tool {
+  id: 105,
   title: 'Postgres',
   subTitle: 'Database',
   description: 'PostgresDescription'
-}) SET postgres.id = id(postgres), postgres.created = timestamp(), postgres.updated = timestamp()
+}) SET postgres.created = timestamp(), postgres.updated = timestamp()
 
 CREATE (mysql:Tool {
+  id: 106,
   title: 'MySQL',
   subTitle: 'Database',
   description: 'MySQLDescription'
-}) SET mysql.id = id(mysql), mysql.created = timestamp(), mysql.updated = timestamp()
+}) SET mysql.created = timestamp(), mysql.updated = timestamp()
 
 CREATE (heroku:Tool {
+  id: 107,
   title: 'Heroku',
   subTitle: 'Platform as a Service',
   description: 'HerokuDescription'
-}) SET heroku.id = id(heroku), heroku.created = timestamp(), heroku.updated = timestamp()
+}) SET heroku.created = timestamp(), heroku.updated = timestamp()
 
 //
 // Tasks
 //
 CREATE (building:Task {
+  id: 201,
   title: 'Building',
   subTitle: 'Task',
   description: 'BuildingDescription'
-}) SET building.id = id(building), building.created = timestamp(), building.updated = timestamp()
+}) SET building.created = timestamp(), building.updated = timestamp()
 
 CREATE (hosting:Task {
+  id: 202,
   title: 'Hosting',
   subTitle: 'Task',
   description: 'HostingDescription'
-}) SET hosting.id = id(hosting), hosting.created = timestamp(), hosting.updated = timestamp()
+}) SET hosting.created = timestamp(), hosting.updated = timestamp()
 
 CREATE (testing:Task {
+  id: 203,
   title: 'Testing',
   subTitle: 'Task',
   description: 'TestingDescription'
-}) SET testing.id = id(testing), testing.created = timestamp(), testing.updated = timestamp()
+}) SET testing.created = timestamp(), testing.updated = timestamp()
 
 CREATE (connecting:Task {
+  id: 204,
   title: 'Connecting',
   subTitle: 'Task',
   description: 'ConnectingDescription'
-}) SET connecting.id = id(connecting), connecting.created = timestamp(), connecting.updated = timestamp()
+}) SET connecting.created = timestamp(), connecting.updated = timestamp()
 
 CREATE (datastorage:Task {
+  id: 205,
   title: 'Datastorage',
   subTitle: 'Task',
   description: 'DatastorageDescription'
-}) SET datastorage.id = id(datastorage), datastorage.created = timestamp(), datastorage.updated = timestamp()
+}) SET datastorage.created = timestamp(), datastorage.updated = timestamp()
 
 //
 // Features
 //
 CREATE (mixBuilding:Feature {
+  id: 301,
   title: 'mixBuilding'
-}) SET mixBuilding.id = id(mixBuilding), mixBuilding.created = timestamp(), mixBuilding.updated = timestamp()
+}) SET mixBuilding.created = timestamp(), mixBuilding.updated = timestamp()
 CREATE (mix)-[:IMPLEMENTS]->(mixBuilding),
 (mixBuilding)-[:IS_CAPABLE_OF]->(building),
 (mixBuilding)-[:SUPPORTS]->(elixir)
 
 CREATE (ecto:Feature {
+  id: 302,
   title: 'ecto'
-}) SET ecto.id = id(ecto), ecto.created = timestamp(), ecto.updated = timestamp()
+}) SET ecto.created = timestamp(), ecto.updated = timestamp()
 CREATE (elixir)-[:IMPLEMENTS]->(ecto),
 (ecto)-[:IS_CAPABLE_OF]->(connecting),
 (ecto)-[:SUPPORTS]->(postgres),
 (ecto)-[:SUPPORTS]->(mysql)
 
 CREATE (postgresDatastorage:Feature {
+  id: 303,
   title: 'postgresDatastorage'
-}) SET postgresDatastorage.id = id(postgresDatastorage), postgresDatastorage.created = timestamp(), postgresDatastorage.updated = timestamp()
+}) SET postgresDatastorage.created = timestamp(), postgresDatastorage.updated = timestamp()
 CREATE (postgres)-[:IMPLEMENTS]->(postgresDatastorage),
 (postgresDatastorage)-[:IS_CAPABLE_OF]->(datastorage)
 
 CREATE (mysqlDatastorage:Feature {
+  id: 304,
   title: 'mysqlDatastorage'
-}) SET mysqlDatastorage.id = id(mysqlDatastorage), mysqlDatastorage.created = timestamp(), mysqlDatastorage.updated = timestamp()
+}) SET mysqlDatastorage.created = timestamp(), mysqlDatastorage.updated = timestamp()
 CREATE (mysql)-[:IMPLEMENTS]->(mysqlDatastorage),
 (mysqlDatastorage)-[:IS_CAPABLE_OF]->(datastorage)
 
 CREATE (herokuHosting:Feature {
+  id: 305,
   title: 'herokuHosting'
-}) SET herokuHosting.id = id(herokuHosting), herokuHosting.created = timestamp(), herokuHosting.updated = timestamp()
+}) SET herokuHosting.created = timestamp(), herokuHosting.updated = timestamp()
 CREATE (heroku)-[:IMPLEMENTS]->(herokuHosting),
 (herokuHosting)-[:IS_CAPABLE_OF]->(hosting),
 (herokuHosting)-[:SUPPORTS]->(postgres),
