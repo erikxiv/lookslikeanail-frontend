@@ -100,38 +100,38 @@ CREATE (mixBuilding:Feature {
   id: 301,
   title: 'mixBuilding'
 }) SET mixBuilding.created = timestamp(), mixBuilding.updated = timestamp()
-CREATE (mix)-[:IMPLEMENTS]->(mixBuilding),
-(mixBuilding)-[:IS_CAPABLE_OF]->(building),
-(mixBuilding)-[:SUPPORTS]->(elixir)
+CREATE (mix)-[:IMPLEMENTS {id: 3011}]->(mixBuilding),
+(mixBuilding)-[:IS_CAPABLE_OF {id: 3012}]->(building),
+(mixBuilding)-[:SUPPORTS {id: 3013}]->(elixir)
 
 CREATE (ecto:Feature {
   id: 302,
   title: 'ecto'
 }) SET ecto.created = timestamp(), ecto.updated = timestamp()
-CREATE (elixir)-[:IMPLEMENTS]->(ecto),
-(ecto)-[:IS_CAPABLE_OF]->(connecting),
-(ecto)-[:SUPPORTS]->(postgres),
-(ecto)-[:SUPPORTS]->(mysql)
+CREATE (elixir)-[:IMPLEMENTS {id: 3021}]->(ecto),
+(ecto)-[:IS_CAPABLE_OF {id: 3022}]->(connecting),
+(ecto)-[:SUPPORTS {id: 3023}]->(postgres),
+(ecto)-[:SUPPORTS {id: 3024}]->(mysql)
 
 CREATE (postgresDatastorage:Feature {
   id: 303,
   title: 'postgresDatastorage'
 }) SET postgresDatastorage.created = timestamp(), postgresDatastorage.updated = timestamp()
-CREATE (postgres)-[:IMPLEMENTS]->(postgresDatastorage),
-(postgresDatastorage)-[:IS_CAPABLE_OF]->(datastorage)
+CREATE (postgres)-[:IMPLEMENTS {id: 3031}]->(postgresDatastorage),
+(postgresDatastorage)-[:IS_CAPABLE_OF {id: 3032}]->(datastorage)
 
 CREATE (mysqlDatastorage:Feature {
   id: 304,
   title: 'mysqlDatastorage'
 }) SET mysqlDatastorage.created = timestamp(), mysqlDatastorage.updated = timestamp()
-CREATE (mysql)-[:IMPLEMENTS]->(mysqlDatastorage),
-(mysqlDatastorage)-[:IS_CAPABLE_OF]->(datastorage)
+CREATE (mysql)-[:IMPLEMENTS {id: 3041}]->(mysqlDatastorage),
+(mysqlDatastorage)-[:IS_CAPABLE_OF {id: 3042}]->(datastorage)
 
 CREATE (herokuHosting:Feature {
   id: 305,
   title: 'herokuHosting'
 }) SET herokuHosting.created = timestamp(), herokuHosting.updated = timestamp()
-CREATE (heroku)-[:IMPLEMENTS]->(herokuHosting),
-(herokuHosting)-[:IS_CAPABLE_OF]->(hosting),
-(herokuHosting)-[:SUPPORTS]->(postgres),
-(herokuHosting)-[:SUPPORTS]->(elixir)
+CREATE (heroku)-[:IMPLEMENTS {id: 3051}]->(herokuHosting),
+(herokuHosting)-[:IS_CAPABLE_OF {id: 3052}]->(hosting),
+(herokuHosting)-[:SUPPORTS {id: 3053}]->(postgres),
+(herokuHosting)-[:SUPPORTS {id: 3054}]->(elixir)
