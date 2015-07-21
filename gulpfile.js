@@ -1,3 +1,4 @@
+// Imports
 var child_process = require('child_process')
 var gulp          = require('gulp');
 var watch         = require('gulp-watch');
@@ -6,10 +7,13 @@ var plumber       = require('gulp-plumber');
 var gutil         = require('gulp-util');
 var yaml          = require('yamljs');
 var path          = require('path');
+var fs            = require('fs');
 
+// Variables for docker
 var mainDockerName = 'ember';
 var mainDockerPath = '/myapp';
 
+// Calculate/set variables used in tasks
 var dockerCompose = yaml.load('docker-compose.yml');
 var pwd = __dirname;
 var projectName = __dirname.split(path.sep).pop();
@@ -114,6 +118,19 @@ gulp.task('watch', ['docker-up'], function() {
     }
     else {
       child_process.exec('docker exec '+mainContainerName+' cp -R /tmp/project/'+file.relative+' ' + mainDockerPath + '/'+file.relative, { stdio: 'inherit' }, log_errors);
+    }
+    // Run tests, save to file
+    if (file.relative !== 'test-report.txt') {
+      child_process.exec('docker exec '+mainContainerName+' ember test --silent', function (error, stdout, stderr) {
+        gutil.log(stdout);
+        gutil.log(stderr);
+        if (error == null) {
+          fs.writeFile('test-report.txt', stdout);
+        }
+        else {
+          gutil.log('Failed to run ember test: ' + error);
+        }
+      });
     }
   });
 });

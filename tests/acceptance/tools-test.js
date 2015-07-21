@@ -23,20 +23,10 @@ module('Acceptance | tools', {
   }
 });
 
-test('Visiting /tools', function(assert) {
-  visit('/tools');
-  andThen(function() {
-    // console.log('currentRouteName: ' + currentRouteName()); // => tools
-    // console.log('currentPath: ' + currentPath()); // => tools
-    // console.log('currentURL: ' + currentURL()); // => (empty)
-    assert.equal(currentPath(), 'tools');
-    assert.equal(currentRouteName(), 'tools');
-  });
-});
-
 test('Get /tools should return 2 items', function(assert) {
   visit('/tools');
   andThen(function() {
+    assert.equal(currentRouteName(), 'tools');
     assert.equal(find('.tool').length, 2);
     assert.equal(find('.tool .tool-title:first').text(), 'Heroku');
   });

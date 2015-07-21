@@ -1,0 +1,34 @@
+ok 1 PhantomJS 1.9 - Acceptance | tools: Get /tools should return 2 items
+ok 2 PhantomJS 1.9 - Acceptance | tools: Update tool title should work
+ok 3 PhantomJS 1.9 - JSHint - acceptance: acceptance/tools-test.js should pass jshint
+ok 4 PhantomJS 1.9 - JSHint - adapters: adapters/application.js should pass jshint
+ok 5 PhantomJS 1.9 - JSHint - .: app.js should pass jshint
+ok 6 PhantomJS 1.9 - JSHint - controllers: controllers/task.js should pass jshint
+ok 7 PhantomJS 1.9 - JSHint - controllers: controllers/tasks.js should pass jshint
+ok 8 PhantomJS 1.9 - JSHint - controllers: controllers/tool.js should pass jshint
+ok 9 PhantomJS 1.9 - JSHint - controllers: controllers/tools.js should pass jshint
+ok 10 PhantomJS 1.9 - JSHint - helpers: helpers/resolver.js should pass jshint
+ok 11 PhantomJS 1.9 - JSHint - helpers: helpers/start-app.js should pass jshint
+ok 12 PhantomJS 1.9 - JSHint - models: models/task.js should pass jshint
+ok 13 PhantomJS 1.9 - JSHint - models: models/tool.js should pass jshint
+ok 14 PhantomJS 1.9 - JSHint - .: router.js should pass jshint
+ok 15 PhantomJS 1.9 - JSHint - routes: routes/application.js should pass jshint
+ok 16 PhantomJS 1.9 - JSHint - routes: routes/index.js should pass jshint
+ok 17 PhantomJS 1.9 - JSHint - routes: routes/task.js should pass jshint
+ok 18 PhantomJS 1.9 - JSHint - routes: routes/tasks.js should pass jshint
+ok 19 PhantomJS 1.9 - JSHint - routes: routes/tool.js should pass jshint
+ok 20 PhantomJS 1.9 - JSHint - routes: routes/tools.js should pass jshint
+ok 21 PhantomJS 1.9 - JSHint - .: test-helper.js should pass jshint
+ok 22 PhantomJS 1.9 - controller:tools: it exists
+ok 23 PhantomJS 1.9 - JSHint - unit/controllers: unit/controllers/tools-test.js should pass jshint
+ok 24 PhantomJS 1.9 - Unit | Model | tool: it exists
+ok 25 PhantomJS 1.9 - JSHint - unit/models: unit/models/tool-test.js should pass jshint
+ok 26 PhantomJS 1.9 - Unit | Route | tools: it exists
+ok 27 PhantomJS 1.9 - JSHint - unit/routes: unit/routes/tools-test.js should pass jshint
+
+1..27
+# tests 27
+# pass  27
+# fail  0
+
+# ok
