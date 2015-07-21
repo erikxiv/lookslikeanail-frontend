@@ -117,6 +117,16 @@
                             "properties": {
                                 "tool": {
                                     "$ref": "#/definitions/tool"
+                                },
+                                "features": {
+                                    "items": {
+                                        "$ref": "#/definitions/feature"
+                                    }
+                                },
+                                "tasks": {
+                                    "items": {
+                                        "$ref": "#/definitions/task"
+                                    }
                                 }
                             }
                         }
@@ -413,6 +423,41 @@
         "http"
     ],
     "definitions": {
+        "feature" : {
+            "properties": {
+                "title": {
+                    "description": "Human readable title, e.g. \"Elixir Hosting\"",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A description of the feature.",
+                    "type": "string"
+                },
+                "updated": {
+                    "description": "When this item was last modified",
+                    "format": "dateTime",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier",
+                    "type": "number"
+                },
+                "capability": {
+                    "description": "Task unique identifier.",
+                    "type": "number"
+                },
+                "supportedTool": {
+                    "description": "Tool unique identifier.",
+                    "type": "number"
+                },
+                "created": {
+                    "description": "When this item was created",
+                    "format": "dateTime",
+                    "type": "string"
+                }
+            }
+
+        },
         "tool": {
             "properties": {
                 "title": {
@@ -447,6 +492,14 @@
                     "items": {
                         "description": "keyword / alias",
                         "type": "string"
+                    }
+                },
+                "features": {
+                    "description": "List of implemented features",
+                    "type": "array",
+                    "items": {
+                        "description": "feature unique id",
+                        "type": "number"
                     }
                 }
             }
