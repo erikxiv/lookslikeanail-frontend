@@ -28,11 +28,10 @@ module.exports = function(app) {
 
   toolsRouter.get('/', function(req, res) {
     setTimeout(function() {
-      console.log('yes?');
       res.send({
         'tools': tools
       });
-    },req.query.sleep || 1000);
+    },req.query.sleep || 0);
   });
 
   toolsRouter.post('/', function(req, res) {
@@ -43,7 +42,7 @@ module.exports = function(app) {
         tools.push(body.tool);
         res.send(body);
       })
-    },req.query.sleep || 1000);
+    },req.query.sleep || 0);
   });
 
   toolsRouter.get('/:id', function(req, res) {
@@ -57,7 +56,7 @@ module.exports = function(app) {
       else {
         res.status(404).send('Not found');
       }
-    },req.query.sleep || 1000);
+    },req.query.sleep || 0);
   });
 
   toolsRouter.put('/:id', function(req, res) {
@@ -75,7 +74,7 @@ module.exports = function(app) {
       else {
         res.status(404).send('Not found');
       }
-    },req.query.sleep || 1000);
+    },req.query.sleep || 0);
   });
 
   toolsRouter.delete('/:id', function(req, res) {
@@ -84,7 +83,7 @@ module.exports = function(app) {
         return element.id != req.params.id;
       });
       res.status(200).send({"task": {}});
-    },req.query.sleep || 1000);
+    },req.query.sleep || 0);
   });
 
   app.use(cors());

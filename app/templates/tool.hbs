@@ -4,25 +4,25 @@
 <p><i>Double-click a properties to change the value</i></p>
 <table class="table table-hover">
   <tbody>
-    <tr {{action "edit" "Title" on="doubleClick"}}>
+    <tr {{action "edit" "Title" on="click"}} class="tool-title">
       <th>Title</th>
       {{#if isEditingTitle}}
-        <td>{{input id="inputTitle" type="text" value=model.title enter="save" focus-out="save" autofocus="autofocus"}}</td>
+        <td class="tool-title">{{input id="inputTitle" type="text" value=model.title enter="save" focus-out="save" autofocus="autofocus"}}</td>
       {{else}}
-        <td>{{model.title}}</td>
+        <td class="tool-title">{{model.title}}</td>
       {{/if}}
       <td><i>Somewhat canonical name of tool, e.g. Java</i></td>
     </tr>
-    <tr {{action "edit" "Subtitle" on="doubleClick"}}>
+    <tr {{action "edit" "Subtitle" on="click"}} class="tool-subTitle">
       <th>Subtitle</th>
       {{#if isEditingSubtitle}}
-        <td>{{input id="inp" type="text" value=model.subTitle enter="save" focus-out="save" autofocus="autofocus"}}</td>
+        <td class="tool-subTitle">{{input id="inp" type="text" value=model.subTitle enter="save" focus-out="save" autofocus="autofocus"}}</td>
       {{else}}
-        <td>{{model.subTitle}}</td>
+        <td class="tool-subTitle">{{model.subTitle}}</td>
       {{/if}}
       <td><i>Subtitle, or type of tool, to differentiate between tools of similar name, e.g. Programming Language</i></td>
     </tr>
-    <tr {{action "edit" "Description" on="doubleClick"}}>
+    <tr {{action "edit" "Description" on="click"}}>
       <th>Description</th>
       {{#if isEditingDescription}}
         <td>{{input type="text" value=model.description enter="save" focus-out="save" autofocus="autofocus"}}</td>

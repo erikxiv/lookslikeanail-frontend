@@ -9,9 +9,9 @@
   </thead>
   <tbody>
   {{#each model as |tool|}}
-    <tr {{action 'details' tool on="click"}}>
-      <td>{{tool.title}}</td>
-      <td>{{tool.subTitle}}</td>
+    <tr {{action 'details' tool on="click"}} class="tool">
+      <td class="tool-title">{{tool.title}}</td>
+      <td class="tool-subTitle">{{tool.subTitle}}</td>
     </tr>
   {{/each}}
   </tbody>

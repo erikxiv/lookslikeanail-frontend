@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 
-export default DS.Model.extend({
+var Tool = DS.Model.extend({
   title: DS.attr(),
   subTitle: DS.attr(),
   description: DS.attr(),
@@ -8,3 +8,10 @@ export default DS.Model.extend({
   updated: DS.attr(),
   keywords: DS.attr(),
 });
+
+Tool.reopenClass({
+  FIXTURES: [
+  ]
+});
+
+export default Tool;
