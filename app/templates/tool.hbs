@@ -1,47 +1,53 @@
-{{!-- <h1><strong>{{model.title}}</strong> ({{model.subTitle}})</h1> --}}
-<h1>{{title}}</h1>
-<p>{{model.description}}</p>
-<p><i>Double-click a properties to change the value</i></p>
-<table class="table table-hover">
-  <tbody>
-    <tr {{action "edit" "Title" on="click"}} class="tool-title">
-      <th>Title</th>
-      {{#if isEditingTitle}}
-        <td class="tool-title">{{input id="inputTitle" type="text" value=model.title enter="save" focus-out="save" autofocus="autofocus"}}</td>
-      {{else}}
-        <td class="tool-title">{{model.title}}</td>
-      {{/if}}
-      <td><i>Somewhat canonical name of tool, e.g. Java</i></td>
-    </tr>
-    <tr {{action "edit" "Subtitle" on="click"}} class="tool-subTitle">
-      <th>Subtitle</th>
-      {{#if isEditingSubtitle}}
-        <td class="tool-subTitle">{{input id="inp" type="text" value=model.subTitle enter="save" focus-out="save" autofocus="autofocus"}}</td>
-      {{else}}
-        <td class="tool-subTitle">{{model.subTitle}}</td>
-      {{/if}}
-      <td><i>Subtitle, or type of tool, to differentiate between tools of similar name, e.g. Programming Language</i></td>
-    </tr>
-    <tr {{action "edit" "Description" on="click"}}>
-      <th>Description</th>
-      {{#if isEditingDescription}}
-        <td>{{input type="text" value=model.description enter="save" focus-out="save" autofocus="autofocus"}}</td>
-      {{else}}
-        <td>{{model.description}}</td>
-      {{/if}}
-      <td><i>Description of tool in markdown syntax</i></td>
-    </tr>
-    <tr>
-      <th>Created</th>
-      <td>{{model.created}}</td>
-      <td><i>Date/time of the directory entries creation</i></td>
-    </tr>
-    <tr>
-      <th>Updated</th>
-      <td>{{model.updated}}</td>
-      <td><i>Date/time of the directory entries last update</i></td>
-    </tr>
-  </tbody>
-</table>
-<button class="btn btn-danger" {{action "delete"}}>I made a mistake, please remove this entry from the directory</button>
+<div class="media">
+  {{#if isEditingTitle}}
+    <h1 class="media-heading pull-left tool-title">
+      {{input id="inputTitle" type="text" value=model.title enter="save" focus-out="save" autofocus="autofocus"}}
+    </h1>
+  {{else}}
+    <h1 class="media-heading pull-left tool-title" {{action "edit" "Title" on="click"}}>
+      {{model.title}}
+    </h1>
+  {{/if}}
+  {{#if isEditingSubtitle}}
+    <h1 class="media-heading pull-left tool-title"><small>
+      {{input id="inputSubtitle" type="text" value=model.subTitle enter="save" focus-out="save" autofocus="autofocus"}}
+    </small></h1>
+  {{else}}
+    <h1 class="media-heading pull-left tool-subTitle" {{action "edit" "Subtitle" on="click"}}><small>
+      ({{model.subTitle}})
+    </small></h1>
+  {{/if}}
+</div>
+
+{{#if isEditingDescription}}
+  {{input id="inputDescription" type="text" value=model.description enter="save" focus-out="save" autofocus="autofocus"}}
+{{else}}
+    <p class="tool-description" {{action "edit" "Description" on="click"}}>
+      {{model.description}}
+    </p>
+{{/if}}
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Features</h3>
+  </div>
+  <div class="panel-body">
+    <ul>
+    {{#each model.implements as |implements|}}
+      {{#each implements.feature.isCapableOf as |isCapableOf|}}
+        <li>{{#link-to 'task' isCapableOf.task classNames='task-title'}}{{isCapableOf.task.title}}{{/link-to}}</li>
+      {{/each}}
+    {{/each}}
+    </ul>
+  </div>
+</div>
+
+<div>
+  Created: {{model.created}}. Last updated: {{model.updated}}
+</div>
+<div>
+  <button class="btn btn-danger" {{action "delete"}}>
+    I made a mistake, please remove this entry from the directory
+  </button>
+</div>
 <p/>

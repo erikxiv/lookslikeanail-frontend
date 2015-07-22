@@ -41,23 +41,37 @@ test('Get /tools should return 5 task titles', function(assert) {
 test('Get /tools/101 should return Java', function(assert) {
   visit('/tools/101');
   andThen(function() {
-    assert.equal(find('td.tool-title').text(), 'Java');
+    assert.equal(find('.tool-title').text().trim(), 'Java');
   });
 });
 
 test('Update tool title should work', function(assert) {
   visit('/tools/101');
-  triggerEvent('tr.tool-title', 'click');
+  triggerEvent('.tool-title', 'click');
   fillIn('#inputTitle', 'OtherTitle');
-  triggerEvent('tr.tool-subTitle', 'click');
+  triggerEvent('.tool-subTitle', 'click');
   andThen(function() {
-    assert.equal(find('td.tool-title').text(), 'OtherTitle');
+    assert.equal(find('.tool-title').text().trim(), 'OtherTitle');
   });
 });
 
 test('Get /tools/101 should return Java again', function(assert) {
   visit('/tools/101');
   andThen(function() {
-    assert.equal(find('td.tool-title').text(), 'Java');
+    assert.equal(find('.tool-title').text().trim(), 'Java');
+  });
+});
+
+test('Get /tools/101 should not present any tasks', function(assert) {
+  visit('/tools/101');
+  andThen(function() {
+    assert.equal(find('.task-title').length, 0);
+  });
+});
+
+test('Get /tools/103 should present task Building', function(assert) {
+  visit('/tools/103');
+  andThen(function() {
+    assert.equal(find('.task-title').text().trim(), 'Building');
   });
 });
