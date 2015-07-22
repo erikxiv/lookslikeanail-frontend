@@ -3,32 +3,35 @@
     "produces": [
         "application/json"
     ],
-    "host": "looks-like-a-nail-backend.herokuapp.com",
+    "host": "api.tool.directory",
     "info": {
         "description": "An API to discover and contribute information about software tools",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "title": "Tool Directory API"
     },
     "basePath": "/api/v1",
     "consumes": [
         "application/json"
     ],
+    "schemes": [
+        "http"
+    ],
     "paths": {
-        "/tools": {
+        "/features": {
             "post": {
-                "description": "Creates a new tool",
+                "description": "Creates a new feature",
                 "tags": [
-                    "tool"
+                    "feature"
                 ],
                 "parameters": [
                     {
-                        "name": "tool",
+                        "name": "feature",
                         "in": "body",
-                        "description": "Tool to add",
+                        "description": "Feature to add",
                         "schema": {
                             "properties": {
-                                "tool": {
-                                    "$ref": "#/definitions/tool"
+                                "task": {
+                                    "$ref": "#/definitions/feature"
                                 }
                             }
                         },
@@ -38,45 +41,14 @@
                 "produces": [
                     "application/json"
                 ],
-                "operationId": "addTool",
+                "operationId": "addFeature",
                 "responses": {
                     "200": {
-                        "description": "tool response",
+                        "description": "feature response",
                         "schema": {
                             "properties": {
-                                "tool": {
-                                    "$ref": "#/definitions/tool"
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }
-                }
-            },
-            "get": {
-                "description": "Returns all tools",
-                "tags": [
-                    "tool"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "operationId": "findTools",
-                "responses": {
-                    "200": {
-                        "description": "tool response",
-                        "schema": {
-                            "properties": {
-                                "tools": {
-                                    "items": {
-                                        "$ref": "#/definitions/tool"
-                                    },
-                                    "type": "array"
+                                "feature": {
+                                    "$ref": "#/definitions/feature"
                                 }
                             }
                         }
@@ -90,83 +62,29 @@
                 }
             }
         },
-        "/tools/{id}": {
-            "get": {
-                "description": "Returns a tool based on ID",
-                "tags": [
-                    "tool"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "format": "int64",
-                        "name": "id",
-                        "description": "ID of tool to fetch",
-                        "type": "integer",
-                        "required": true
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "operationId": "findToolById",
-                "responses": {
-                    "200": {
-                        "description": "tool response",
-                        "schema": {
-                            "properties": {
-                                "tool": {
-                                    "$ref": "#/definitions/tool"
-                                },
-                                "features": {
-                                    "items": {
-                                        "$ref": "#/definitions/feature"
-                                    }
-                                },
-                                "tasks": {
-                                    "items": {
-                                        "$ref": "#/definitions/task"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "No tool with specified id exist",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }
-                }
-            },
+        "/features/{id}": {
             "put": {
-                "description": "Update tool",
+                "description": "Update feature",
                 "tags": [
-                    "tool"
+                    "feature"
                 ],
                 "parameters": [
                     {
                         "in": "path",
                         "format": "int64",
                         "name": "id",
-                        "description": "ID of tool to update",
+                        "description": "ID of feature to update",
                         "type": "integer",
                         "required": true
                     },
                     {
-                        "name": "tool",
+                        "name": "feature",
                         "in": "body",
-                        "description": "Tool properties to update",
+                        "description": "Feature properties to update",
                         "schema": {
                             "properties": {
-                                "tool": {
-                                    "$ref": "#/definitions/tool"
+                                "feature": {
+                                    "$ref": "#/definitions/feature"
                                 }
                             }
                         },
@@ -176,12 +94,12 @@
                 "produces": [
                     "application/json"
                 ],
-                "operationId": "updateTool",
+                "operationId": "updateFeature",
                 "responses": {
                     "200": {
-                        "description": "tool response",
+                        "description": "feature response",
                         "schema": {
-                            "$ref": "#/definitions/tool"
+                            "$ref": "#/definitions/feature"
                         }
                     },
                     "default": {
@@ -193,24 +111,212 @@
                 }
             },
             "delete": {
-                "description": "deletes a single tool based on the ID supplied",
+                "description": "deletes a single feature based on the ID supplied",
                 "tags": [
-                    "tool"
+                    "feature"
                 ],
                 "parameters": [
                     {
                         "in": "path",
                         "format": "int64",
                         "name": "id",
-                        "description": "ID of tool to delete",
+                        "description": "ID of feature to delete",
                         "type": "integer",
                         "required": true
                     }
                 ],
-                "operationId": "deleteTool",
+                "operationId": "deleteFeature",
                 "responses": {
                     "204": {
-                        "description": "tool deleted"
+                        "description": "feature deleted"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/implements": {
+            "post": {
+                "description": "Creates a new implements",
+                "tags": [
+                    "feature"
+                ],
+                "parameters": [
+                    {
+                        "name": "implements",
+                        "in": "body",
+                        "description": "Implements to add",
+                        "schema": {
+                            "properties": {
+                                "task": {
+                                    "$ref": "#/definitions/implements"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "addImplements",
+                "responses": {
+                    "200": {
+                        "description": "implements response",
+                        "schema": {
+                            "properties": {
+                                "implements": {
+                                    "$ref": "#/definitions/implements"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/implements/{id}": {
+            "put": {
+                "description": "Update implements",
+                "tags": [
+                    "feature"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of implements to update",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "implements",
+                        "in": "body",
+                        "description": "Implements properties to update",
+                        "schema": {
+                            "properties": {
+                                "implements": {
+                                    "$ref": "#/definitions/implements"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "updateImplements",
+                "responses": {
+                    "200": {
+                        "description": "implements response",
+                        "schema": {
+                            "$ref": "#/definitions/implements"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/is-capable-of": {
+            "post": {
+                "description": "Creates a new isCapableOf",
+                "tags": [
+                    "feature"
+                ],
+                "parameters": [
+                    {
+                        "name": "isCapableOf",
+                        "in": "body",
+                        "description": "IsCapableOf to add",
+                        "schema": {
+                            "properties": {
+                                "task": {
+                                    "$ref": "#/definitions/isCapableOf"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "addIsCapableOf",
+                "responses": {
+                    "200": {
+                        "description": "isCapableOf response",
+                        "schema": {
+                            "properties": {
+                                "isCapableOf": {
+                                    "$ref": "#/definitions/isCapableOf"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/is-capable-of/{id}": {
+            "put": {
+                "description": "Update isCapableOf",
+                "tags": [
+                    "feature"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of isCapableOf to update",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "isCapableOf",
+                        "in": "body",
+                        "description": "IsCapableOf properties to update",
+                        "schema": {
+                            "properties": {
+                                "isCapableOf": {
+                                    "$ref": "#/definitions/isCapableOf"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "updateIsCapableOf",
+                "responses": {
+                    "200": {
+                        "description": "isCapableOf response",
+                        "schema": {
+                            "$ref": "#/definitions/isCapableOf"
+                        }
                     },
                     "default": {
                         "description": "unexpected error",
@@ -417,74 +523,276 @@
                     }
                 }
             }
+        },
+        "/tools": {
+            "post": {
+                "description": "Creates a new tool",
+                "tags": [
+                    "tool"
+                ],
+                "parameters": [
+                    {
+                        "name": "tool",
+                        "in": "body",
+                        "description": "Tool to add",
+                        "schema": {
+                            "properties": {
+                                "tool": {
+                                    "$ref": "#/definitions/tool"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "addTool",
+                "responses": {
+                    "200": {
+                        "description": "tool response",
+                        "schema": {
+                            "properties": {
+                                "tool": {
+                                    "$ref": "#/definitions/tool"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Returns all tools",
+                "tags": [
+                    "tool"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "findTools",
+                "responses": {
+                    "200": {
+                        "description": "tool response",
+                        "schema": {
+                            "properties": {
+                                "tools": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/tool"
+                                    }
+                                },
+                                "implements": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/implements"
+                                    }
+                                },
+                                "features": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/feature"
+                                    }
+                                },
+                                "isCapableOf": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/isCapableOf"
+                                    }
+                                },
+                                "tasks": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/task"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/tools/{id}": {
+            "get": {
+                "description": "Returns a tool based on ID",
+                "tags": [
+                    "tool"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of tool to fetch",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "findToolById",
+                "responses": {
+                    "200": {
+                        "description": "tool response",
+                        "schema": {
+                            "properties": {
+                                "tool": {
+                                    "$ref": "#/definitions/tool"
+                                },
+                                "implements": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/implements"
+                                    }
+                                },
+                                "features": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/feature"
+                                    }
+                                },
+                                "isCapableOf": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/isCapableOf"
+                                    }
+                                },
+                                "tasks": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/task"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No tool with specified id exist",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update tool",
+                "tags": [
+                    "tool"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of tool to update",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "tool",
+                        "in": "body",
+                        "description": "Tool properties to update",
+                        "schema": {
+                            "properties": {
+                                "tool": {
+                                    "$ref": "#/definitions/tool"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "updateTool",
+                "responses": {
+                    "200": {
+                        "description": "tool response",
+                        "schema": {
+                            "$ref": "#/definitions/tool"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "deletes a single tool based on the ID supplied",
+                "tags": [
+                    "tool"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of tool to delete",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "operationId": "deleteTool",
+                "responses": {
+                    "204": {
+                        "description": "tool deleted"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
         }
     },
-    "schemes": [
-        "http"
-    ],
     "definitions": {
-        "feature" : {
+        "feature": {
             "properties": {
-                "title": {
-                    "description": "Human readable title, e.g. \"Elixir Hosting\"",
-                    "type": "string"
-                },
-                "description": {
-                    "description": "A description of the feature.",
-                    "type": "string"
-                },
-                "updated": {
-                    "description": "When this item was last modified",
-                    "format": "dateTime",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "Unique identifier",
-                    "type": "number"
-                },
-                "capability": {
-                    "description": "Task unique identifier.",
-                    "type": "number"
-                },
-                "supportedTool": {
-                    "description": "Tool unique identifier.",
-                    "type": "number"
-                },
                 "created": {
                     "description": "When this item was created",
                     "format": "dateTime",
                     "type": "string"
-                }
-            }
-
-        },
-        "tool": {
-            "properties": {
-                "title": {
-                    "description": "Human readable title",
-                    "type": "string"
-                },
-                "subTitle": {
-                    "description": "Human readable sub title",
-                    "type": "string"
-                },
-                "updated": {
-                    "description": "When this item was last modified",
-                    "format": "dateTime",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "Unique identifier",
-                    "type": "number"
                 },
                 "description": {
                     "description": "A description of this item",
                     "type": "string"
                 },
-                "created": {
-                    "description": "When this item was created",
-                    "format": "dateTime",
-                    "type": "string"
+                "id": {
+                    "description": "Unique identifier",
+                    "type": "number"
+                },
+                "isCapableOf": {
+                    "description": "List of isCapableOf relationships with Tasks",
+                    "type": "array",
+                    "items": {
+                        "description": "isCapableOf unique id",
+                        "type": "number"
+                    }
                 },
                 "keywords": {
                     "description": "List of applicable keywords",
@@ -494,43 +802,87 @@
                         "type": "string"
                     }
                 },
-                "features": {
-                    "description": "List of implemented features",
-                    "type": "array",
-                    "items": {
-                        "description": "feature unique id",
-                        "type": "number"
-                    }
+                "subTitle": {
+                    "description": "Human readable sub title",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Human readable title",
+                    "type": "string"
+                },
+                "updated": {
+                    "description": "When this item was last modified",
+                    "format": "dateTime",
+                    "type": "string"
+                }
+            }
+        },
+        "isCapableOf": {
+            "properties": {
+                "created": {
+                    "description": "When this item was created",
+                    "format": "dateTime",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier",
+                    "type": "number"
+                },
+                "feature": {
+                    "description": "Feature unique id (from)",
+                    "type": "number"
+                },
+                "task": {
+                    "description": "Task unique id (to)",
+                    "type": "number"
+                },
+                "updated": {
+                    "description": "When this item was last modified",
+                    "format": "dateTime",
+                    "type": "string"
+                }
+            }
+        },
+        "implements": {
+            "properties": {
+                "created": {
+                    "description": "When this item was created",
+                    "format": "dateTime",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier",
+                    "type": "number"
+                },
+                "feature": {
+                    "description": "Feature unique id (to)",
+                    "type": "number"
+                },
+                "tool": {
+                    "description": "Tool unique id (from)",
+                    "type": "number"
+                },
+                "updated": {
+                    "description": "When this item was last modified",
+                    "format": "dateTime",
+                    "type": "string"
                 }
             }
         },
         "task": {
             "properties": {
-                "title": {
-                    "description": "Human readable title",
-                    "type": "string"
-                },
-                "subTitle": {
-                    "description": "Human readable sub title",
-                    "type": "string"
-                },
-                "updated": {
-                    "description": "When this item was last modified",
+                "created": {
+                    "description": "When this item was created",
                     "format": "dateTime",
                     "type": "string"
-                },
-                "id": {
-                    "description": "Unique identifier",
-                    "type": "number"
                 },
                 "description": {
                     "description": "A description of this item",
                     "type": "string"
                 },
-                "created": {
-                    "description": "When this item was created",
-                    "format": "dateTime",
-                    "type": "string"
+                "id": {
+                    "description": "Unique identifier",
+                    "type": "number"
                 },
                 "keywords": {
                     "description": "List of applicable keywords",
@@ -539,6 +891,65 @@
                         "description": "keyword / alias",
                         "type": "string"
                     }
+                },
+                "subTitle": {
+                    "description": "Human readable sub title",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Human readable title",
+                    "type": "string"
+                },
+                "updated": {
+                    "description": "When this item was last modified",
+                    "format": "dateTime",
+                    "type": "string"
+                }
+            }
+        },
+        "tool": {
+            "properties": {
+                "created": {
+                    "description": "When this item was created",
+                    "format": "dateTime",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A description of this item",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier",
+                    "type": "number"
+                },
+                "implements": {
+                    "description": "List of implemented features",
+                    "type": "array",
+                    "items": {
+                        "description": "implements unique id",
+                        "type": "number"
+                    }
+                },
+                "keywords": {
+                    "description": "List of applicable keywords",
+                    "type": "array",
+                    "items": {
+                        "description": "keyword / alias",
+                        "type": "string"
+                    }
+                },
+                "subTitle": {
+                    "description": "Human readable sub title",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Human readable title",
+                    "type": "string"
+                },
+                "updated": {
+                    "description": "When this item was last modified",
+                    "format": "dateTime",
+                    "type": "string"
                 }
             }
         },
