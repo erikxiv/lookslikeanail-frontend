@@ -1,8 +1,9 @@
+import Ember from 'ember';
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('tool', 'Unit | Model | tool', {
   // Specify the other units that are required for this test.
-  needs: []
+  needs: ['model:feature', 'model:implements', 'model:is-capable-of', 'model:task']
 });
 
 test('it exists', function(assert) {

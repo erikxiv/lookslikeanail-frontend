@@ -10,7 +10,7 @@ module('Acceptance | tools', {
     application = startApp();
 
     // Get store and initialize with test data
-    store = application.__container__.lookup('store:main');
+    // store = application.__container__.lookup('store:main');
     // Ember.run(function() {
     //   store.unloadAll();
     //   store.createRecord('tool', {id: 1, title: 'Heroku'});
@@ -28,6 +28,13 @@ test('Get /tools should return 7 items', function(assert) {
   andThen(function() {
     assert.equal(currentRouteName(), 'tools');
     assert.equal(find('.tool').length, 7);
+  });
+});
+
+test('Get /tools should return 5 task titles', function(assert) {
+  visit('/tools');
+  andThen(function() {
+    assert.equal(find('.task-title').length, 5);
   });
 });
 

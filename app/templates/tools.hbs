@@ -1,18 +1,22 @@
 <p>Can't find the tool you are looking for? Contribute by {{#link-to 'tool' 'new'}}adding it{{/link-to}} to the directory.</p>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Subtitle</th>
-    </tr>
-  </thead>
-  <tbody>
-  {{#each model as |tool|}}
-    <tr {{action 'details' tool on="click"}} class="tool">
-      <td class="tool-title">{{tool.title}}</td>
-      <td class="tool-subTitle">{{tool.subTitle}}</td>
-    </tr>
-  {{/each}}
-  </tbody>
-</table>
+{{#each model as |tool|}}
+<div class="panel panel-default tool">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      {{#link-to 'tool' tool classNames='tool-title'}}{{tool.title}}{{/link-to}}
+      ({{tool.subTitle}})
+      <small>
+      {{#each tool.implements as |implements|}}
+        {{#each implements.feature.isCapableOf as |isCapableOf|}}
+          {{#link-to 'task' isCapableOf.task classNames='task-title'}}{{isCapableOf.task.title}}{{/link-to}}
+        {{/each}}
+      {{/each}}
+      </small>
+    </h3>
+  </div>
+  <div class="panel-body">
+    {{tool.description}}
+  </div>
+</div>
+{{/each}}
