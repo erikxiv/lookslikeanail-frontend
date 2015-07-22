@@ -1,8 +1,9 @@
 import DS from 'ember-data';
 
- var Task = DS.Model.extend({
+var Feature = DS.Model.extend({
   created: DS.attr(),
   description: DS.attr(),
+  implements: DS.belongsTo('implements'),
   isCapableOf: DS.hasMany('isCapableOf'),
   keywords: DS.attr(),
   subTitle: DS.attr(),
@@ -10,9 +11,9 @@ import DS from 'ember-data';
   updated: DS.attr()
 });
 
-Task.reopenClass({
+Feature.reopenClass({
   FIXTURES: [
   ]
 });
 
-export default Task;
+export default Feature;

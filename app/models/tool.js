@@ -1,12 +1,13 @@
 import DS from 'ember-data';
 
 var Tool = DS.Model.extend({
-  title: DS.attr(),
-  subTitle: DS.attr(),
-  description: DS.attr(),
   created: DS.attr(),
-  updated: DS.attr(),
+  description: DS.attr(),
+  implements: DS.hasMany(),
   keywords: DS.attr(),
+  subTitle: DS.attr(),
+  title: DS.attr(),
+  updated: DS.attr()
 });
 
 Tool.reopenClass({
