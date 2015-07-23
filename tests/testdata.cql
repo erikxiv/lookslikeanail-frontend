@@ -135,3 +135,12 @@ CREATE (heroku)-[:IMPLEMENTS {id: 3051}]->(herokuHosting),
 (herokuHosting)-[:IS_CAPABLE_OF {id: 3052}]->(hosting),
 (herokuHosting)-[:SUPPORTS {id: 3053}]->(postgres),
 (herokuHosting)-[:SUPPORTS {id: 3054}]->(elixir)
+
+CREATE (herokuBuilding:Feature {
+  id: 306,
+  title: 'herokuBuilding'
+}) SET herokuBuilding.created = timestamp(), herokuBuilding.updated=timestamp()
+CREATE (heroku)-[:IMPLEMENTS {id: 3055}]->(herokuBuilding),
+(herokuBuilding)-[:IS_CAPABLE_OF {id: 3056}]->(building),
+(herokuBuilding)-[:SUPPORTS {id: 3057}]->(elixir)
+
