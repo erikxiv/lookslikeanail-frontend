@@ -680,7 +680,7 @@
                         }
                     },
                     "404": {
-                        "description": "No tool with specified id exist",
+                        "description": "No tool with specified id exists",
                         "schema": {
                             "$ref": "#/definitions/errorModel"
                         }
