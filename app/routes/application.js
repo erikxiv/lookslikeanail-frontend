@@ -5,6 +5,7 @@ export default Ember.Route.extend({
     error: function(error) {
       // Manage your errors
       //Ember.onerror(error);
+      Rollbar.error("Route error: " + error, error);
       Raven.captureException(error);
 
       // substate implementation when returning `true`

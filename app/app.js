@@ -19,6 +19,7 @@ App = Ember.Application.extend({
 
 Ember.onerror = function(error) {
   console.log(error);
+  Rollbar.error("Uncaught exception: " + error, error);
   // Ember.$.ajax('/error-notification', {
   //   type: 'POST',
   //   data: {

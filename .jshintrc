@@ -3,6 +3,7 @@
     "document",
     "window",
     "Raven",
+    "Rollbar",
     "-Promise"
   ],
   "browser": true,
