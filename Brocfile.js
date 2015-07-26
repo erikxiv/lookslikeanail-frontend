@@ -9,7 +9,7 @@ var app = new EmberApp({
     "rollbar" : {
       file: "bower_components/rollbar/dist/rollbar.snippet.js",
       postProcess: function(content) {
-        return 'var _rollbarConfig = { accessToken: "' + config.rollbarToken + '", verbose: "' + config.rollbarVerbose + '", captureUncaught: true, payload: { environment: "' + config.environment + '" } };\n' + content;
+        return 'var _rollbarConfig = { accessToken: "' + config.rollbarToken + '", verbose: "' + config.rollbarVerbose + '", captureUncaught: true, payload: { environment: "' + config.environment + '", client: { javascript: { source_map_enabled: true, code_version: "' + config.rollbarCodeVersion + '", guess_uncaught_frames: true } } } };\n' + content;
       }
     }
   }

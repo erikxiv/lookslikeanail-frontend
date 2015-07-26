@@ -9,6 +9,7 @@ module.exports = function(environment) {
 
     rollbarToken: "f439d4bed0564ed9b93509e8834b71fd",
     rollbarVerbose: false,
+    rollbarCodeVersion: process.env.TRAVIS_COMMIT || 'unknown',
 
     sentry: {
       skipCdn: false, // skip loading from cdn
