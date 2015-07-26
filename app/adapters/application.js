@@ -4,7 +4,35 @@ import config from '../config/environment';
 
 var adapter = DS.RESTAdapter.extend({
   namespace: config.APP.API_NAMESPACE,
-  host: config.APP.API_HOST
+  host: config.APP.API_HOST,
+  // ajaxSuccess: function(jqXHR, payload) {
+  //   Rollbar.info("Received response from backend", jqXHR);
+  //   console.log({jqXHR: jqXHR, payload: payload});
+  //   return this._super(jqXHR, payload);
+  // },
+  ajax: function(url, type, options) {
+    var audit = {
+      request: {
+        url: url,
+        type: type
+      },
+      response: {
+      }
+    };
+    if (options && options.data)
+      audit.request.data = options.data;
+    return this._super(url, type, options)
+    .then(function(data) {
+      audit.response.data = data;
+      Rollbar.info(type + ' ' + url, audit);
+      return data;
+    })
+    .catch(function(error) {
+      audit.response.error = error;
+      Rollbar.warning(type + ' ' + url, audit);
+      throw error;
+    });
+  }
 });
 
 if (config.environment === 'development' || config.environment === 'test') {

@@ -21,13 +21,13 @@ var mainDockerImage = dockerCompose[mainDockerName].image;
 var mainContainerName = projectName.replace(/\W/g, '')+'_'+mainDockerName+'_1';
 var boot2dockerWasRunning = true;
 var dockerComposeWasStarted = false;
- 
+
 //////
 // Get development environment up and running
 //////
 gulp.task('up', ['docker-up', 'watch'], function () {
   // Only dependencies executed
-})
+});
 
 //////
 // Execute an ember task in the container
@@ -41,7 +41,7 @@ gulp.task('run', ['boot2docker-up'], function () {
   }
   else
     gutil.log(gutil.colors.red('Usage: gulp run --cmd "some command to run"'));
-})
+});
 
 //////
 // Catch Ctrl-C to clean up
