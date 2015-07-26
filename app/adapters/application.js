@@ -19,8 +19,9 @@ var adapter = DS.RESTAdapter.extend({
       response: {
       }
     };
-    if (options && options.data)
+    if (options && options.data) {
       audit.request.data = options.data;
+    }
     return this._super(url, type, options)
     .then(function(data) {
       audit.response.data = data;
