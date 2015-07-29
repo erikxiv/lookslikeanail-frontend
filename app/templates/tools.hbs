@@ -1,22 +1,41 @@
 <p>Can't find the tool you are looking for? Contribute by {{#link-to 'tool' 'new'}}adding it{{/link-to}} to the directory.</p>
 
-{{#each model as |tool|}}
-<div class="panel panel-default tool">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-      {{#link-to 'tool' tool classNames='tool-title'}}{{tool.title}}{{/link-to}}
-      ({{tool.subTitle}})
-      <small>
-      {{#each tool.implements as |implements|}}
-        {{#each implements.feature.isCapableOf as |isCapableOf|}}
-          {{#link-to 'task' isCapableOf.task classNames='task-title'}}{{isCapableOf.task.title}}{{/link-to}}
-        {{/each}}
-      {{/each}}
-      </small>
-    </h3>
-  </div>
-  <div class="panel-body">
-    {{tool.description}}
-  </div>
-</div>
-{{/each}}
+<ul class="list-group tools">
+  {{#each model as |tool|}}
+    <li {{bind-attr class=":list-group-item :tool tool.isExpanded:expanded:collapsed"}} {{action 'toggle' tool}}>
+      <div class="" style="position:relative">
+        <div {{bind-attr class=":row :collapsed-tool tool.isExpanded:collapsed:expanded"}}>
+          <div class="tool-icon-title col-md-3 col-xs-12">
+            <div><span class="glyphicon glyphicon-wrench tool-icon" aria-hidden="true"></span></div>
+            <div class="ellipsis tool-title">{{#link-to 'tool' tool}}{{tool.title}}{{/link-to}}</div>
+          </div>
+          <div class="col-md-9 hidden-xs">
+            <div class="ellipsis tool-description-shortened">{{tool.description}}</div>
+          </div>
+        </div>
+        <div {{bind-attr class=":row :expanded-tool tool.isExpanded:expanded:collapsed"}}>
+          <div class="tool-icon-title col-md-6 col-xs-12">
+            <div><span class="glyphicon glyphicon-wrench tool-icon" aria-hidden="true"></span></div>
+            <div class="ellipsis tool-title">{{#link-to 'tool' tool}}{{tool.title}}{{/link-to}}</div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="ellipsis tool-sub-title">{{tool.subTitle}}</div>
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <div class="tool-description">{{tool.description}}</div>
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <div class="tool-features"><i>
+              Features:
+            {{#each tool.implements as |implements|}}
+              {{#each implements.feature.isCapableOf as |isCapableOf|}}
+                {{#link-to 'task' isCapableOf.task classNames='task-title'}}{{isCapableOf.task.title}}{{/link-to}}
+              {{/each}}
+            {{/each}}
+            </i></div>     
+          </div>
+        </div>
+      </div>
+    </li>
+  {{/each}}
+</ul>

@@ -5,11 +5,16 @@ export default Ember.Controller.extend({
     details: function(tool) {
       this.transitionTo('tool', tool);
     },
-    expand: function() {
-      this.set('isExpanded', true);
+    toggle: function(tool) {
+      var wasExpanded = tool.get('isExpanded');
+      this.model.setEach('isExpanded', false);
+      tool.set('isExpanded', ! wasExpanded);
     },
-    contract: function() {
-      this.set('isExpanded', false);
+    expand: function(tool) {
+      tool.set('isExpanded', true);
+    },
+    contract: function(tool) {
+      tool.set('isExpanded', false);
     }
   }
 });

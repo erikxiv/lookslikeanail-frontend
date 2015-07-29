@@ -1,3 +1,137 @@
+/*
+* Tools page
+*/
+
+.list-group-item.tool {
+  -webkit-transition: margin 0.2s, max-height 0.2s, opacity 0.2s;
+  transition: margin 0.2s, max-height 0.2s, opacity 0.2s;
+}
+
+.list-group-item.tool div {
+  -webkit-transition: margin 0.2s, max-height 0.2s, opacity 0.2s;
+  transition: margin 0.2s, max-height 0.2s, opacity 0.2s;
+}
+
+.list-group-item.tool:hover {
+  border-left: 2px solid blue;
+}
+
+.list-group.tools .row > div {
+  display: flex;
+  display: -webkit-flex;
+  white-space: nowrap;
+  word-wrap: break-word;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.list-group.tools .row {
+  margin: 0px;
+}
+
+.list-group-item.tool .collapsed-tool {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.list-group-item.tool .tool-icon {
+  padding: 1px 22px 0px 7px;
+  font-size: 24px;
+}
+
+.list-group-item.tool .ellipsis {
+  padding-top: 5px;
+  padding-right: 22px;
+  white-space: nowrap;
+  word-wrap: break-word;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-group-item.tool .tool-description {
+  display: block;
+  padding-top: 5px;
+  white-space: normal;
+  word-wrap: normal;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-group-item.tool .expanded {
+  visibility: normal;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  max-height: 500px;
+}
+
+.list-group-item.tool .collapsed {
+  visibility: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  max-height: 34px;
+}
+
+.list-group-item.tool.expanded {
+  margin: 10px -10px;
+}
+
+/*.collapsed {
+  max-height: 54px;
+}
+
+.not-collapsed {
+  max-height: 500px;
+}
+
+.not-visible {
+  opacity: 0;
+}
+*/
+/*.list-group-item.tool .tool-title {
+  padding-top: 5px;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-group-item.tool .tool-description-shortened {
+  padding-top: 5px;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+}
+*/
+
+
+body {
+  background-color: rgb(242,242,242);
+}
+
+@media (max-width: 978px) {
+    .container {
+      padding:0;
+      margin:0;
+    }
+
+    body {
+      padding:0;
+    }
+
+    .navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom:0;
+    }
+}
+
 /* CSS-trick to get clicks (ember action) to work on mobile devices */
 
 [data-ember-action] {
