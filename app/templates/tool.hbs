@@ -36,6 +36,9 @@
             ({{model.subTitle}})
           </h1>
         {{/if}}
+        <a class="btn pull-right nopadding" {{action "delete"}}>
+          <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+        </a>
   </div>
   <div class="panel-body">
     {{#if isEditingDescription}}
@@ -61,7 +64,12 @@
     {{#each model.implements as |implements|}}
       {{#each implements.feature.isCapableOf as |isCapableOf|}}
         <li class="list-group-item">
-          {{#link-to 'task' isCapableOf.task classNames='task-title'}}{{isCapableOf.task.title}}{{/link-to}}
+          {{#link-to 'task' isCapableOf.task classNames='task-title'}}
+            {{isCapableOf.task.title}}
+          {{/link-to}}
+          <a class="btn pull-right" {{action 'removeFeature' implements.feature}}>
+            <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+          </a>
         </li>
       {{/each}}
     {{/each}}
@@ -72,9 +80,3 @@
   Created: {{model.created}}<br/>
   Last updated: {{model.updated}}
 </p>
-<p>
-  <a href {{action "delete"}}>
-    I made a mistake, please remove this entry from the directory
-  </a>
-</p>
-<p/>

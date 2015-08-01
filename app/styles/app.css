@@ -124,7 +124,15 @@ body {
   background-color: rgb(242,242,242);
 }
 
+a.btn.nopadding {
+  padding: 0px;
+}
+
 .panel-title a.btn {
+  padding: 0px;
+}
+
+.list-group-item a.btn {
   padding: 0px;
 }
 

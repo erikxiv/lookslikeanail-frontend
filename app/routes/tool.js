@@ -7,7 +7,11 @@ export default Ember.Route.extend({
   },
   model: function(params) {
     if (params.tool_id === 'new') {
-      return this.store.createRecord('tool');
+      return this.store.createRecord('tool', {
+        title: 'NewTool',
+        subTitle: 'Subtitle',
+        description: 'Description goes here'
+      });
     }
     else {
       return this.store.find('tool', params.tool_id);

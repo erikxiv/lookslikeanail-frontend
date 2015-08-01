@@ -26,7 +26,18 @@ export default Ember.Controller.extend({
       if (this.get('isEditing')) {
         this.set('isEditing'+this.get('editing'), false);
         this.set('isEditing', false);
-        this.model.save();
+        // Only save if changes have been made
+        if (this.model.get('isDirty')) {
+          // Roll back if title, subtitle or description is empty
+          if (this.model.get('title') === '' ||
+              this.model.get('subTitle') === '' ||
+              this.model.get('description') === '') {
+            this.model.rollback();
+          }
+          else {
+            this.model.save();
+          }
+        }
       }
     },
     delete: function() {
@@ -37,7 +48,6 @@ export default Ember.Controller.extend({
     },
     addFeature: function(task) {
       // Close modal
-      console.log("w00t: " + task.get('title'));
       Ember.$('#addFeatureModal').modal('hide');
       // Add feature
       var feature = this.store.createRecord('feature');
@@ -55,6 +65,9 @@ export default Ember.Controller.extend({
       feature.save();
       _implements.save();
       isCapableOf.save();
+    },
+    removeFeature: function(feature) {
+      feature.destroyRecord();
     }
   }
 });

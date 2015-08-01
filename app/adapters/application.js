@@ -43,8 +43,11 @@ if (config.environment === 'development' || config.environment === 'test') {
       // If tool, get all related records as well, to (poorly) simulate REST backend
       if (type.modelName === 'tool') {
         var toolsToReturn;
-        return this._super(store, type, id, snapshot)
-        .then(function(tools) {
+        var tool = this._super(store, type, id, snapshot);
+        if (! tool) {
+          return tool;
+        }
+        return tool.then(function(tools) {
           toolsToReturn = tools;
           return Ember.RSVP.all([
             store.find('implements'),
