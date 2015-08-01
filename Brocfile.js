@@ -19,7 +19,10 @@ var app = new EmberApp({
   }
 });
 
-// app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
+// Seems this line breaks Travis-CI tests (crashes), but not locally run tests...
+if (env !== 'test') {
+  app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
+}
 
 // Use `app.import` to add additional libraries to the generated
 // output files.

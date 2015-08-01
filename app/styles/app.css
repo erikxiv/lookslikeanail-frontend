@@ -1,4 +1,13 @@
 /*
+* Tool page
+*/
+
+.list-group-item.add-feature:hover {
+  border-left: 2px solid blue;
+}
+
+
+/*
 * Tools page
 */
 
@@ -113,6 +122,14 @@
 
 body {
   background-color: rgb(242,242,242);
+}
+
+.panel-title a.btn {
+  padding: 0px;
+}
+
+.modal-content > .list-group {
+  margin: 0px;
 }
 
 @media (max-width: 978px) {

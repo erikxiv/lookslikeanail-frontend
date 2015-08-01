@@ -1,53 +1,80 @@
-<div class="media">
-  {{#if isEditingTitle}}
-    <h1 class="media-heading pull-left tool-title">
-      {{input id="inputTitle" type="text" value=model.title enter="save" focus-out="save" autofocus="autofocus"}}
-    </h1>
-  {{else}}
-    <h1 class="media-heading pull-left tool-title" {{action "edit" "Title" on="click"}}>
-      {{model.title}}
-    </h1>
-  {{/if}}
-  {{#if isEditingSubtitle}}
-    <h1 class="media-heading pull-left tool-title"><small>
-      {{input id="inputSubtitle" type="text" value=model.subTitle enter="save" focus-out="save" autofocus="autofocus"}}
-    </small></h1>
-  {{else}}
-    <h1 class="media-heading pull-left tool-subTitle" {{action "edit" "Subtitle" on="click"}}><small>
-      ({{model.subTitle}})
-    </small></h1>
-  {{/if}}
+<div class="modal fade" id="addFeatureModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add feature</h4>
+      </div>
+      <ul class="list-group">
+        {{#each tasks as |task|}}
+          <li class="list-group-item add-feature" {{action 'addFeature' task}}>
+            {{task.title}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 </div>
 
-{{#if isEditingDescription}}
-  {{input id="inputDescription" type="text" value=model.description enter="save" focus-out="save" autofocus="autofocus"}}
-{{else}}
-    <p class="tool-description" {{action "edit" "Description" on="click"}}>
-      {{model.description}}
-    </p>
-{{/if}}
+<div class="panel panel-default">
+  <div class="panel-heading media">
+        {{#if isEditingTitle}}
+          <h1 class="media-heading panel-title pull-left tool-title">
+            {{input id="inputTitle" type="text" value=model.title enter="save" focus-out="save" autofocus="autofocus"}}
+          </h1>
+        {{else}}
+          <h1 class="media-heading panel-title pull-left tool-title" {{action "edit" "Title" on="click"}}>
+            {{model.title}}
+          </h1>
+        {{/if}}
+        {{#if isEditingSubtitle}}
+          <h1 class="media-heading panel-title pull-left tool-subTitle">
+            {{input id="inputSubtitle" type="text" value=model.subTitle enter="save" focus-out="save" autofocus="autofocus"}}
+          </h1>
+        {{else}}
+          <h1 class="media-heading panel-title pull-left tool-subTitle" {{action "edit" "Subtitle" on="click"}}>
+            ({{model.subTitle}})
+          </h1>
+        {{/if}}
+  </div>
+  <div class="panel-body">
+    {{#if isEditingDescription}}
+      {{input id="inputDescription" type="text" value=model.description enter="save" focus-out="save" autofocus="autofocus"}}
+    {{else}}
+        <p class="tool-description" {{action "edit" "Description" on="click"}}>
+          {{model.description}}
+        </p>
+    {{/if}}
+  </div>
+</div>
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Features</h3>
+    <h3 class="panel-title">
+      Features
+      <a class="btn pull-right" data-toggle="modal" data-target="#addFeatureModal">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </a>
+    </h3>
   </div>
-  <div class="panel-body">
-    <ul>
+  <ul class="list-group">
     {{#each model.implements as |implements|}}
       {{#each implements.feature.isCapableOf as |isCapableOf|}}
-        <li>{{#link-to 'task' isCapableOf.task classNames='task-title'}}{{isCapableOf.task.title}}{{/link-to}}</li>
+        <li class="list-group-item">
+          {{#link-to 'task' isCapableOf.task classNames='task-title'}}{{isCapableOf.task.title}}{{/link-to}}
+        </li>
       {{/each}}
     {{/each}}
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<div>
-  Created: {{model.created}}. Last updated: {{model.updated}}
-</div>
-<div>
-  <button class="btn btn-danger" {{action "delete"}}>
+<p>
+  Created: {{model.created}}<br/>
+  Last updated: {{model.updated}}
+</p>
+<p>
+  <a href {{action "delete"}}>
     I made a mistake, please remove this entry from the directory
-  </button>
-</div>
+  </a>
+</p>
 <p/>

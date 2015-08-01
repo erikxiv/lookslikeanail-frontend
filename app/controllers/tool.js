@@ -34,6 +34,27 @@ export default Ember.Controller.extend({
       this.model.destroyRecord().then(function() {
         that.transitionToRoute('tools');
       });
+    },
+    addFeature: function(task) {
+      // Close modal
+      console.log("w00t: " + task.get('title'));
+      Ember.$('#addFeatureModal').modal('hide');
+      // Add feature
+      var feature = this.store.createRecord('feature');
+      // Add implements
+      var _implements = this.store.createRecord('implements', {
+        tool: this.model,
+        feature: feature
+      });
+      // Add isCapableOf
+      var isCapableOf = this.store.createRecord('isCapableOf', {
+        feature: feature,
+        task: task
+      });
+      // Save
+      feature.save();
+      _implements.save();
+      isCapableOf.save();
     }
   }
 });
