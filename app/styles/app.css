@@ -1,4 +1,37 @@
 /*
+* Slide out menu
+*/
+
+.hidden-menu {
+  position: absolute;
+  width: 200px;
+  padding-top: 50px;
+}
+.hidden-menu li {
+  border: 0;
+  background-color: rgba(0,0,0,0);
+  display: flex;
+  display: -webkit-flex;
+  white-space: nowrap;
+  word-wrap: break-word;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding-bottom: 0;
+}
+.hidden-menu li hr {
+  margin: 0;
+}
+.hidden-menu li h5 {
+  margin-bottom: 0;
+}
+/* Hamburger = 44, padding to brand = 15, total = 59 */
+.hidden-menu .icon {
+  min-width: 44px;
+  padding-right: 15px;
+  text-align: center;
+}
+
+/*
 * Tool page
 */
 
@@ -119,6 +152,37 @@
 }
 */
 
+.navbar-header {
+  float: none;
+}
+.navbar-toggle {
+  display: block;
+  float: left;
+  border-color: rgba(0,0,0,0)!important;
+  margin-right: 0px;
+}
+.navbar-collapse {
+  border-top: 1px solid transparent;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.navbar-collapse.collapse {
+  display: none!important;
+}
+.navbar-nav {
+  float: none!important;
+  margin: 7.5px -15px;
+}
+.navbar-nav>li {
+  float: none;
+}
+.navbar-nav>li>a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+div.container.main {
+  padding-top: 70px;
+}
 
 body {
   background-color: rgb(242,242,242);
@@ -168,11 +232,11 @@ a.btn.nopadding {
 /* */
 
 /* Space out content a bit */
-body {
+/*body {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
+*/
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

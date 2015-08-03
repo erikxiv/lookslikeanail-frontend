@@ -1,7 +1,7 @@
 <p>Can't find the tool you are looking for? Contribute by {{#link-to 'tool' 'new'}}adding it{{/link-to}} to the directory.</p>
 
 <ul class="list-group tools">
-  {{#each model as |tool|}}
+  {{#each filteredTools as |tool|}}
     <li {{bind-attr class=":list-group-item :tool tool.isExpanded:expanded:collapsed"}} {{action 'toggle' tool}}>
       <div class="" style="position:relative">
         <div {{bind-attr class=":row :collapsed-tool tool.isExpanded:collapsed:expanded"}}>
