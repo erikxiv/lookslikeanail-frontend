@@ -13,8 +13,8 @@ export default Ember.Controller.extend({
             return isCapableOf.get('task').get('id') === task.get('id');
           });
         });
-      })
-      && that.get('application').get('tools').every(function(toolFilter) {
+      }) &&
+      that.get('application').get('tools').every(function(toolFilter) {
         return ! toolFilter.get('filter') || tool.get('implements').some(function(_implements) {
           return _implements.get('feature').get('supports').some(function(supports) {
             return supports.get('tool').get('id') === toolFilter.get('id');
