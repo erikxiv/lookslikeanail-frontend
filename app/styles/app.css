@@ -7,9 +7,18 @@
   width: 200px;
   padding-top: 50px;
 }
+.hidden-menu.hidden {
+  max-width: 0;
+}
+.hidden-menu ul {
+  margin-bottom: 0;
+}
+.hidden-menu ul.hidden {
+  max-height: 0;
+}
 .hidden-menu li {
   border: 0;
-  background-color: rgba(0,0,0,0);
+  background-color: rgb(242,242,242);
   display: flex;
   display: -webkit-flex;
   white-space: nowrap;
