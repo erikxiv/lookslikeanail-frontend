@@ -11,6 +11,12 @@ export default Ember.Controller.extend({
     var s = this.model.get('subTitle') ? this.model.get('subTitle') : "Subtitle";
     return t + ' (' + s + ')';
   }.property('model.title', 'model.subTitle'),
+  saveSuccess: function(data) {
+    // console.log('Sucessfully saved: ' + data);
+  },
+  saveError: function(error) {
+    Rollbar.error("Failed to save feature", error);
+  },
 
   actions: {
     edit: function(what) {
@@ -47,24 +53,31 @@ export default Ember.Controller.extend({
       });
     },
     addFeature: function(task) {
+      var that = this;
       // Close modal
       Ember.$('#addFeatureModal').modal('hide');
       // Add feature
       var feature = this.store.createRecord('feature');
-      // Add implements
-      var _implements = this.store.createRecord('implements', {
-        tool: this.model,
-        feature: feature
+      feature.save()
+      .then(function(feature) {
+        // Add implements
+        var _implements = that.store.createRecord('implements', {
+          tool: that.model,
+          feature: feature
+        });
+        // Add isCapableOf
+        var isCapableOf = that.store.createRecord('isCapableOf', {
+          feature: feature,
+          task: task
+        });
+        // Save
+        _implements.save().then(that.saveSuccess, that.saveError);
+        isCapableOf.save().then(that.saveSuccess, that.saveError);
+        feature.save().then(that.saveSuccess, that.saveError);
+      }, that.saveError)
+      .catch(function (error) {
+        Rollbar.error("Failed to save feature", error);
       });
-      // Add isCapableOf
-      var isCapableOf = this.store.createRecord('isCapableOf', {
-        feature: feature,
-        task: task
-      });
-      // Save
-      feature.save();
-      _implements.save();
-      isCapableOf.save();
     },
     removeFeature: function(feature) {
       feature.destroyRecord();
