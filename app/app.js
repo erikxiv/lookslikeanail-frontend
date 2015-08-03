@@ -10,6 +10,7 @@ Ember.MODEL_FACTORY_INJECTIONS = true;
 // Note down models that do not follow standard pluralism
 Ember.Inflector.inflector.uncountable('implements');
 Ember.Inflector.inflector.uncountable('isCapableOf');
+Ember.Inflector.inflector.uncountable('supports');
 
 App = Ember.Application.extend({
   modulePrefix: config.modulePrefix,

@@ -7,6 +7,7 @@ var Feature = DS.Model.extend({
   isCapableOf: DS.hasMany('isCapableOf'),
   keywords: DS.attr(),
   subTitle: DS.attr(),
+  supports: DS.hasMany('supports'),
   title: DS.attr(),
   updated: DS.attr()
 });
