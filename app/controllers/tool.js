@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
     var s = this.model.get('subTitle') ? this.model.get('subTitle') : "Subtitle";
     return t + ' (' + s + ')';
   }.property('model.title', 'model.subTitle'),
-  saveSuccess: function(data) {
+  saveSuccess: function() { // data as attribute?
     // console.log('Sucessfully saved: ' + data);
   },
   saveError: function(error) {
