@@ -4,34 +4,56 @@
 
 .hidden-menu {
   position: absolute;
+  background-color: rgb(242,242,242);
   width: 200px;
+  left: 0px;
   padding-top: 50px;
+  padding-bottom: 20px;
+  z-index: 1;
+  -webkit-transition: left 0.2s;
+  transition: left 0.2s;
 }
 .hidden-menu.hidden {
-  max-width: 0;
+  left: -205px;
+  display: inherit !important;
 }
+@media screen and (max-width: 1023px) {
+  .hidden-menu {
+    border-right: solid 1px rgb(222,222,222);
+    border-bottom: solid 1px rgb(222,222,222);
+  }
+}
+
 .hidden-menu ul {
-  margin-bottom: 0;
+  margin-bottom: 0px;
 }
 .hidden-menu ul.hidden {
-  max-height: 0;
+  display: inherit !important;
 }
+
 .hidden-menu li {
+  background-color: inherit;
   border: 0;
-  background-color: rgb(242,242,242);
   display: flex;
   display: -webkit-flex;
   white-space: nowrap;
   word-wrap: break-word;
   overflow-x: hidden;
   overflow-y: hidden;
-  padding-bottom: 0;
+  padding-bottom: 0px;
+  max-height: 40px;
+  -webkit-transition: max-height 0.2s;
+  transition: max-height 0.2s;
+}
+.hidden-menu ul.hidden li {
+  padding-top: 0px;
+  max-height: 0px;
 }
 .hidden-menu li hr {
   margin: 0;
 }
 .hidden-menu li h5 {
-  margin-bottom: 0;
+  margin-bottom: 2px;
 }
 /* Hamburger = 44, padding to brand = 15, total = 59 */
 .hidden-menu .icon {
