@@ -135,7 +135,7 @@
   visibility: normal;
   overflow-x: hidden;
   overflow-y: hidden;
-  max-height: 500px;
+  max-height: 2000px;
 }
 
 .list-group-item.item .collapsed {
