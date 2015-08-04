@@ -30,7 +30,9 @@ App.instanceInitializer({
         message: error,
         duration: 0
       });
-      Rollbar.error("Uncaught exception: " + error, error);
+      if (typeof Rollbar !== "undefined") {
+        Rollbar.error("Uncaught exception: " + error, error);
+      }
     };
   }
 });

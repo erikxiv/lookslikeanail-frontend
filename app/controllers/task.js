@@ -22,7 +22,9 @@ export default Ember.Controller.extend({
       message: error,
       duration: 0
     });
-    Rollbar.error("Failed to save changes", error);
+    if (typeof Rollbar !== "undefined") {
+      Rollbar.error("Failed to save changes", error);
+    }
   },
 
   actions: {

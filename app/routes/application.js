@@ -9,7 +9,9 @@ export default Ember.Route.extend({
     error: function(error) {
       // Todo: Show alert
       // Report to Rollbar
-      Rollbar.error("Route error: " + error, error);
+      if (typeof Rollbar !== "undefined") {
+        Rollbar.error("Route error: " + error, error);
+      }
       // Report to Sentry
       Raven.captureException(error);
       return true;
