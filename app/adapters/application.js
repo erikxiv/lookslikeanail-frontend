@@ -52,7 +52,7 @@ if (config.environment === 'development' || config.environment === 'test') {
           return Ember.RSVP.all([
             store.find('implements'),
             store.find('feature'),
-            store.find('isCapableOf'),
+            store.find('provides'),
             store.find('task')
           ]);
         })
@@ -75,7 +75,7 @@ if (config.environment === 'development' || config.environment === 'test') {
           return Ember.RSVP.all([
             store.find('implements'),
             store.find('feature'),
-            store.find('isCapableOf'),
+            store.find('provides'),
             store.find('task')
           ]);
         })

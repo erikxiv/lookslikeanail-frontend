@@ -23,18 +23,18 @@ module('Acceptance | tools', {
   }
 });
 
-test('Get /tools should return 7 items', function(assert) {
+test('Get /tools should return 9 items', function(assert) {
   visit('/tools');
   andThen(function() {
     assert.equal(currentRouteName(), 'tools');
-    assert.equal(find('.tool').length, 7);
+    assert.equal(find('.tool').length, 9);
   });
 });
 
-test('Get /tools should return 5 task titles', function(assert) {
+test('Get /tools should return 7 task titles', function(assert) {
   visit('/tools');
   andThen(function() {
-    assert.equal(find('.task-title').length, 5);
+    assert.equal(find('.task-title').length, 7);
   });
 });
 

@@ -9,8 +9,8 @@ export default Ember.Controller.extend({
     return this.get('model').filter(function(tool) {
       return that.get('application').get('tasks').every(function(task) {
         return ! task.get('filter') || tool.get('implements').some(function(_implements) {
-          return _implements.get('feature').get('isCapableOf').some(function(isCapableOf) {
-            return isCapableOf.get('task').get('id') === task.get('id');
+          return _implements.get('feature').get('provides').some(function(provides) {
+            return provides.get('task').get('id') === task.get('id');
           });
         });
       }) &&

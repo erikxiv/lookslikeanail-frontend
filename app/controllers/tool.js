@@ -78,14 +78,14 @@ export default Ember.Controller.extend({
           tool: that.model,
           feature: feature
         });
-        // Add isCapableOf
-        var isCapableOf = that.store.createRecord('isCapableOf', {
+        // Add provides
+        var provides = that.store.createRecord('provides', {
           feature: feature,
           task: task
         });
         // Save
         _implements.save().then(that.saveSuccess.bind(that), that.saveError.bind(that));
-        isCapableOf.save().then(that.saveSuccess.bind(that), that.saveError.bind(that));
+        provides.save().then(that.saveSuccess.bind(that), that.saveError.bind(that));
         feature.save().then(that.saveSuccess.bind(that), that.saveError.bind(that));
       }, that.saveError.bind(that))
       .catch(this.saveError.bind(this));

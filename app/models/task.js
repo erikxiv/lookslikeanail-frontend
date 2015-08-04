@@ -3,7 +3,7 @@ import DS from 'ember-data';
 var Task = DS.Model.extend({
   created: DS.attr(),
   description: DS.attr(),
-  isCapableOf: DS.hasMany('isCapableOf'),
+  provides: DS.hasMany('provides'),
   keywords: DS.attr(),
   subTitle: DS.attr(),
   title: DS.attr(),

@@ -4,7 +4,7 @@ var Feature = DS.Model.extend({
   created: DS.attr(),
   description: DS.attr(),
   implements: DS.belongsTo('implements'),
-  isCapableOf: DS.hasMany('isCapableOf'),
+  provides: DS.hasMany('provides'),
   keywords: DS.attr(),
   subTitle: DS.attr(),
   supports: DS.hasMany('supports'),

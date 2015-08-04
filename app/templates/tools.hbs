@@ -30,8 +30,8 @@
             <div class="tool-features"><i>
               Features:
             {{#each tool.implements as |implements|}}
-              {{#each implements.feature.isCapableOf as |isCapableOf|}}
-                {{#link-to 'task' isCapableOf.task classNames='task-title'}}{{isCapableOf.task.title}}{{/link-to}}
+              {{#each implements.feature.provides as |provides|}}
+                {{#link-to 'task' provides.task classNames='task-title'}}{{provides.task.title}}{{/link-to}}
               {{/each}}
             {{/each}}
             </i></div>     
