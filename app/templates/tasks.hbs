@@ -6,7 +6,7 @@
       <div class="" style="position:relative">
         <div {{bind-attr class=":collapsed-item task.isExpanded:collapsed:expanded"}}>
           <div class="task-icon-title col-md-3 col-xs-12">
-            <div><span class="glyphicon glyphicon-wrench item-icon task-icon" aria-hidden="true"></span></div>
+            <div><span class="glyphicon glyphicon-ok-sign item-icon task-icon" aria-hidden="true"></span></div>
             <div class="ellipsis task-title">{{#link-to 'task' task}}{{task.title}}{{/link-to}}</div>
           </div>
           <div class="col-md-9 hidden-xs">
@@ -16,7 +16,7 @@
         <div {{bind-attr class=":expanded-item task.isExpanded:expanded:collapsed"}}>
           <div class="task-icon-title col-md-6 col-xs-12">
             <div>
-              <span class="glyphicon glyphicon-wrench item-icon task-icon" aria-hidden="true"/>
+              <span class="glyphicon glyphicon-ok-sign item-icon task-icon" aria-hidden="true"/>
             </div>
             <div class="ellipsis task-title">{{#link-to 'task' task}}{{task.title}}{{/link-to}}</div>
           </div>
