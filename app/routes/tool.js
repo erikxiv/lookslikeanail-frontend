@@ -16,5 +16,9 @@ export default Ember.Route.extend({
     else {
       return this.store.find('tool', params.tool_id);
     }
+  },
+  afterModel: function(model) {
+    var title = 'Tool Directory - ' + model.get('title') + ' (' + model.get('subTitle') + ')';
+    Ember.$(document).attr('title', title);
   }
 });

@@ -8,5 +8,9 @@ export default Ember.Route.extend({
     else {
       return this.store.find('task', params.task_id);
     }
+  },
+  afterModel: function(model) {
+    var title = 'Tool Directory - ' + model.get('title') + ' (' + model.get('subTitle') + ')';
+    Ember.$(document).attr('title', title);
   }
 });
