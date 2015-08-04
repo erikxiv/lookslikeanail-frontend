@@ -89,17 +89,14 @@
   border-left: 2px solid blue;
 }
 
-.list-group.tools .row > div {
+.list-group.tools .expanded-tool > div,
+.list-group.tools .collapsed-tool > div {
   display: flex;
   display: -webkit-flex;
   white-space: nowrap;
   word-wrap: break-word;
   overflow-x: hidden;
   overflow-y: hidden;
-}
-
-.list-group.tools .row {
-  margin: 0px;
 }
 
 .list-group-item.tool .collapsed-tool {
@@ -149,38 +146,16 @@
 }
 
 .list-group-item.tool.expanded {
-  margin: 10px -10px;
+  margin: 10px -25px;
+}
+@media screen and (max-width: 1023px) {
+  .list-group-item.tool.expanded {
+    margin: 10px -15px;
+  }
 }
 
-/*.collapsed {
-  max-height: 54px;
-}
-
-.not-collapsed {
-  max-height: 500px;
-}
-
-.not-visible {
-  opacity: 0;
-}
-*/
-/*.list-group-item.tool .tool-title {
-  padding-top: 5px;
-  vertical-align: top;
-  white-space: nowrap;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  text-overflow: ellipsis;
-}
-
-.list-group-item.tool .tool-description-shortened {
-  padding-top: 5px;
-  vertical-align: top;
-  white-space: nowrap;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  text-overflow: ellipsis;
-}
+/*
+* General CSS for TD
 */
 
 .navbar-header {
@@ -237,9 +212,9 @@ a.btn.nopadding {
 
 @media (max-width: 978px) {
     .container {
-      padding:0;
+/*      padding:0;
       margin:0;
-    }
+*/    }
 
     body {
       padding:0;
