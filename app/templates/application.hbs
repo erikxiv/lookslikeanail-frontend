@@ -46,6 +46,13 @@
 </div>
 
 <div class="container main">
+  {{#each controller.alerts as |alert|}}
+    <div {{bind-attr class=":row :alert alert.level :alert-dismissible"}} role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>{{alert.title}}</strong> {{alert.message}}
+    </div>
+  {{/each}}
+
   {{outlet}}
 
   <footer class="footer">

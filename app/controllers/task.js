@@ -1,16 +1,37 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  needs: ['application'],
+  application: Ember.computed.alias("controllers.application"),
   isEditingTitle: false,
   isEditingSubtitle: false,
   isEditing: false,
   editing: null,
 
+  saveSuccess: function() {
+    // this.get('application').alert({
+    //   level: 'success',
+    //   message:'Changes saved',
+    //   duration: 2000
+    // });
+  },
+  saveError: function(error) {
+    this.get('application').alert({
+      level: 'danger',
+      title: 'Failed to save changes',
+      message: error,
+      duration: 0
+    });
+    Rollbar.error("Failed to save changes", error);
+  },
+
   actions: {
     edit: function(what) {
       if (this.get('isEditing')) {
         this.set('isEditing'+this.get('editing'), false);
-        this.model.save();
+        this.model.save()
+        .then(this.saveSuccess.bind(this))
+        .catch(this.saveError.bind(this));
       }
       this.set('isEditing'+what, true);
       this.set('isEditing', true);
@@ -29,16 +50,21 @@ export default Ember.Controller.extend({
             this.model.rollback();
           }
           else {
-            this.model.save();
+            this.model.save()
+            .then(this.saveSuccess.bind(this))
+            .catch(this.saveError.bind(this));
           }
         }
       }
     },
     delete: function() {
       var that = this;
-      this.model.destroyRecord().then(function() {
+      this.model.destroyRecord()
+      .then(function() {
         that.transitionToRoute('tasks');
-      });
+        that.saveSuccess();
+      })
+      .catch(this.saveError.bind(this));
     }
   }
 });

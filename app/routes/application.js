@@ -7,12 +7,11 @@ export default Ember.Route.extend({
   },
   actions: {
     error: function(error) {
-      // Manage your errors
-      //Ember.onerror(error);
+      // Todo: Show alert
+      // Report to Rollbar
       Rollbar.error("Route error: " + error, error);
+      // Report to Sentry
       Raven.captureException(error);
-
-      // substate implementation when returning `true`
       return true;
     }
   }

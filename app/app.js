@@ -18,17 +18,23 @@ App = Ember.Application.extend({
   Resolver: Resolver
 });
 
-Ember.onerror = function(error) {
-  console.log(error);
-  Rollbar.error("Uncaught exception: " + error, error);
-  // Ember.$.ajax('/error-notification', {
-  //   type: 'POST',
-  //   data: {
-  //     stack: error.stack,
-  //     otherInformation: 'exception message'
-  //   }
-  // });
-};
+// Catch errors and report/visualize them
+App.instanceInitializer({
+  name: "error-handler",
+  initialize: function(instance) {
+    var applicationController = instance.container.lookup("controller:application");
+    Ember.onerror = function(error) {
+      applicationController.alert({
+        level: 'danger',
+        title: 'Uncaught exception',
+        message: error,
+        duration: 0
+      });
+      Rollbar.error("Uncaught exception: " + error, error);
+    };
+  }
+});
+
 
 loadInitializers(App, config.modulePrefix);
 
