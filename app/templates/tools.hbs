@@ -1,28 +1,30 @@
 <p>Can't find the tool you are looking for? Contribute by {{#link-to 'tool' 'new'}}adding it{{/link-to}} to the directory.</p>
 
-<ul class="list-group tools">
+<ul class="list-group items tools">
   {{#each filteredTools as |tool|}}
-    <li {{bind-attr class=":list-group-item :row :tool tool.isExpanded:expanded:collapsed"}} {{action 'toggle' tool}}>
+    <li {{bind-attr class=":list-group-item :row :item :tool tool.isExpanded:expanded:collapsed"}} {{action 'toggle' tool}}>
       <div class="" style="position:relative">
-        <div {{bind-attr class=":collapsed-tool tool.isExpanded:collapsed:expanded"}}>
+        <div {{bind-attr class=":collapsed-item tool.isExpanded:collapsed:expanded"}}>
           <div class="tool-icon-title col-md-3 col-xs-12">
-            <div><span class="glyphicon glyphicon-wrench tool-icon" aria-hidden="true"></span></div>
+            <div><span class="glyphicon glyphicon-wrench item-icon tool-icon" aria-hidden="true"></span></div>
             <div class="ellipsis tool-title">{{#link-to 'tool' tool}}{{tool.title}}{{/link-to}}</div>
           </div>
           <div class="col-md-9 hidden-xs">
             <div class="ellipsis tool-description-shortened">{{tool.description}}</div>
           </div>
         </div>
-        <div {{bind-attr class=":expanded-tool tool.isExpanded:expanded:collapsed"}}>
+        <div {{bind-attr class=":expanded-item tool.isExpanded:expanded:collapsed"}}>
           <div class="tool-icon-title col-md-6 col-xs-12">
-            <div><span class="glyphicon glyphicon-wrench tool-icon" aria-hidden="true"></span></div>
+            <div>
+              <span class="glyphicon glyphicon-wrench item-icon tool-icon" aria-hidden="true"/>
+            </div>
             <div class="ellipsis tool-title">{{#link-to 'tool' tool}}{{tool.title}}{{/link-to}}</div>
           </div>
           <div class="col-md-6 col-xs-12">
             <div class="ellipsis tool-sub-title">{{tool.subTitle}}</div>
           </div>
           <div class="col-md-12 col-xs-12">
-            <div class="tool-description">{{tool.description}}</div>
+            <div class="item-description tool-description">{{tool.description}}</div>
           </div>
           <div class="col-md-12 col-xs-12">
             <div class="tool-features"><i>

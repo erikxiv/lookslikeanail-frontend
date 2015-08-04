@@ -6,11 +6,6 @@ export default Ember.Controller.extend({
   isEditing: false,
   editing: null,
 
-  title: function() {
-    var t = this.model.get('title') ? this.model.get('title') : "NewTool";
-    var s = this.model.get('subTitle') ? this.model.get('subTitle') : "Subtitle";
-    return t + ' (' + s + ')';
-  }.property('model.title', 'model.subTitle'),
   saveSuccess: function() { // data as attribute?
     // console.log('Sucessfully saved: ' + data);
   },

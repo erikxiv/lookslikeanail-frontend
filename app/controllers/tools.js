@@ -24,19 +24,10 @@ export default Ember.Controller.extend({
     });
   }.property('model.@each.title', 'controllers.application.tasks.@each.filter', 'controllers.application.tools.@each.filter'),
   actions: {
-    details: function(tool) {
-      this.transitionTo('tool', tool);
-    },
-    toggle: function(tool) {
-      var wasExpanded = tool.get('isExpanded');
+    toggle: function(item) {
+      var wasExpanded = item.get('isExpanded');
       this.model.setEach('isExpanded', false);
-      tool.set('isExpanded', ! wasExpanded);
-    },
-    expand: function(tool) {
-      tool.set('isExpanded', true);
-    },
-    contract: function(tool) {
-      tool.set('isExpanded', false);
+      item.set('isExpanded', ! wasExpanded);
     }
   }
 });

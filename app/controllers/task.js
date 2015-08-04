@@ -6,12 +6,6 @@ export default Ember.Controller.extend({
   isEditing: false,
   editing: null,
 
-  title: function() {
-    var t = this.model.get('title') ? this.model.get('title') : "NewTask";
-    var s = this.model.get('subTitle') ? this.model.get('subTitle') : "Subtitle";
-    return t + ' (' + s + ')';
-  }.property('model.title', 'model.subTitle'),
-
   actions: {
     edit: function(what) {
       if (this.get('isEditing')) {
@@ -26,7 +20,18 @@ export default Ember.Controller.extend({
       if (this.get('isEditing')) {
         this.set('isEditing'+this.get('editing'), false);
         this.set('isEditing', false);
-        this.model.save();
+        // Only save if changes have been made
+        if (this.model.get('isDirty')) {
+          // Roll back if title, subtitle or description is empty
+          if (this.model.get('title') === '' ||
+              this.model.get('subTitle') === '' ||
+              this.model.get('description') === '') {
+            this.model.rollback();
+          }
+          else {
+            this.model.save();
+          }
+        }
       }
     },
     delete: function() {

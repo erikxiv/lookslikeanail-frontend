@@ -63,7 +63,7 @@
 }
 
 /*
-* Tool page
+* Item page (e.g. Tool/Task)
 */
 
 .list-group-item.add-feature:hover {
@@ -72,25 +72,25 @@
 
 
 /*
-* Tools page
+* Items page (e.g. Tools/Tasks)
 */
 
-.list-group-item.tool {
+.list-group-item.item {
   -webkit-transition: margin 0.2s, max-height 0.2s, opacity 0.2s;
   transition: margin 0.2s, max-height 0.2s, opacity 0.2s;
 }
 
-.list-group-item.tool div {
+.list-group-item.item div {
   -webkit-transition: margin 0.2s, max-height 0.2s, opacity 0.2s;
   transition: margin 0.2s, max-height 0.2s, opacity 0.2s;
 }
 
-.list-group-item.tool:hover {
+.list-group-item.item:hover {
   border-left: 2px solid blue;
 }
 
-.list-group.tools .expanded-tool > div,
-.list-group.tools .collapsed-tool > div {
+.list-group.items .expanded-item > div,
+.list-group.items .collapsed-item > div {
   display: flex;
   display: -webkit-flex;
   white-space: nowrap;
@@ -99,19 +99,19 @@
   overflow-y: hidden;
 }
 
-.list-group-item.tool .collapsed-tool {
+.list-group-item.item .collapsed-item {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
 }
 
-.list-group-item.tool .tool-icon {
+.list-group-item.item .item-icon {
   padding: 1px 22px 0px 7px;
   font-size: 24px;
 }
 
-.list-group-item.tool .ellipsis {
+.list-group-item.item .ellipsis {
   padding-top: 5px;
   padding-right: 22px;
   white-space: nowrap;
@@ -121,7 +121,7 @@
   text-overflow: ellipsis;
 }
 
-.list-group-item.tool .tool-description {
+.list-group-item.item .item-description {
   display: block;
   padding-top: 5px;
   white-space: normal;
@@ -131,25 +131,25 @@
   text-overflow: ellipsis;
 }
 
-.list-group-item.tool .expanded {
+.list-group-item.item .expanded {
   visibility: normal;
   overflow-x: hidden;
   overflow-y: hidden;
   max-height: 500px;
 }
 
-.list-group-item.tool .collapsed {
+.list-group-item.item .collapsed {
   visibility: hidden;
   overflow-x: hidden;
   overflow-y: hidden;
   max-height: 34px;
 }
 
-.list-group-item.tool.expanded {
+.list-group-item.item.expanded {
   margin: 10px -25px;
 }
 @media screen and (max-width: 1023px) {
-  .list-group-item.tool.expanded {
+  .list-group-item.item.expanded {
     margin: 10px -15px;
   }
 }
