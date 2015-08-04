@@ -30,7 +30,7 @@
                         "description": "Feature to add",
                         "schema": {
                             "properties": {
-                                "task": {
+                                "capability": {
                                     "$ref": "#/definitions/feature"
                                 }
                             }
@@ -152,7 +152,7 @@
                         "description": "Implements to add",
                         "schema": {
                             "properties": {
-                                "task": {
+                                "capability": {
                                     "$ref": "#/definitions/implements"
                                 }
                             }
@@ -246,7 +246,7 @@
                         "description": "IsCapableOf to add",
                         "schema": {
                             "properties": {
-                                "task": {
+                                "capability": {
                                     "$ref": "#/definitions/isCapableOf"
                                 }
                             }
@@ -327,21 +327,21 @@
                 }
             }
         },
-        "/tasks": {
+        "/capabilitys": {
             "post": {
-                "description": "Creates a new task",
+                "description": "Creates a new capability",
                 "tags": [
-                    "task"
+                    "capability"
                 ],
                 "parameters": [
                     {
-                        "name": "task",
+                        "name": "capability",
                         "in": "body",
-                        "description": "Task to add",
+                        "description": "Capability to add",
                         "schema": {
                             "properties": {
-                                "task": {
-                                    "$ref": "#/definitions/task"
+                                "capability": {
+                                    "$ref": "#/definitions/capability"
                                 }
                             }
                         },
@@ -351,14 +351,14 @@
                 "produces": [
                     "application/json"
                 ],
-                "operationId": "addTask",
+                "operationId": "addCapability",
                 "responses": {
                     "200": {
-                        "description": "task response",
+                        "description": "capability response",
                         "schema": {
                             "properties": {
-                                "task": {
-                                    "$ref": "#/definitions/task"
+                                "capability": {
+                                    "$ref": "#/definitions/capability"
                                 }
                             }
                         }
@@ -372,22 +372,22 @@
                 }
             },
             "get": {
-                "description": "Returns all tasks",
+                "description": "Returns all capabilitys",
                 "tags": [
-                    "task"
+                    "capability"
                 ],
                 "produces": [
                     "application/json"
                 ],
-                "operationId": "findTasks",
+                "operationId": "findCapabilitys",
                 "responses": {
                     "200": {
-                        "description": "task response",
+                        "description": "capability response",
                         "schema": {
                             "properties": {
-                                "tasks": {
+                                "capabilitys": {
                                     "items": {
-                                        "$ref": "#/definitions/task"
+                                        "$ref": "#/definitions/capability"
                                     },
                                     "type": "array"
                                 }
@@ -403,18 +403,18 @@
                 }
             }
         },
-        "/tasks/{id}": {
+        "/capabilitys/{id}": {
             "get": {
-                "description": "Returns a task based on ID",
+                "description": "Returns a capability based on ID",
                 "tags": [
-                    "task"
+                    "capability"
                 ],
                 "parameters": [
                     {
                         "in": "path",
                         "format": "int64",
                         "name": "id",
-                        "description": "ID of task to fetch",
+                        "description": "ID of capability to fetch",
                         "type": "integer",
                         "required": true
                     }
@@ -422,20 +422,20 @@
                 "produces": [
                     "application/json"
                 ],
-                "operationId": "findTaskById",
+                "operationId": "findCapabilityById",
                 "responses": {
                     "200": {
-                        "description": "task response",
+                        "description": "capability response",
                         "schema": {
                             "properties": {
-                                "task": {
-                                    "$ref": "#/definitions/task"
+                                "capability": {
+                                    "$ref": "#/definitions/capability"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "description": "No task with specified id exist",
+                        "description": "No capability with specified id exist",
                         "schema": {
                             "$ref": "#/definitions/errorModel"
                         }
@@ -449,27 +449,27 @@
                 }
             },
             "put": {
-                "description": "Update task",
+                "description": "Update capability",
                 "tags": [
-                    "task"
+                    "capability"
                 ],
                 "parameters": [
                     {
                         "in": "path",
                         "format": "int64",
                         "name": "id",
-                        "description": "ID of task to update",
+                        "description": "ID of capability to update",
                         "type": "integer",
                         "required": true
                     },
                     {
-                        "name": "task",
+                        "name": "capability",
                         "in": "body",
-                        "description": "Task properties to update",
+                        "description": "Capability properties to update",
                         "schema": {
                             "properties": {
-                                "task": {
-                                    "$ref": "#/definitions/task"
+                                "capability": {
+                                    "$ref": "#/definitions/capability"
                                 }
                             }
                         },
@@ -479,12 +479,12 @@
                 "produces": [
                     "application/json"
                 ],
-                "operationId": "updateTask",
+                "operationId": "updateCapability",
                 "responses": {
                     "200": {
-                        "description": "task response",
+                        "description": "capability response",
                         "schema": {
-                            "$ref": "#/definitions/task"
+                            "$ref": "#/definitions/capability"
                         }
                     },
                     "default": {
@@ -496,24 +496,24 @@
                 }
             },
             "delete": {
-                "description": "deletes a single task based on the ID supplied",
+                "description": "deletes a single capability based on the ID supplied",
                 "tags": [
-                    "task"
+                    "capability"
                 ],
                 "parameters": [
                     {
                         "in": "path",
                         "format": "int64",
                         "name": "id",
-                        "description": "ID of task to delete",
+                        "description": "ID of capability to delete",
                         "type": "integer",
                         "required": true
                     }
                 ],
-                "operationId": "deleteTask",
+                "operationId": "deleteCapability",
                 "responses": {
                     "204": {
-                        "description": "task deleted"
+                        "description": "capability deleted"
                     },
                     "default": {
                         "description": "unexpected error",
@@ -606,10 +606,10 @@
                                         "$ref": "#/definitions/isCapableOf"
                                     }
                                 },
-                                "tasks": {
+                                "capabilitys": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/task"
+                                        "$ref": "#/definitions/capability"
                                     }
                                 }
                             }
@@ -670,10 +670,10 @@
                                         "$ref": "#/definitions/isCapableOf"
                                     }
                                 },
-                                "tasks": {
+                                "capabilitys": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/task"
+                                        "$ref": "#/definitions/capability"
                                     }
                                 }
                             }
@@ -787,7 +787,7 @@
                     "type": "number"
                 },
                 "isCapableOf": {
-                    "description": "List of isCapableOf relationships with Tasks",
+                    "description": "List of isCapableOf relationships with Capabilitys",
                     "type": "array",
                     "items": {
                         "description": "isCapableOf unique id",
@@ -832,8 +832,8 @@
                     "description": "Feature unique id (from)",
                     "type": "number"
                 },
-                "task": {
-                    "description": "Task unique id (to)",
+                "capability": {
+                    "description": "Capability unique id (to)",
                     "type": "number"
                 },
                 "updated": {
@@ -869,7 +869,7 @@
                 }
             }
         },
-        "task": {
+        "capability": {
             "properties": {
                 "created": {
                     "description": "When this item was created",
