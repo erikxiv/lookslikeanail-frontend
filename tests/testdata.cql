@@ -55,6 +55,20 @@ CREATE (heroku:Tool {
   description: 'HerokuDescription'
 }) SET heroku.created = timestamp(), heroku.updated = timestamp()
 
+CREATE (neo4j:Tool {
+  id: 108,
+  title: 'Neo4J',
+  subTitle: 'Database',
+  description: 'Graph Database'
+}) SET neo4j.created = timestamp(), neo4j.updated = timestamp()
+
+CREATE (orientdb:Tool {
+  id: 109,
+  title: 'OrientDB',
+  subTitle: 'Database',
+  description: 'Graph Database'
+}) SET orientdb.created = timestamp(), orientdb.updated = timestamp()
+
 //
 // Tasks
 //
@@ -101,7 +115,7 @@ CREATE (mixBuilding:Feature {
   title: 'mixBuilding'
 }) SET mixBuilding.created = timestamp(), mixBuilding.updated = timestamp()
 CREATE (mix)-[:IMPLEMENTS {id: 3011}]->(mixBuilding),
-(mixBuilding)-[:IS_CAPABLE_OF {id: 3012}]->(building),
+(mixBuilding)-[:PROVIDES {id: 3012}]->(building),
 (mixBuilding)-[:SUPPORTS {id: 3013}]->(elixir)
 
 CREATE (ecto:Feature {
@@ -109,7 +123,7 @@ CREATE (ecto:Feature {
   title: 'ecto'
 }) SET ecto.created = timestamp(), ecto.updated = timestamp()
 CREATE (elixir)-[:IMPLEMENTS {id: 3021}]->(ecto),
-(ecto)-[:IS_CAPABLE_OF {id: 3022}]->(connecting),
+(ecto)-[:PROVIDES {id: 3022}]->(connecting),
 (ecto)-[:SUPPORTS {id: 3023}]->(postgres),
 (ecto)-[:SUPPORTS {id: 3024}]->(mysql)
 
@@ -118,21 +132,21 @@ CREATE (postgresDatastorage:Feature {
   title: 'postgresDatastorage'
 }) SET postgresDatastorage.created = timestamp(), postgresDatastorage.updated = timestamp()
 CREATE (postgres)-[:IMPLEMENTS {id: 3031}]->(postgresDatastorage),
-(postgresDatastorage)-[:IS_CAPABLE_OF {id: 3032}]->(datastorage)
+(postgresDatastorage)-[:PROVIDES {id: 3032}]->(datastorage)
 
 CREATE (mysqlDatastorage:Feature {
   id: 304,
   title: 'mysqlDatastorage'
 }) SET mysqlDatastorage.created = timestamp(), mysqlDatastorage.updated = timestamp()
 CREATE (mysql)-[:IMPLEMENTS {id: 3041}]->(mysqlDatastorage),
-(mysqlDatastorage)-[:IS_CAPABLE_OF {id: 3042}]->(datastorage)
+(mysqlDatastorage)-[:PROVIDES {id: 3042}]->(datastorage)
 
 CREATE (herokuHosting:Feature {
   id: 305,
   title: 'herokuHosting'
 }) SET herokuHosting.created = timestamp(), herokuHosting.updated = timestamp()
 CREATE (heroku)-[:IMPLEMENTS {id: 3051}]->(herokuHosting),
-(herokuHosting)-[:IS_CAPABLE_OF {id: 3052}]->(hosting),
+(herokuHosting)-[:PROVIDES {id: 3052}]->(hosting),
 (herokuHosting)-[:SUPPORTS {id: 3053}]->(postgres),
 (herokuHosting)-[:SUPPORTS {id: 3054}]->(elixir)
 
@@ -141,6 +155,18 @@ CREATE (herokuBuilding:Feature {
   title: 'herokuBuilding'
 }) SET herokuBuilding.created = timestamp(), herokuBuilding.updated=timestamp()
 CREATE (heroku)-[:IMPLEMENTS {id: 3055}]->(herokuBuilding),
-(herokuBuilding)-[:IS_CAPABLE_OF {id: 3056}]->(building),
+(herokuBuilding)-[:PROVIDES {id: 3056}]->(building),
 (herokuBuilding)-[:SUPPORTS {id: 3057}]->(elixir)
 
+CREATE (neo4jDatastorage:Feature {
+  id: 307,
+  title: 'neo4jDatastorage'
+}) SET neo4jDatastorage.created = timestamp(), neo4jDatastorage.updated = timestamp()
+CREATE (neo4j)-[:IMPLEMENTS {id: 3061}]->(neo4jDatastorage),
+(neo4jDatastorage)-[:PROVIDES {id: 3062}]->(datastorage)
+
+CREATE (orientdbDatastorage:Feature {
+  id: 308,
+  title: 'orientdbDatastorage'
+}) SET orientdbDatastorage.created = timestamp(), orientdbDatastorage.updated = timestamp()
+CREATE (orientdb)-[:IMPLEMENTS {id: 3071}]->(orientdbDatastorage)
