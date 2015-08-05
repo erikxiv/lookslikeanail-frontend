@@ -233,21 +233,21 @@
                 }
             }
         },
-        "/is-capable-of": {
+        "/provides": {
             "post": {
-                "description": "Creates a new isCapableOf",
+                "description": "Creates a new provides",
                 "tags": [
                     "feature"
                 ],
                 "parameters": [
                     {
-                        "name": "isCapableOf",
+                        "name": "provides",
                         "in": "body",
-                        "description": "IsCapableOf to add",
+                        "description": "Provides to add",
                         "schema": {
                             "properties": {
                                 "capability": {
-                                    "$ref": "#/definitions/isCapableOf"
+                                    "$ref": "#/definitions/provides"
                                 }
                             }
                         },
@@ -257,14 +257,14 @@
                 "produces": [
                     "application/json"
                 ],
-                "operationId": "addIsCapableOf",
+                "operationId": "addProvides",
                 "responses": {
                     "200": {
-                        "description": "isCapableOf response",
+                        "description": "provides response",
                         "schema": {
                             "properties": {
-                                "isCapableOf": {
-                                    "$ref": "#/definitions/isCapableOf"
+                                "provides": {
+                                    "$ref": "#/definitions/provides"
                                 }
                             }
                         }
@@ -278,9 +278,9 @@
                 }
             }
         },
-        "/is-capable-of/{id}": {
+        "/provides/{id}": {
             "put": {
-                "description": "Update isCapableOf",
+                "description": "Update provides",
                 "tags": [
                     "feature"
                 ],
@@ -289,18 +289,18 @@
                         "in": "path",
                         "format": "int64",
                         "name": "id",
-                        "description": "ID of isCapableOf to update",
+                        "description": "ID of provides to update",
                         "type": "integer",
                         "required": true
                     },
                     {
-                        "name": "isCapableOf",
+                        "name": "provides",
                         "in": "body",
-                        "description": "IsCapableOf properties to update",
+                        "description": "Provides properties to update",
                         "schema": {
                             "properties": {
-                                "isCapableOf": {
-                                    "$ref": "#/definitions/isCapableOf"
+                                "provides": {
+                                    "$ref": "#/definitions/provides"
                                 }
                             }
                         },
@@ -310,12 +310,12 @@
                 "produces": [
                     "application/json"
                 ],
-                "operationId": "updateIsCapableOf",
+                "operationId": "updateProvides",
                 "responses": {
                     "200": {
-                        "description": "isCapableOf response",
+                        "description": "provides response",
                         "schema": {
-                            "$ref": "#/definitions/isCapableOf"
+                            "$ref": "#/definitions/provides"
                         }
                     },
                     "default": {
@@ -327,7 +327,7 @@
                 }
             }
         },
-        "/capabilitys": {
+        "/capabilities": {
             "post": {
                 "description": "Creates a new capability",
                 "tags": [
@@ -372,20 +372,20 @@
                 }
             },
             "get": {
-                "description": "Returns all capabilitys",
+                "description": "Returns all capabilities",
                 "tags": [
                     "capability"
                 ],
                 "produces": [
                     "application/json"
                 ],
-                "operationId": "findCapabilitys",
+                "operationId": "findCapabilities",
                 "responses": {
                     "200": {
                         "description": "capability response",
                         "schema": {
                             "properties": {
-                                "capabilitys": {
+                                "capabilities": {
                                     "items": {
                                         "$ref": "#/definitions/capability"
                                     },
@@ -403,7 +403,7 @@
                 }
             }
         },
-        "/capabilitys/{id}": {
+        "/capabilities/{id}": {
             "get": {
                 "description": "Returns a capability based on ID",
                 "tags": [
@@ -600,13 +600,13 @@
                                         "$ref": "#/definitions/feature"
                                     }
                                 },
-                                "isCapableOf": {
+                                "provides": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/isCapableOf"
+                                        "$ref": "#/definitions/provides"
                                     }
                                 },
-                                "capabilitys": {
+                                "capabilities": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/capability"
@@ -664,13 +664,13 @@
                                         "$ref": "#/definitions/feature"
                                     }
                                 },
-                                "isCapableOf": {
+                                "provides": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/isCapableOf"
+                                        "$ref": "#/definitions/provides"
                                     }
                                 },
-                                "capabilitys": {
+                                "capabilities": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/capability"
@@ -786,11 +786,11 @@
                     "description": "Unique identifier",
                     "type": "number"
                 },
-                "isCapableOf": {
-                    "description": "List of isCapableOf relationships with Capabilitys",
+                "provides": {
+                    "description": "List of provides relationships with Capabilities",
                     "type": "array",
                     "items": {
-                        "description": "isCapableOf unique id",
+                        "description": "provides unique id",
                         "type": "number"
                     }
                 },
@@ -817,7 +817,7 @@
                 }
             }
         },
-        "isCapableOf": {
+        "provides": {
             "properties": {
                 "created": {
                     "description": "When this item was created",
