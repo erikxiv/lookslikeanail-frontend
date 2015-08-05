@@ -70,40 +70,40 @@ CREATE (orientdb:Tool {
 }) SET orientdb.created = timestamp(), orientdb.updated = timestamp()
 
 //
-// Tasks
+// Capabilities
 //
-CREATE (building:Task {
+CREATE (building:Capability {
   id: 201,
   title: 'Building',
-  subTitle: 'Task',
+  subTitle: 'Capability',
   description: 'BuildingDescription'
 }) SET building.created = timestamp(), building.updated = timestamp()
 
-CREATE (hosting:Task {
+CREATE (hosting:Capability {
   id: 202,
   title: 'Hosting',
-  subTitle: 'Task',
+  subTitle: 'Capability',
   description: 'HostingDescription'
 }) SET hosting.created = timestamp(), hosting.updated = timestamp()
 
-CREATE (testing:Task {
+CREATE (testing:Capability {
   id: 203,
   title: 'Testing',
-  subTitle: 'Task',
+  subTitle: 'Capability',
   description: 'TestingDescription'
 }) SET testing.created = timestamp(), testing.updated = timestamp()
 
-CREATE (connecting:Task {
+CREATE (connecting:Capability {
   id: 204,
   title: 'Connecting',
-  subTitle: 'Task',
+  subTitle: 'Capability',
   description: 'ConnectingDescription'
 }) SET connecting.created = timestamp(), connecting.updated = timestamp()
 
-CREATE (datastorage:Task {
+CREATE (datastorage:Capability {
   id: 205,
   title: 'Datastorage',
-  subTitle: 'Task',
+  subTitle: 'Capability',
   description: 'DatastorageDescription'
 }) SET datastorage.created = timestamp(), datastorage.updated = timestamp()
 
