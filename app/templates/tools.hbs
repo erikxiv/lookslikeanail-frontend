@@ -29,10 +29,10 @@
           <div class="col-md-12 col-xs-12">
             <div class="tool-features"><i>
               Features:
-            {{#each tool.implements as |implements|}}
-              {{#each implements.feature.provides as |provides|}}
-                {{#link-to 'capability' provides.capability classNames='capability-title'}}{{provides.capability.title}}{{/link-to}}
-              {{/each}}
+            {{#each tool.features as |feature|}}
+              {{#link-to 'capability' feature.capability classNames='capability-title'}}
+                {{feature.capability.title}}
+              {{/link-to}}
             {{/each}}
             </i></div>     
           </div>

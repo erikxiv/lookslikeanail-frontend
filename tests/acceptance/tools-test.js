@@ -75,3 +75,32 @@ test('Get /tools/103 should present capability Building', function(assert) {
     assert.equal(find('.capability-title').text().trim(), 'Building');
   });
 });
+
+test('Add capability Building to Java should work', function(assert) {
+  visit('/tools/101');
+  triggerEvent('a.add-feature', 'click');
+  triggerEvent('li.add-feature:contains("Building")', 'click');
+  andThen(function() {
+    assert.equal(find('.capability-title').text().trim(), 'Building');
+  });
+});
+
+test('It should be possible to filter on capability', function(assert) {
+  visit('/tools');
+  triggerEvent('.capability-filter:contains("Building") .capability-filter-checkbox', 'click');
+  andThen(function() {
+    assert.equal(find('.capability-title').length, 1);
+  });
+});
+
+
+test('It should be possible to filter on capability after adding a new one', function(assert) {
+  visit('/tools/101');
+  triggerEvent('a.add-feature', 'click');
+  triggerEvent('li.add-feature:contains("Building")', 'click');
+  visit('/tools');
+  triggerEvent('.capability-filter:contains("Building") .capability-filter-checkbox', 'click');
+  andThen(function() {
+    assert.equal(find('.capability-title').length, 2);
+  });
+});

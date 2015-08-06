@@ -28,18 +28,22 @@
       <h5>Filter on capability</h5>
     </li>
     {{#each controller.capabilities as |capability|}}
-      <li class="list-group-item">
-        <div class="icon">{{input type="checkbox" checked=capability.filter}}</div>
-        <div class="text ellipsis">{{capability.title}}</div>
+      <li class="list-group-item capability-filter">
+        <div class="icon">
+          {{input type="checkbox" classNames="capability-filter-checkbox" checked=capability.filter}}
+        </div>
+        <div class="text ellipsis capability-filter-title">{{capability.title}}</div>
       </li>
     {{/each}}
     <li class="list-group-item">
       <h5>Filter on supports</h5>
     </li>
     {{#each controller.tools as |tool|}}
-      <li class="list-group-item">
-        <div class="icon">{{input type="checkbox" checked=tool.filter}}</div>
-        <div class="text ellipsis">{{tool.title}}</div>
+      <li class="list-group-item tool-filter">
+        <div class="icon">
+          {{input type="checkbox" classNames="tool-filter-checkbox" checked=tool.filter}}
+        </div>
+        <div class="text ellipsis tool-filter-title">{{tool.title}}</div>
       </li>
     {{/each}}
   </ul>
