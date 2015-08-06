@@ -67,7 +67,7 @@ export default Ember.Controller.extend({
       })
       .catch(this.saveError.bind(this));
     },
-    addFeature: function(task) {
+    addFeature: function(capability) {
       var that = this;
       // Close modal
       Ember.$('#addFeatureModal').modal('hide');
@@ -83,7 +83,7 @@ export default Ember.Controller.extend({
         // Add provides
         var provides = that.store.createRecord('provides', {
           feature: feature,
-          task: task
+          capability: capability
         });
         // Save
         _implements.save().then(that.saveSuccess.bind(that), that.saveError.bind(that));

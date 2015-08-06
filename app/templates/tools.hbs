@@ -31,7 +31,7 @@
               Features:
             {{#each tool.implements as |implements|}}
               {{#each implements.feature.provides as |provides|}}
-                {{#link-to 'task' provides.task classNames='task-title'}}{{provides.task.title}}{{/link-to}}
+                {{#link-to 'capability' provides.capability classNames='capability-title'}}{{provides.capability.title}}{{/link-to}}
               {{/each}}
             {{/each}}
             </i></div>     

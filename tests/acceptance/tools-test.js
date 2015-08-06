@@ -31,10 +31,10 @@ test('Get /tools should return 9 items', function(assert) {
   });
 });
 
-test('Get /tools should return 7 task titles', function(assert) {
+test('Get /tools should return 7 capability titles', function(assert) {
   visit('/tools');
   andThen(function() {
-    assert.equal(find('.task-title').length, 7);
+    assert.equal(find('.capability-title').length, 7);
   });
 });
 
@@ -62,16 +62,16 @@ test('Get /tools/101 should return Java again', function(assert) {
   });
 });
 
-test('Get /tools/101 should not present any tasks', function(assert) {
+test('Get /tools/101 should not present any capabilities', function(assert) {
   visit('/tools/101');
   andThen(function() {
-    assert.equal(find('.task-title').length, 0);
+    assert.equal(find('.capability-title').length, 0);
   });
 });
 
-test('Get /tools/103 should present task Building', function(assert) {
+test('Get /tools/103 should present capability Building', function(assert) {
   visit('/tools/103');
   andThen(function() {
-    assert.equal(find('.task-title').text().trim(), 'Building');
+    assert.equal(find('.capability-title').text().trim(), 'Building');
   });
 });

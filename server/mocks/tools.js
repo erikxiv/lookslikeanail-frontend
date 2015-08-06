@@ -82,7 +82,7 @@ module.exports = function(app) {
       tools = tools.filter(function(element) {
         return element.id != req.params.id;
       });
-      res.status(200).send({"task": {}});
+      res.status(200).send({"tool": {}});
     },req.query.sleep || 0);
   });
 

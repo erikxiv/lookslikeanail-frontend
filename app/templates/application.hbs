@@ -20,17 +20,17 @@
     </li>
     <li class="list-group-item">
       <div class="icon"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></div>
-      <div class="text ellipsis">{{#link-to 'tasks'}}Tasks{{/link-to}}</div>
+      <div class="text ellipsis">{{#link-to 'capabilities'}}Capabilities{{/link-to}}</div>
     </li>
   </ul>
   <ul {{bind-attr class=":list-group toolFilterEnabled::hidden"}}>
     <li class="list-group-item">
       <h5>Filter on capability</h5>
     </li>
-    {{#each controller.tasks as |task|}}
+    {{#each controller.capabilities as |capability|}}
       <li class="list-group-item">
-        <div class="icon">{{input type="checkbox" checked=task.filter}}</div>
-        <div class="text ellipsis">{{task.title}}</div>
+        <div class="icon">{{input type="checkbox" checked=capability.filter}}</div>
+        <div class="text ellipsis">{{capability.title}}</div>
       </li>
     {{/each}}
     <li class="list-group-item">

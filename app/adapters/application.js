@@ -53,7 +53,7 @@ if (config.environment === 'development' || config.environment === 'test') {
             store.find('implements'),
             store.find('feature'),
             store.find('provides'),
-            store.find('task')
+            store.find('capability')
           ]);
         })
         .then(function() {
@@ -76,7 +76,7 @@ if (config.environment === 'development' || config.environment === 'test') {
             store.find('implements'),
             store.find('feature'),
             store.find('provides'),
-            store.find('task')
+            store.find('capability')
           ]);
         })
         .then(function() {

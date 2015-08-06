@@ -2,8 +2,8 @@ var jsonBody = require('body/json');
 
 module.exports = function(app) {
   var express = require('express');
-  var tasksRouter = express.Router();
-  var tasks = [
+  var capabilitiesRouter = express.Router();
+  var capabilities = [
     {
       'id': 1,
       'title': 'Hosting',
@@ -23,27 +23,27 @@ module.exports = function(app) {
       'keywords': []
     }
   ];
-  var index = tasks.length+1;
+  var index = capabilities.length+1;
 
-  tasksRouter.get('/', function(req, res) {
+  capabilitiesRouter.get('/', function(req, res) {
     res.send({
-      'tasks': tasks
+      'capabilities': capabilities
     });
   });
 
-  tasksRouter.post('/', function(req, res) {
+  capabilitiesRouter.post('/', function(req, res) {
     jsonBody(req, res, function(err, body) {
       console.log(body);
-      body.task['id'] = index++;
-      tasks.push(body.task);
+      body.capability['id'] = index++;
+      capabilities.push(body.capability);
       res.send(body);
     })
   });
 
-  tasksRouter.get('/:id', function(req, res) {
-    if (req.params.id > 0 && req.params.id <= tasks.length) {
+  capabilitiesRouter.get('/:id', function(req, res) {
+    if (req.params.id > 0 && req.params.id <= capabilities.length) {
       res.send({
-        'task': tasks[req.params.id-1]
+        'capability': capabilities[req.params.id-1]
       });
     }
     else {
@@ -51,18 +51,18 @@ module.exports = function(app) {
     }
   });
 
-  tasksRouter.put('/:id', function(req, res) {
+  capabilitiesRouter.put('/:id', function(req, res) {
     jsonBody(req, res, function(err, body) {
       console.log(body);
-      body.task['id'] = req.params.id
-      tasks[req.params.id-1] = body.task;
+      body.capability['id'] = req.params.id
+      capabilities[req.params.id-1] = body.capability;
       res.send(body);
     })
   });
 
-  tasksRouter.delete('/:id', function(req, res) {
+  capabilitiesRouter.delete('/:id', function(req, res) {
     res.status(204).end();
   });
 
-  app.use('/api/tasks', tasksRouter);
+  app.use('/api/capabilities', capabilitiesRouter);
 };

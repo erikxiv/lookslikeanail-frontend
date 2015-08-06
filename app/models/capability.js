@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 
-var Task = DS.Model.extend({
+var Capability = DS.Model.extend({
   created: DS.attr(),
   description: DS.attr(),
   provides: DS.hasMany('provides'),
@@ -10,9 +10,9 @@ var Task = DS.Model.extend({
   updated: DS.attr()
 });
 
-Task.reopenClass({
+Capability.reopenClass({
   FIXTURES: [
   ]
 });
 
-export default Task;
+export default Capability;

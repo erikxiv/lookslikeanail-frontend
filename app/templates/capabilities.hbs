@@ -1,0 +1,33 @@
+<p>Can't find the capability you are looking for? Contribute by {{#link-to 'capability' 'new'}}adding it{{/link-to}} to the directory.</p>
+
+<ul class="list-group items capabilities">
+  {{#each model as |capability|}}
+    <li {{bind-attr class=":list-group-item :row :item :capability capability.isExpanded:expanded:collapsed"}} {{action 'toggle' capability}}>
+      <div class="" style="position:relative">
+        <div {{bind-attr class=":collapsed-item capability.isExpanded:collapsed:expanded"}}>
+          <div class="capability-icon-title col-md-3 col-xs-12">
+            <div><span class="glyphicon glyphicon-ok-sign item-icon capability-icon" aria-hidden="true"></span></div>
+            <div class="ellipsis capability-title">{{#link-to 'capability' capability}}{{capability.title}}{{/link-to}}</div>
+          </div>
+          <div class="col-md-9 hidden-xs">
+            <div class="ellipsis capability-description-shortened">{{capability.description}}</div>
+          </div>
+        </div>
+        <div {{bind-attr class=":expanded-item capability.isExpanded:expanded:collapsed"}}>
+          <div class="capability-icon-title col-md-6 col-xs-12">
+            <div>
+              <span class="glyphicon glyphicon-ok-sign item-icon capability-icon" aria-hidden="true"/>
+            </div>
+            <div class="ellipsis capability-title">{{#link-to 'capability' capability}}{{capability.title}}{{/link-to}}</div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="ellipsis capability-sub-title">{{capability.subTitle}}</div>
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <div class="item-description capability-description">{{capability.description}}</div>
+          </div>
+        </div>
+      </div>
+    </li>
+  {{/each}}
+</ul>

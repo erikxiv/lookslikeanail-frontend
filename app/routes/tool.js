@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   setupController: function(controller, model) {
     controller.set('model', model);
-    controller.set('tasks', this.store.find('task'));
+    controller.set('capabilities', this.store.find('capability'));
   },
   model: function(params) {
     if (params.tool_id === 'new') {

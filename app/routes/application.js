@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   setupController: function(controller) {
-    controller.set('tasks', this.store.find('task'));
+    controller.set('capabilities', this.store.find('capability'));
     controller.set('tools', this.store.find('tool'));
   },
   actions: {

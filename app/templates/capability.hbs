@@ -1,20 +1,20 @@
 <div class="panel panel-default">
   <div class="panel-heading media">
         {{#if isEditingTitle}}
-          <h1 class="media-heading panel-title pull-left task-title">
+          <h1 class="media-heading panel-title pull-left capability-title">
             {{input id="inputTitle" type="text" value=model.title enter="save" focus-out="save" autofocus="autofocus"}}
           </h1>
         {{else}}
-          <h1 class="media-heading panel-title pull-left task-title" {{action "edit" "Title" on="click"}}>
+          <h1 class="media-heading panel-title pull-left capability-title" {{action "edit" "Title" on="click"}}>
             {{model.title}}
           </h1>
         {{/if}}
         {{#if isEditingSubtitle}}
-          <h1 class="media-heading panel-title pull-left task-subTitle">
+          <h1 class="media-heading panel-title pull-left capability-subTitle">
             {{input id="inputSubtitle" type="text" value=model.subTitle enter="save" focus-out="save" autofocus="autofocus"}}
           </h1>
         {{else}}
-          <h1 class="media-heading panel-title pull-left task-subTitle" {{action "edit" "Subtitle" on="click"}}>
+          <h1 class="media-heading panel-title pull-left capability-subTitle" {{action "edit" "Subtitle" on="click"}}>
             ({{model.subTitle}})
           </h1>
         {{/if}}
@@ -26,7 +26,7 @@
     {{#if isEditingDescription}}
       {{input id="inputDescription" type="text" value=model.description enter="save" focus-out="save" autofocus="autofocus"}}
     {{else}}
-        <p class="task-description" {{action "edit" "Description" on="click"}}>
+        <p class="capability-description" {{action "edit" "Description" on="click"}}>
           {{model.description}}
         </p>
     {{/if}}

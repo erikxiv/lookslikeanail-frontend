@@ -63,7 +63,7 @@ export default Ember.Controller.extend({
       var that = this;
       this.model.destroyRecord()
       .then(function() {
-        that.transitionToRoute('tasks');
+        that.transitionToRoute('capabilities');
         that.saveSuccess();
       })
       .catch(this.saveError.bind(this));

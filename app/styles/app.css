@@ -63,7 +63,7 @@
 }
 
 /*
-* Item page (e.g. Tool/Task)
+* Item page (e.g. Tool/Capability)
 */
 
 .list-group-item.add-feature:hover {
@@ -72,7 +72,7 @@
 
 
 /*
-* Items page (e.g. Tools/Tasks)
+* Items page (e.g. Tools/Capabilities)
 */
 
 .list-group-item.item {

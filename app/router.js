@@ -9,8 +9,8 @@ Router.map(function() {
   this.route('error', { path: '/error/:error_id' });
   this.route('tool', { path: '/tools/:tool_id' });
   this.route('tools');
-  this.route('task', { path: '/tasks/:task_id' });
-  this.route('tasks');
+  this.route('capability', { path: '/capabilities/:capability_id' });
+  this.route('capabilities');
   //set up all of your known routes, and then...
   this.route("404", { path: "*path"});
 });

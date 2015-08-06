@@ -7,10 +7,10 @@ export default Ember.Controller.extend({
   filteredTools: function() {
     var that = this;
     return this.get('model').filter(function(tool) {
-      return that.get('application').get('tasks').every(function(task) {
-        return ! task.get('filter') || tool.get('implements').some(function(_implements) {
+      return that.get('application').get('capabilities').every(function(capability) {
+        return ! capability.get('filter') || tool.get('implements').some(function(_implements) {
           return _implements.get('feature').get('provides').some(function(provides) {
-            return provides.get('task').get('id') === task.get('id');
+            return provides.get('capability').get('id') === capability.get('id');
           });
         });
       }) &&
@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
         });
       });
     });
-  }.property('model.@each.title', 'controllers.application.tasks.@each.filter', 'controllers.application.tools.@each.filter'),
+  }.property('model.@each.title', 'controllers.application.capabilities.@each.filter', 'controllers.application.tools.@each.filter'),
   actions: {
     toggle: function(item) {
       var wasExpanded = item.get('isExpanded');
