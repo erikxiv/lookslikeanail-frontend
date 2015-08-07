@@ -5,43 +5,47 @@ ok 4 PhantomJS 1.9 - Acceptance | tools: Update tool title should work
 ok 5 PhantomJS 1.9 - Acceptance | tools: Get /tools/101 should return Java again
 ok 6 PhantomJS 1.9 - Acceptance | tools: Get /tools/101 should not present any capabilities
 ok 7 PhantomJS 1.9 - Acceptance | tools: Get /tools/103 should present capability Building
-ok 8 PhantomJS 1.9 - JSHint - acceptance: acceptance/tools-test.js should pass jshint
-ok 9 PhantomJS 1.9 - JSHint - adapters: adapters/application.js should pass jshint
-ok 10 PhantomJS 1.9 - JSHint - .: app.js should pass jshint
-ok 11 PhantomJS 1.9 - JSHint - controllers: controllers/application.js should pass jshint
-ok 12 PhantomJS 1.9 - JSHint - controllers: controllers/capabilities.js should pass jshint
-ok 13 PhantomJS 1.9 - JSHint - controllers: controllers/capability.js should pass jshint
-ok 14 PhantomJS 1.9 - JSHint - controllers: controllers/tool.js should pass jshint
-ok 15 PhantomJS 1.9 - JSHint - controllers: controllers/tools.js should pass jshint
-ok 16 PhantomJS 1.9 - JSHint - fixtures: fixtures/capability.js should pass jshint
-ok 17 PhantomJS 1.9 - JSHint - fixtures: fixtures/feature.js should pass jshint
-ok 18 PhantomJS 1.9 - JSHint - fixtures: fixtures/tool.js should pass jshint
-ok 19 PhantomJS 1.9 - JSHint - helpers: helpers/resolver.js should pass jshint
-ok 20 PhantomJS 1.9 - JSHint - helpers: helpers/start-app.js should pass jshint
-ok 21 PhantomJS 1.9 - JSHint - initializers: initializers/fixtures.js should pass jshint
-ok 22 PhantomJS 1.9 - JSHint - models: models/capability.js should pass jshint
-ok 23 PhantomJS 1.9 - JSHint - models: models/feature.js should pass jshint
-ok 24 PhantomJS 1.9 - JSHint - models: models/supports.js should pass jshint
-ok 25 PhantomJS 1.9 - JSHint - models: models/tool.js should pass jshint
-ok 26 PhantomJS 1.9 - JSHint - .: router.js should pass jshint
-ok 27 PhantomJS 1.9 - JSHint - routes: routes/application.js should pass jshint
-ok 28 PhantomJS 1.9 - JSHint - routes: routes/capabilities.js should pass jshint
-ok 29 PhantomJS 1.9 - JSHint - routes: routes/capability.js should pass jshint
-ok 30 PhantomJS 1.9 - JSHint - routes: routes/index.js should pass jshint
-ok 31 PhantomJS 1.9 - JSHint - routes: routes/tool.js should pass jshint
-ok 32 PhantomJS 1.9 - JSHint - routes: routes/tools.js should pass jshint
-ok 33 PhantomJS 1.9 - JSHint - serializers: serializers/application.js should pass jshint
-ok 34 PhantomJS 1.9 - JSHint - .: test-helper.js should pass jshint
-ok 35 PhantomJS 1.9 - controller:tools: it exists
-ok 36 PhantomJS 1.9 - JSHint - unit/controllers: unit/controllers/tools-test.js should pass jshint
-ok 37 PhantomJS 1.9 - Unit | Model | tool: it exists
-ok 38 PhantomJS 1.9 - JSHint - unit/models: unit/models/tool-test.js should pass jshint
-ok 39 PhantomJS 1.9 - Unit | Route | tools: it exists
-ok 40 PhantomJS 1.9 - JSHint - unit/routes: unit/routes/tools-test.js should pass jshint
+ok 8 PhantomJS 1.9 - Acceptance | tools: Add capability Building to Java should work
+ok 9 PhantomJS 1.9 - Acceptance | tools: Contains CSS filter should match
+ok 10 PhantomJS 1.9 - Acceptance | tools: It should be possible to filter on capability
+ok 11 PhantomJS 1.9 - Acceptance | tools: It should be possible to filter on capability after adding a new one
+ok 12 PhantomJS 1.9 - JSHint - acceptance: acceptance/tools-test.js should pass jshint
+ok 13 PhantomJS 1.9 - JSHint - adapters: adapters/application.js should pass jshint
+ok 14 PhantomJS 1.9 - JSHint - .: app.js should pass jshint
+ok 15 PhantomJS 1.9 - JSHint - controllers: controllers/application.js should pass jshint
+ok 16 PhantomJS 1.9 - JSHint - controllers: controllers/capabilities.js should pass jshint
+ok 17 PhantomJS 1.9 - JSHint - controllers: controllers/capability.js should pass jshint
+ok 18 PhantomJS 1.9 - JSHint - controllers: controllers/tool.js should pass jshint
+ok 19 PhantomJS 1.9 - JSHint - controllers: controllers/tools.js should pass jshint
+ok 20 PhantomJS 1.9 - JSHint - fixtures: fixtures/capability.js should pass jshint
+ok 21 PhantomJS 1.9 - JSHint - fixtures: fixtures/feature.js should pass jshint
+ok 22 PhantomJS 1.9 - JSHint - fixtures: fixtures/tool.js should pass jshint
+ok 23 PhantomJS 1.9 - JSHint - helpers: helpers/resolver.js should pass jshint
+ok 24 PhantomJS 1.9 - JSHint - helpers: helpers/start-app.js should pass jshint
+ok 25 PhantomJS 1.9 - JSHint - initializers: initializers/fixtures.js should pass jshint
+ok 26 PhantomJS 1.9 - JSHint - models: models/capability.js should pass jshint
+ok 27 PhantomJS 1.9 - JSHint - models: models/feature.js should pass jshint
+ok 28 PhantomJS 1.9 - JSHint - models: models/supports.js should pass jshint
+ok 29 PhantomJS 1.9 - JSHint - models: models/tool.js should pass jshint
+ok 30 PhantomJS 1.9 - JSHint - .: router.js should pass jshint
+ok 31 PhantomJS 1.9 - JSHint - routes: routes/application.js should pass jshint
+ok 32 PhantomJS 1.9 - JSHint - routes: routes/capabilities.js should pass jshint
+ok 33 PhantomJS 1.9 - JSHint - routes: routes/capability.js should pass jshint
+ok 34 PhantomJS 1.9 - JSHint - routes: routes/index.js should pass jshint
+ok 35 PhantomJS 1.9 - JSHint - routes: routes/tool.js should pass jshint
+ok 36 PhantomJS 1.9 - JSHint - routes: routes/tools.js should pass jshint
+ok 37 PhantomJS 1.9 - JSHint - serializers: serializers/application.js should pass jshint
+ok 38 PhantomJS 1.9 - JSHint - .: test-helper.js should pass jshint
+ok 39 PhantomJS 1.9 - controller:tools: it exists
+ok 40 PhantomJS 1.9 - JSHint - unit/controllers: unit/controllers/tools-test.js should pass jshint
+ok 41 PhantomJS 1.9 - Unit | Model | tool: it exists
+ok 42 PhantomJS 1.9 - JSHint - unit/models: unit/models/tool-test.js should pass jshint
+ok 43 PhantomJS 1.9 - Unit | Route | tools: it exists
+ok 44 PhantomJS 1.9 - JSHint - unit/routes: unit/routes/tools-test.js should pass jshint
 
-1..40
-# tests 40
-# pass  40
+1..44
+# tests 44
+# pass  44
 # fail  0
 
 # ok

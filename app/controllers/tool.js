@@ -32,8 +32,8 @@ export default Ember.Controller.extend({
       if (this.get('isEditing')) {
         this.set('isEditing'+this.get('editing'), false);
         this.model.save()
-        .then(this.saveSuccess.bind(this))
-        .catch(this.saveError.bind(this));
+        .then(this.saveSuccess)
+        .catch(this.saveError);
       }
       this.set('isEditing'+what, true);
       this.set('isEditing', true);
@@ -53,8 +53,8 @@ export default Ember.Controller.extend({
           }
           else {
             this.model.save()
-            .then(this.saveSuccess.bind(this))
-            .catch(this.saveError.bind(this));
+            .then(this.saveSuccess)
+            .catch(this.saveError);
           }
         }
       }
@@ -65,7 +65,7 @@ export default Ember.Controller.extend({
         that.transitionToRoute('tools');
         that.saveSuccess();
       })
-      .catch(this.saveError.bind(this));
+      .catch(this.saveError);
     },
     addFeature: function(capability) {
       // Close modal
@@ -76,18 +76,18 @@ export default Ember.Controller.extend({
         capability: capability
       });
       feature.save()
-      .then(this.saveSuccess.bind(this))
-      .catch(this.saveError.bind(this));
+      .then(this.saveSuccess)
+      .catch(this.saveError);
       // BUG? When working with fixture adapter, the below seems to be necessary
       // due to the hasMany relationship reflexivity
       capability.save()
-      .then(this.saveSuccess.bind(this))
-      .catch(this.saveError.bind(this));
+      .then(this.saveSuccess)
+      .catch(this.saveError);
     },
     removeFeature: function(feature) {
       feature.destroyRecord()
-      .then(this.saveSuccess.bind(this))
-      .catch(this.saveError.bind(this));
+      .then(this.saveSuccess)
+      .catch(this.saveError);
     }
   }
 });

@@ -82,6 +82,14 @@ test('Add capability Building to Java should work', function(assert) {
   triggerEvent('li.add-feature:contains("Building")', 'click');
   andThen(function() {
     assert.equal(find('.capability-title').text().trim(), 'Building');
+    assert.equal(find('.alert').length > 0 ? find('.alert').text().trim() : '', '');
+  });
+});
+
+test('Contains CSS filter should match', function(assert) {
+  visit('/tools');
+  andThen(function() {
+    assert.equal(find('.capability-filter:contains("Building")').length, 1);
   });
 });
 
@@ -98,9 +106,16 @@ test('It should be possible to filter on capability after adding a new one', fun
   visit('/tools/101');
   triggerEvent('a.add-feature', 'click');
   triggerEvent('li.add-feature:contains("Building")', 'click');
+  andThen(function() {
+    assert.equal(find('.capability-title').text().trim(), 'Building');
+  });
   visit('/tools');
+  andThen(function() {
+    assert.equal(find('.tool:contains("Java") .capability-title').text().trim(), 'Building');
+  });
   triggerEvent('.capability-filter:contains("Building") .capability-filter-checkbox', 'click');
   andThen(function() {
     assert.equal(find('.capability-title').length, 2);
+    assert.equal(find('.alert').length > 0 ? find('.alert').text().trim() : '', '');
   });
 });
