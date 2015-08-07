@@ -9,8 +9,10 @@ export default {
         { id: 303, implements: 3031, provides: [3032], title: 'postgresDatastorage' },
         { id: 304, implements: 3041, provides: [3042], title: 'mysqlDatastorage' },
         { id: 305, implements: 3051, provides: [3052], title: 'herokuHosting' },
-        { id: 306, implements: 3061, provides: [3062], title: 'neo4jDatastorage' },
-        { id: 307, implements: 3071, provides: [3072], title: 'orientdbDatastorage' }
+        { id: 305, implements: 3051, provides: [3052], title: 'herokuHosting' },
+        { id: 306, implements: 3061, provides: [3062], title: 'herokuBuilding' },
+        { id: 307, implements: 3071, provides: [3072], title: 'neo4jDatastorage' },
+        { id: 308, implements: 3081, provides: [3082], title: 'orientdbDatastorage' }
       ]
     });
   }

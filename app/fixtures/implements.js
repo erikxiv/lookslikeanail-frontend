@@ -9,8 +9,9 @@ export default {
         { id: 3031, feature: 303, tool: 105},
         { id: 3041, feature: 304, tool: 106},
         { id: 3051, feature: 305, tool: 107},
-        { id: 3061, feature: 306, tool: 108},
-        { id: 3071, feature: 307, tool: 109}
+        { id: 3061, feature: 306, tool: 107},
+        { id: 3071, feature: 307, tool: 108},
+        { id: 3081, feature: 308, tool: 109}
       ]
     });
   }
