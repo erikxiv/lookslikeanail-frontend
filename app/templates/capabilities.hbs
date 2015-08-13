@@ -10,7 +10,7 @@
             <div class="ellipsis capability-title">{{#link-to 'capability' capability}}{{capability.title}}{{/link-to}}</div>
           </div>
           <div class="col-md-9 hidden-xs">
-            <div class="ellipsis capability-description-shortened">{{capability.description}}</div>
+            <div class="ellipsis capability-description-shortened">{{marked-summary capability.description}}</div>
           </div>
         </div>
         <div {{bind-attr class=":expanded-item capability.isExpanded:expanded:collapsed"}}>
@@ -24,7 +24,7 @@
             <div class="ellipsis capability-sub-title">{{capability.subTitle}}</div>
           </div>
           <div class="col-md-12 col-xs-12">
-            <div class="item-description capability-description">{{capability.description}}</div>
+            <div class="item-description capability-description">{{marked-full capability.description}}</div>
           </div>
         </div>
       </div>
