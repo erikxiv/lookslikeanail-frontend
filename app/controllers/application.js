@@ -38,7 +38,7 @@ export default Ember.Controller.extend({
 
   inTransition: function() {
     console.log('inTrans');
-    return this.get('target').get('currentState') != this.get('target').get('targetState');
+    return this.get('target').get('currentState') !== this.get('target').get('targetState');
   }.property('target.currentState', 'target.targetState'),
 
   actions: {
