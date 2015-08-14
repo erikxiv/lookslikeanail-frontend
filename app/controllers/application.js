@@ -36,6 +36,11 @@ export default Ember.Controller.extend({
     return this.currentRouteName === 'tools';
   }.property('currentRouteName'),
 
+  inTransition: function() {
+    console.log('inTrans');
+    return this.get('target').get('currentState') != this.get('target').get('targetState');
+  }.property('target.currentState', 'target.targetState'),
+
   actions: {
     toggleMenu: function() {
       this.set('menuShown', ! this.get('menuShown'));
