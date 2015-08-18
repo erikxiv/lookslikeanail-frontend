@@ -45,6 +45,9 @@ export default Ember.Controller.extend({
       this.set('menuShown', ! this.get('menuShown'));
       // Make button lose focus (or it will still be highlighted by bootstrap css)
       Ember.$('.navbar-toggle').blur();
+    },
+    search: function() {
+      this.transitionToRoute('search', {queryParams: {q: this.get('q')}});
     }
   }
 });
