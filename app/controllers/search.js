@@ -16,7 +16,8 @@ export default Ember.Controller.extend({
             subTitle: 'GitHub',
             description: item.description,
             created: item.created_at,
-            updated: item.updated_at
+            updated: item.updated_at,
+            icon: item.owner.avatar_url
           });
         }));
         that.set('githubstatus', 'Done');
