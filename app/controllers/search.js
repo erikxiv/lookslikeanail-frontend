@@ -18,7 +18,9 @@ export default Ember.Controller.extend({
             created: item.created_at,
             updated: item.updated_at,
             icon: item.owner.avatar_url,
-            url: item.url
+            url: item.url,
+            htmlUrl: item.html_url,
+            fullName: item.full_name
           });
         }));
         that.set('githubstatus', 'Done');
@@ -33,13 +35,21 @@ export default Ember.Controller.extend({
       item.set('isExpanded', ! wasExpanded);
       if (! wasExpanded) {
         // Get readme
-        var that = this;
         Ember.$.getJSON(item.url+'/readme').then(
           function(response) {
             item.set('description', atob(response.content));
           }
         );
       }
+    },
+    addTool: function(tool) {
+      var newTool = this.store.createRecord('tool', {
+        title: tool.get('title'),
+        subTitle: tool.get('subTitle'),
+        description: tool.get('description')
+      });
+      newTool.save();
+      this.transitionToRoute('tool', newTool);
     }
   }
 });

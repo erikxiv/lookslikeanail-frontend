@@ -1,3 +1,16 @@
+/*
+*
+*/
+
+.expanded-item div.tool-add {
+  display: block !important;
+}
+
+.align-bottom {
+  position: absolute;
+  bottom: 0;
+}
+
 .search .form-group {
   margin-top: 0px;
   margin-bottom: 0px;

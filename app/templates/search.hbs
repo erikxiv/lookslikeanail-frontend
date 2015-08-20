@@ -22,6 +22,14 @@
           <div class="col-md-6 col-xs-12">
             <div class="ellipsis tool-sub-title">{{tool.subTitle}}</div>
           </div>
+          <div class="tool-add col-md-12 col-xs-12">
+            <span class="align-bottom">
+              GitHub: <a href="{{tool.htmlUrl}}">{{tool.fullName}}</a>
+            </span>
+            <button type="button" class="btn btn-success pull-right" {{action "addTool" tool}}>
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"/> Add to directory
+            </button>
+          </div>
           <div class="col-md-12 col-xs-12">
             <div class="item-description tool-description">{{marked-full tool.description}}</div>
           </div>
