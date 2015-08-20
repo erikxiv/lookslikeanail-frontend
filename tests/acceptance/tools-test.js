@@ -31,10 +31,10 @@ test('Get /tools should return 9 items', function(assert) {
   });
 });
 
-test('Get /tools should return 7 capability titles', function(assert) {
+test('Get /tools should return 8 capability titles', function(assert) {
   visit('/tools');
   andThen(function() {
-    assert.equal(find('.capability-title').length, 7);
+    assert.equal(find('.capability-title').length, 8);
   });
 });
 
@@ -97,7 +97,7 @@ test('It should be possible to filter on capability', function(assert) {
   visit('/tools');
   triggerEvent('.capability-filter:contains("Building") .capability-filter-checkbox', 'click');
   andThen(function() {
-    assert.equal(find('.capability-title').length, 1);
+    assert.equal(find('.collapsed-item .tool-title').length, 2);
   });
 });
 
@@ -115,7 +115,7 @@ test('It should be possible to filter on capability after adding a new one', fun
   });
   triggerEvent('.capability-filter:contains("Building") .capability-filter-checkbox', 'click');
   andThen(function() {
-    assert.equal(find('.capability-title').length, 2);
+    assert.equal(find('.collapsed-item .tool-title').length, 3);
     assert.equal(find('.alert').length > 0 ? find('.alert').text().trim() : '', '');
   });
 });

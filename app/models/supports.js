@@ -3,7 +3,7 @@ import DS from 'ember-data';
 var supports = DS.Model.extend({
   created: DS.attr(),
   feature: DS.belongsTo('feature'),
-  tool: DS.belongsTo('tool'),
+  concept: DS.belongsTo('concept'),
   updated: DS.attr(),
 });
 
