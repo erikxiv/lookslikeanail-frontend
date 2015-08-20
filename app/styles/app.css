@@ -1,4 +1,26 @@
 /*
+*
+*/
+
+.expanded-item div.tool-add {
+  display: block !important;
+}
+
+.align-bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+.search .form-group {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.search .input-group {
+  padding-top: 8px;
+}
+
+/*
 * Loading page (see bottom for spinner-css)
 */
 

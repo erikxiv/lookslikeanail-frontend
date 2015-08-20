@@ -22,8 +22,8 @@ module.exports = function(environment) {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' boot2docker:35729 *.cloudfront.net",
       'font-src': "'self'",
-      'connect-src': "'self' ws://boot2docker:35729 looks-like-a-nail-backend.herokuapp.com api.rollbar.com boot2dockerapi",
-      'img-src': "'self'",
+      'connect-src': "'self' ws://boot2docker:35729 looks-like-a-nail-backend.herokuapp.com api.rollbar.com boot2dockerapi hex.pm api.github.com",
+      'img-src': "'self' *.githubusercontent.com",
       'style-src': "'self' 'unsafe-inline'",
       'frame-src': ""
     },
