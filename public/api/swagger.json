@@ -17,128 +17,6 @@
         "http"
     ],
     "paths": {
-        "/features": {
-            "post": {
-                "description": "Creates a new feature",
-                "tags": [
-                    "feature"
-                ],
-                "parameters": [
-                    {
-                        "name": "feature",
-                        "in": "body",
-                        "description": "Feature to add",
-                        "schema": {
-                            "properties": {
-                                "feature": {
-                                    "$ref": "#/definitions/feature"
-                                }
-                            }
-                        },
-                        "required": true
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "operationId": "addFeature",
-                "responses": {
-                    "200": {
-                        "description": "feature response",
-                        "schema": {
-                            "properties": {
-                                "feature": {
-                                    "$ref": "#/definitions/feature"
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/features/{id}": {
-            "put": {
-                "description": "Update feature",
-                "tags": [
-                    "feature"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "format": "int64",
-                        "name": "id",
-                        "description": "ID of feature to update",
-                        "type": "integer",
-                        "required": true
-                    },
-                    {
-                        "name": "feature",
-                        "in": "body",
-                        "description": "Feature properties to update",
-                        "schema": {
-                            "properties": {
-                                "feature": {
-                                    "$ref": "#/definitions/feature"
-                                }
-                            }
-                        },
-                        "required": true
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "operationId": "updateFeature",
-                "responses": {
-                    "200": {
-                        "description": "feature response",
-                        "schema": {
-                            "$ref": "#/definitions/feature"
-                        }
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "deletes a single feature based on the ID supplied",
-                "tags": [
-                    "feature"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "format": "int64",
-                        "name": "id",
-                        "description": "ID of feature to delete",
-                        "type": "integer",
-                        "required": true
-                    }
-                ],
-                "operationId": "deleteFeature",
-                "responses": {
-                    "204": {
-                        "description": "feature deleted"
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }
-                }
-            }
-        },
         "/capabilities": {
             "post": {
                 "description": "Creates a new capability",
@@ -756,6 +634,152 @@
                 "responses": {
                     "204": {
                         "description": "tool deleted"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/tools/{id}/features": {
+            "post": {
+                "description": "Creates a new feature",
+                "tags": [
+                    "feature"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of tool that the feature belongs to",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "feature",
+                        "in": "body",
+                        "description": "Feature to add",
+                        "schema": {
+                            "properties": {
+                                "feature": {
+                                    "$ref": "#/definitions/feature"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "addFeature",
+                "responses": {
+                    "200": {
+                        "description": "feature response",
+                        "schema": {
+                            "properties": {
+                                "feature": {
+                                    "$ref": "#/definitions/feature"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/tools/{id}/features/{fid}": {
+            "put": {
+                "description": "Update feature",
+                "tags": [
+                    "feature"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of tool that the feature belongs to",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "fid",
+                        "description": "ID of feature to update",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "feature",
+                        "in": "body",
+                        "description": "Feature properties to update",
+                        "schema": {
+                            "properties": {
+                                "feature": {
+                                    "$ref": "#/definitions/feature"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "updateFeature",
+                "responses": {
+                    "200": {
+                        "description": "feature response",
+                        "schema": {
+                            "$ref": "#/definitions/feature"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "deletes a single feature based on the ID supplied",
+                "tags": [
+                    "feature"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of tool that the feature belongs to",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "fid",
+                        "description": "ID of feature to delete",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "operationId": "deleteFeature",
+                "responses": {
+                    "204": {
+                        "description": "feature deleted"
                     },
                     "default": {
                         "description": "unexpected error",
