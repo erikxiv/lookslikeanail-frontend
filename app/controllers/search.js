@@ -26,6 +26,24 @@ export default Ember.Controller.extend({
         that.set('githubstatus', 'Done');
       }
     );
+    // Wikipedia
+    var sparql = 'SELECT DISTINCT ?s ?title ?logo ?description ?htmlurl WHERE { ?s rdf:type dbo:Software . ?s rdfs:comment ?description . FILTER (lang(?description) = "en"). ?description bif:contains "' + this.get('q') + '" . ?s rdfs:label ?title . FILTER (lang(?title) = "en"). OPTIONAL {?s foaf:depiction ?logo .} . OPTIONAL {?s foaf:isPrimaryTopicOf ?htmlurl .} } LIMIT 20';
+    that.set('wikipediastatus', 'Loading');
+    Ember.$.getJSON("http://dbpedia.org/sparql?query="+encodeURIComponent(sparql)+"&format=json").then(
+      function(response) {
+        that.set('wikipedia', response.results.bindings.map(function (item) {
+          return Ember.Object.create({
+            title: item.title.value,
+            subTitle: 'Wikipedia',
+            description: item.description.value,
+            icon: item.logo? item.logo.value : null,
+            url: item.s.value,
+            htmlUrl: item.htmlurl ? item.htmlurl.value : null
+          });
+        }));
+        that.set('wikipediastatus', 'Done');
+      }
+    );
   }.observes('q'),
 
   actions: {
