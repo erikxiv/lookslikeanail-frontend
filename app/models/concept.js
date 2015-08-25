@@ -3,7 +3,7 @@ import DS from 'ember-data';
 var Concept = DS.Model.extend({
   created: DS.attr(),
   description: DS.attr(),
- supportedBy: DS.hasMany('feature', {
+  supportedBy: DS.hasMany('feature', {
     inverse: 'supports'
   }),
   keywords: DS.attr(),

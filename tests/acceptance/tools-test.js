@@ -38,6 +38,13 @@ test('Get /tools should return 8 capability titles', function(assert) {
   });
 });
 
+test('Get /tools should return supporting tools', function(assert) {
+  visit('/tools');
+  andThen(function() {
+    assert.notEqual(find('.supports-title').length, 0);
+  });
+});
+
 test('Get /tools/101 should return Java', function(assert) {
   visit('/tools/101');
   andThen(function() {
@@ -73,6 +80,13 @@ test('Get /tools/103 should present capability Building', function(assert) {
   visit('/tools/103');
   andThen(function() {
     assert.equal(find('.capability-title').text().trim(), 'Building');
+  });
+});
+
+test('Get /tools/103 should support Elixir', function(assert) {
+  visit('/tools/103');
+  andThen(function() {
+    assert.equal(find('.supports-title').text().trim(), 'Elixir');
   });
 });
 
