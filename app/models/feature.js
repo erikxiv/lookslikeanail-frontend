@@ -10,7 +10,11 @@ var Feature = Concept.extend({
   }),
   supports: DS.hasMany('concept', {
     inverse: 'supportedBy'
-  })
+  }),
+
+  supportsSomething: function() {
+    return this.get('supports') && this.get('supports').length > 0;
+  }.property('supports')
 });
 
 Feature.reopenClass({
