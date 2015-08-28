@@ -1,0 +1,31 @@
+<ul class="list-group items tools">
+  Works? {{something}}
+  {{#each items as |item|}}
+    <li {{bind-attr class=":list-group-item :row :item item.isExpanded:expanded:collapsed"}} {{action 'toggle' item}}>
+      <div class="" style="position:relative">
+        <div {{bind-attr class=":collapsed-item item.isExpanded:collapsed:expanded"}}>
+          <div class="item-icon-title col-md-3 col-xs-12">
+            <div>
+              <span class="glyphicon glyphicon-wrench item-icon" aria-hidden="true"></span>
+            </div>
+            <div class="ellipsis item-title">
+              {{#if item-route}}
+                {{#link-to item-route item}}{{item.title}}{{/link-to}}
+              {{else}}
+                {{item.title}}
+              {{/if}}
+            </div>
+          </div>
+          <div class="col-md-9 hidden-xs">
+            <div class="ellipsis item-description-shortened">{{item.description}}</div>
+          </div>
+        </div>
+        <div {{bind-attr class=":expanded-item item.isExpanded:expanded:collapsed"}}>
+          <div class="item-icon-title col-md-12 col-xs-12">
+            {{yield}}
+          </div>
+        </div>
+      </div>
+    </li>
+  {{/each}}
+</ul>
