@@ -5,12 +5,24 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">Add feature</h4>
+        <h4 class="modal-title">Feature</h4>
       </div>
       <ul class="list-group">
         {{#each capabilities as |capability|}}
-          <li class="list-group-item add-feature" {{action 'addFeature' capability}}>
+          <li class="list-group-item add-feature" {{action 'selectCapability' capability}}>
+            {{compare-icon capability.id currentFeature.capability.id}}
             {{capability.title}}
+          </li>
+        {{/each}}
+      </ul>
+      <div class="modal-header">
+        <h4 class="modal-title">Supports</h4>
+      </div>
+      <ul class="list-group">
+        {{#each concepts as |concept|}}
+          <li class="list-group-item add-supports" {{action 'toggleSupports' concept}}>
+            {{compare-icon concept.id currentFeature.supports 'concept'}}
+            {{concept.title}}
           </li>
         {{/each}}
       </ul>
@@ -39,7 +51,7 @@
           </h1>
         {{/if}}
         <a class="btn pull-right nopadding" {{action "delete"}}>
-          <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span>
         </a>
   </div>
   <div class="panel-body">
@@ -57,7 +69,7 @@
   <div class="panel-heading">
     <h3 class="panel-title">
       Features
-      <a class="btn pull-right add-feature" data-toggle="modal" data-target="#addFeatureModal">
+      <a class="btn pull-right add-feature" {{action 'addFeature'}}>
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
       </a>
     </h3>
@@ -75,8 +87,8 @@
             {{~/each~}}
           </ul>)
         {{/if}}
-        <a class="btn pull-right" {{action 'removeFeature' feature}}>
-          <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+        <a class="btn pull-right" {{action 'configureFeature' feature}}>
+          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
         </a>
       </li>
     {{/each}}
