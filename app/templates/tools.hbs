@@ -37,8 +37,8 @@
                     {{/link-to}}
                     {{~#if feature.supportsSomething}}
                       (<ul class="list-unstyled comma">
-                        {{~#each feature.supports as |concept|~}}
-                          <li class="supports-title">{{concept.title}}</li>
+                        {{~#each feature.supports as |supports|~}}
+                          <li class="supports-title">{{supports.concept.title}}</li>
                         {{~/each~}}
                       </ul>)
                     {{~/if~}}

@@ -8,8 +8,8 @@ var Feature = Concept.extend({
   capability: DS.belongsTo('capability', {
     inverse: 'features'
   }),
-  supports: DS.hasMany('concept', {
-    inverse: 'supportedBy'
+  supports: DS.hasMany('supports', {
+    inverse: 'feature'
   }),
 
   supportsSomething: function() {
