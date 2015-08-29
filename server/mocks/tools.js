@@ -6,7 +6,7 @@ module.exports = function(app) {
   var toolsRouter = express.Router();
   var tools = [
     {
-      'id': 1,
+      'id': 101,
       'title': 'Heroku',
       'subTitle': 'PaaS',
       'description': 'Long-winding description',
@@ -15,7 +15,7 @@ module.exports = function(app) {
       'keywords': []
     },
     {
-      'id': 2,
+      'id': 102,
       'title': 'Elixir',
       'subTitle': 'Programming Language',
       'description': 'Long-winding description',

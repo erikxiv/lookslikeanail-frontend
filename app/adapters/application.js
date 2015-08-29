@@ -33,6 +33,52 @@ var adapter = DS.RESTAdapter.extend({
       Rollbar.warning(type + ' ' + url, audit);
       throw error;
     });
+  },
+  urlHelper: function(models) {
+    var url = [];
+    var host = Ember.get(this, 'host');
+    var prefix = this.urlPrefix();
+    var that = this;
+
+    models.forEach(function(model) {
+      url.push(that.pathForType(model.name));
+      if (model.id) {
+        url.push(encodeURIComponent(model.id));
+      }
+    });
+
+    if (prefix) { url.unshift(prefix); }
+
+    url = url.join('/');
+    if (!host && url && url.charAt(0) !== '/') {
+      url = '/' + url;
+    }
+
+    return url;
+  },
+  buildURL: function(modelName, id, snapshot, requestType, query) {
+    var result = this._super(modelName, id, snapshot, requestType, query);
+    /* Non-standard URLS
+    POST   /tools/1/features
+    PUT    /tools/1/features/2
+    DELETE /tools/1/features/2
+    POST   /tools/1/features/2/supports
+    DELETE /tools/1/features/2/supports/3
+    */
+    if (modelName === 'feature') {
+      result = this.urlHelper([
+        { name: 'tool', id: snapshot.get('tool').get('id') },
+        { name: modelName, id: snapshot.id }
+      ]);
+    }
+    else if (modelName === 'supports') {
+      result = this.urlHelper([
+        { name: 'tool', id: snapshot.get('feature').get('tool').get('id') },
+        { name: 'feature', id: snapshot.get('feature').get('id') },
+        { name: modelName, id: snapshot.id }
+      ]);
+    }
+    return result;
   }
 });
 
