@@ -11,15 +11,6 @@ module.exports = function(environment) {
     rollbarVerbose: false,
     rollbarCodeVersion: process.env.TRAVIS_COMMIT || 'unknown',
 
-    sentry: {
-      skipCdn: false, // skip loading from cdn
-      cdn: '//cdn.ravenjs.com',
-      dsn: 'http://bb02abff698d452db5a1c9e3915354b8@sentry.tool.directory/2',
-      version: '1.1.16',
-      whitelistUrls: [ 'localhost:4200', 'boot2docker', 'tool.directory' ],
-      development: false // Set to true, to disable while developing
-    },
-
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -29,10 +20,10 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' boot2docker:35729 *.cloudfront.net cdn.ravenjs.com",
+      'script-src': "'self' 'unsafe-inline' boot2docker:35729 *.cloudfront.net",
       'font-src': "'self'",
-      'connect-src': "'self' ws://boot2docker:35729 looks-like-a-nail-backend.herokuapp.com api.rollbar.com boot2dockerapi",
-      'img-src': "'self' sentry.tool.directory",
+      'connect-src': "'self' ws://boot2docker:35729 looks-like-a-nail-backend.herokuapp.com api.rollbar.com boot2dockerapi hex.pm api.github.com dbpedia.org",
+      'img-src': "'self' *.githubusercontent.com",
       'style-src': "'self' 'unsafe-inline'",
       'frame-src': ""
     },
@@ -67,7 +58,6 @@ module.exports = function(environment) {
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
-    ENV.sentry.dsn = 'http://ccd3c233940248acac7e79297a62c353@sentry.tool.directory/3'
 
     ENV.APP.rootElement = '#ember-testing';
   }
@@ -75,7 +65,6 @@ module.exports = function(environment) {
   if (environment === 'production') {
       ENV.APP.API_HOST = 'http://looks-like-a-nail-backend.herokuapp.com';
       ENV.APP.API_NAMESPACE = 'api/v1';
-      ENV.sentry.dsn = 'http://a7256144033d4a57a8614f6d3f9b6cad@sentry.tool.directory/4'
   }
 
   return ENV;

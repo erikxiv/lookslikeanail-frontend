@@ -31,10 +31,10 @@ test('Get /tools should return 9 items', function(assert) {
   });
 });
 
-test('Get /tools should return 7 capability titles', function(assert) {
+test('Get /tools should return 8 capability titles', function(assert) {
   visit('/tools');
   andThen(function() {
-    assert.equal(find('.capability-title').length, 7);
+    assert.equal(find('.capability-title').length, 8);
   });
 });
 

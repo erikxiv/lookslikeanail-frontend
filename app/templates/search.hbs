@@ -1,0 +1,85 @@
+<h3>Wikipedia <small>{{wikipediastatus}}</small></h3>
+<ul class="list-group items tools">
+  {{#each wikipedia as |tool|}}
+    <li {{bind-attr class=":list-group-item :row :item :tool tool.isExpanded:expanded:collapsed"}} {{action 'toggle' tool}}>
+      <div class="" style="position:relative">
+        <div {{bind-attr class=":collapsed-item tool.isExpanded:collapsed:expanded"}}>
+          <div class="tool-icon-title col-md-3 col-xs-12">
+            <div>
+              <img src="https://www.wikipedia.org/static/favicon/wikipedia.ico" height="28" class="item-icon"/>
+            </div>
+            <div class="ellipsis tool-title">{{tool.title}}</div>
+          </div>
+          <div class="col-md-9 hidden-xs">
+            <div class="ellipsis tool-description-shortened">{{marked-summary tool.description}}</div>
+          </div>
+        </div>
+        <div {{bind-attr class=":expanded-item tool.isExpanded:expanded:collapsed"}}>
+          <div class="tool-icon-title col-md-6 col-xs-12">
+            <div>
+              <img src="https://www.wikipedia.org/static/favicon/wikipedia.ico" height="28" class="item-icon"/>
+            </div>
+            <div class="ellipsis tool-title">{{#link-to 'tool' tool}}{{tool.title}}{{/link-to}}</div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="ellipsis tool-sub-title">{{tool.subTitle}}</div>
+          </div>
+          <div class="tool-add col-md-12 col-xs-12">
+            <span class="align-bottom">
+              Wikipedia: <a href="{{tool.htmlUrl}}">{{tool.title}}</a>
+            </span>
+            <button type="button" class="btn btn-success pull-right" {{action "addTool" tool}}>
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"/> Add to directory
+            </button>
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <div class="item-description tool-description">{{marked-full tool.description}}</div>
+          </div>
+        </div>
+      </div>
+    </li>
+  {{/each}}
+</ul>
+
+<h3>GitHub <small>{{githubstatus}}</small></h3>
+<ul class="list-group items tools">
+  {{#each github as |tool|}}
+    <li {{bind-attr class=":list-group-item :row :item :tool tool.isExpanded:expanded:collapsed"}} {{action 'toggle' tool}}>
+      <div class="" style="position:relative">
+        <div {{bind-attr class=":collapsed-item tool.isExpanded:collapsed:expanded"}}>
+          <div class="tool-icon-title col-md-3 col-xs-12">
+            <div>
+              <img src="{{tool.icon}}" height="28" class="item-icon"/>
+            </div>
+            <div class="ellipsis tool-title">{{tool.title}}</div>
+          </div>
+          <div class="col-md-9 hidden-xs">
+            <div class="ellipsis tool-description-shortened">{{marked-summary tool.description}}</div>
+          </div>
+        </div>
+        <div {{bind-attr class=":expanded-item tool.isExpanded:expanded:collapsed"}}>
+          <div class="tool-icon-title col-md-6 col-xs-12">
+            <div>
+              <img src="{{tool.icon}}" height="28" class="item-icon"/>
+            </div>
+            <div class="ellipsis tool-title">{{#link-to 'tool' tool}}{{tool.title}}{{/link-to}}</div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="ellipsis tool-sub-title">{{tool.subTitle}}</div>
+          </div>
+          <div class="tool-add col-md-12 col-xs-12">
+            <span class="align-bottom">
+              GitHub: <a href="{{tool.htmlUrl}}">{{tool.fullName}}</a>
+            </span>
+            <button type="button" class="btn btn-success pull-right" {{action "addTool" tool}}>
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"/> Add to directory
+            </button>
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <div class="item-description tool-description">{{marked-full tool.description}}</div>
+          </div>
+        </div>
+      </div>
+    </li>
+  {{/each}}
+</ul>
