@@ -32,8 +32,8 @@ export default Ember.Controller.extend({
       if (this.get('isEditing')) {
         this.set('isEditing'+this.get('editing'), false);
         this.model.save()
-        .then(this.saveSuccess.bind(this))
-        .catch(this.saveError.bind(this));
+        .then(this.saveSuccess)
+        .catch(this.saveError);
       }
       this.set('isEditing'+what, true);
       this.set('isEditing', true);
@@ -53,8 +53,8 @@ export default Ember.Controller.extend({
           }
           else {
             this.model.save()
-            .then(this.saveSuccess.bind(this))
-            .catch(this.saveError.bind(this));
+            .then(this.saveSuccess)
+            .catch(this.saveError);
           }
         }
       }
@@ -65,37 +65,29 @@ export default Ember.Controller.extend({
         that.transitionToRoute('tools');
         that.saveSuccess();
       })
-      .catch(this.saveError.bind(this));
+      .catch(this.saveError);
     },
     addFeature: function(capability) {
-      var that = this;
       // Close modal
       Ember.$('#addFeatureModal').modal('hide');
       // Add feature
-      var feature = this.store.createRecord('feature');
+      var feature = this.store.createRecord('feature', {
+        tool: this.model,
+        capability: capability
+      });
       feature.save()
-      .then(function(feature) {
-        // Add implements
-        var _implements = that.store.createRecord('implements', {
-          tool: that.model,
-          feature: feature
-        });
-        // Add provides
-        var provides = that.store.createRecord('provides', {
-          feature: feature,
-          capability: capability
-        });
-        // Save
-        _implements.save().then(that.saveSuccess.bind(that), that.saveError.bind(that));
-        provides.save().then(that.saveSuccess.bind(that), that.saveError.bind(that));
-        feature.save().then(that.saveSuccess.bind(that), that.saveError.bind(that));
-      }, that.saveError.bind(that))
-      .catch(this.saveError.bind(this));
+      .then(this.saveSuccess)
+      .catch(this.saveError);
+      // BUG? When working with fixture adapter, the below seems to be necessary
+      // due to the hasMany relationship reflexivity
+      capability.save()
+      .then(this.saveSuccess)
+      .catch(this.saveError);
     },
     removeFeature: function(feature) {
       feature.destroyRecord()
-      .then(this.saveSuccess.bind(this))
-      .catch(this.saveError.bind(this));
+      .then(this.saveSuccess)
+      .catch(this.saveError);
     }
   }
 });
