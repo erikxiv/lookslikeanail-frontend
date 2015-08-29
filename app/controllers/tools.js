@@ -6,6 +6,9 @@ export default Ember.Controller.extend({
   // Fitler tools listing on capability/supports filters
   filteredTools: function() {
     var that = this;
+    if (this.get('model') == null) {
+      return null;
+    }
     return this.get('model').filter(function(tool) {
       return that.get('application').get('capabilities').every(function(capability) {
         return ! capability.get('filter') || tool.get('features').some(function(feature) {

@@ -10,7 +10,7 @@
             <div class="ellipsis tool-title">{{#link-to 'tool' tool}}{{tool.title}}{{/link-to}}</div>
           </div>
           <div class="col-md-9 hidden-xs">
-            <div class="ellipsis tool-description-shortened">{{tool.description}}</div>
+            <div class="ellipsis tool-description-shortened">{{marked-summary tool.description}}</div>
           </div>
         </div>
         <div {{bind-attr class=":expanded-item tool.isExpanded:expanded:collapsed"}}>
@@ -24,7 +24,7 @@
             <div class="ellipsis tool-sub-title">{{tool.subTitle}}</div>
           </div>
           <div class="col-md-12 col-xs-12">
-            <div class="item-description tool-description">{{tool.description}}</div>
+            <div class="item-description tool-description">{{marked-full tool.description}}</div>
           </div>
           <div class="col-md-12 col-xs-12">
             <div class="tool-features"><i>

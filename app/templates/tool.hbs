@@ -34,7 +34,7 @@
   <div class="panel-heading media">
         {{#if isEditingTitle}}
           <h1 class="media-heading panel-title pull-left tool-title">
-            {{input id="inputTitle" type="text" value=model.title enter="save" focus-out="save" autofocus="autofocus"}}
+            {{input id="inputTitle" type="text" classNames="form-control" value=model.title enter="save" focus-out="save" autofocus="autofocus"}}
           </h1>
         {{else}}
           <h1 class="media-heading panel-title pull-left tool-title" {{action "edit" "Title" on="click"}}>
@@ -43,7 +43,7 @@
         {{/if}}
         {{#if isEditingSubtitle}}
           <h1 class="media-heading panel-title pull-left tool-subTitle">
-            {{input id="inputSubtitle" type="text" value=model.subTitle enter="save" focus-out="save" autofocus="autofocus"}}
+            {{input id="inputSubtitle" type="text" classNames="form-control" value=model.subTitle enter="save" focus-out="save" autofocus="autofocus"}}
           </h1>
         {{else}}
           <h1 class="media-heading panel-title pull-left tool-subTitle" {{action "edit" "Subtitle" on="click"}}>
@@ -56,10 +56,10 @@
   </div>
   <div class="panel-body">
     {{#if isEditingDescription}}
-      {{input id="inputDescription" type="text" value=model.description enter="save" focus-out="save" autofocus="autofocus"}}
+      {{textarea id="inputDescription" classNames="form-control" rows="10" type="text" value=model.description focus-out="save" autofocus="autofocus"}}
     {{else}}
         <p class="tool-description" {{action "edit" "Description" on="click"}}>
-          {{model.description}}
+          {{marked-full model.description}}
         </p>
     {{/if}}
   </div>

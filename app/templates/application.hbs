@@ -1,11 +1,23 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="navbar-header">
-    <button type="button pull-left" class="navbar-toggle" {{action 'toggleMenu'}}>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    {{#link-to 'tools' classNames='navbar-brand'}}Tools{{/link-to}}
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button pull-left" class="navbar-toggle" {{action 'toggleMenu'}}>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {{#link-to 'tools' classNames='navbar-brand'}}
+        Tools{{#if inTransition}}<span class="dotone">.</span><span class="dottwo">.</span><span class="dotthree">.</span>​{{/if}}
+      {{/link-to}}
+      <form class="search" role="search" {{action "search" on="submit" }}>
+        <div class="form-group container">
+          <div class="input-group row">
+            {{input classNames="form-control" placeholder="Search" value=q}}
+            <div class="input-group-addon" {{action "search"}}><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </nav>
 

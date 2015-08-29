@@ -12,9 +12,11 @@ export default Ember.Route.extend({
       if (typeof Rollbar !== "undefined") {
         Rollbar.error("Route error: " + error, error);
       }
-      // Report to Sentry
-      Raven.captureException(error);
       return true;
+    },
+    loading: function() {
+      // Return true (e.g. show loading page) only if this is the first page shown
+      return ! this.controllerFor('application').get('currentPath');
     }
   }
 });
