@@ -3,7 +3,11 @@ import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('tool', 'Unit | Model | tool', {
   // Specify the other units that are required for this test.
+<<<<<<< HEAD
   needs: ['model:feature', 'model:supports', 'model:capability']
+=======
+  needs: ['model:feature', 'model:implements', 'model:provides', 'model:supports', 'model:capability']
+>>>>>>> master
 });
 
 test('it exists', function(assert) {

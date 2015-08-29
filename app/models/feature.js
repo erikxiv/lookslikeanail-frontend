@@ -3,8 +3,8 @@ import DS from 'ember-data';
 var Feature = DS.Model.extend({
   created: DS.attr(),
   description: DS.attr(),
-  implements: DS.belongsTo('implements'),
-  provides: DS.hasMany('provides'),
+  tool: DS.belongsTo('tool'),
+  capability: DS.belongsTo('capability'),
   keywords: DS.attr(),
   subTitle: DS.attr(),
   supports: DS.hasMany('supports'),

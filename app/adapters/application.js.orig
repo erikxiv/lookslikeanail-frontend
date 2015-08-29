@@ -51,6 +51,10 @@ if (config.environment === 'development' || config.environment === 'test') {
           toolsToReturn = tools;
           return Ember.RSVP.all([
             store.find('feature'),
+<<<<<<< HEAD
+=======
+            store.find('provides'),
+>>>>>>> master
             store.find('supports'),
             store.find('capability')
           ]);
@@ -73,6 +77,10 @@ if (config.environment === 'development' || config.environment === 'test') {
           toolsToReturn = tools;
           return Ember.RSVP.all([
             store.find('feature'),
+<<<<<<< HEAD
+=======
+            store.find('provides'),
+>>>>>>> master
             store.find('supports'),
             store.find('capability')
           ]);

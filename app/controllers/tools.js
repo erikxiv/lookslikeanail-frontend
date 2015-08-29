@@ -11,15 +11,13 @@ export default Ember.Controller.extend({
     }
     return this.get('model').filter(function(tool) {
       return that.get('application').get('capabilities').every(function(capability) {
-        return ! capability.get('filter') || tool.get('implements').some(function(_implements) {
-          return _implements.get('feature').get('provides').some(function(provides) {
-            return provides.get('capability').get('id') === capability.get('id');
-          });
+        return ! capability.get('filter') || tool.get('features').some(function(feature) {
+          return feature.get('capability').get('id') === capability.get('id');
         });
       }) &&
       that.get('application').get('tools').every(function(toolFilter) {
-        return ! toolFilter.get('filter') || tool.get('implements').some(function(_implements) {
-          return _implements.get('feature').get('supports').some(function(supports) {
+        return ! toolFilter.get('filter') || tool.get('features').some(function(feature) {
+          return feature.get('supports').some(function(supports) {
             return supports.get('tool').get('id') === toolFilter.get('id');
           });
         });

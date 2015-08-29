@@ -6,7 +6,7 @@
     "host": "api.tool.directory",
     "info": {
         "description": "An API to discover and contribute information about software tools",
-        "version": "0.2.0",
+        "version": "0.3.0",
         "title": "Tool Directory API"
     },
     "basePath": "/api/v1",
@@ -30,7 +30,7 @@
                         "description": "Feature to add",
                         "schema": {
                             "properties": {
-                                "capability": {
+                                "feature": {
                                     "$ref": "#/definitions/feature"
                                 }
                             }
@@ -129,194 +129,6 @@
                 "responses": {
                     "204": {
                         "description": "feature deleted"
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/implements": {
-            "post": {
-                "description": "Creates a new implements",
-                "tags": [
-                    "feature"
-                ],
-                "parameters": [
-                    {
-                        "name": "implements",
-                        "in": "body",
-                        "description": "Implements to add",
-                        "schema": {
-                            "properties": {
-                                "capability": {
-                                    "$ref": "#/definitions/implements"
-                                }
-                            }
-                        },
-                        "required": true
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "operationId": "addImplements",
-                "responses": {
-                    "200": {
-                        "description": "implements response",
-                        "schema": {
-                            "properties": {
-                                "implements": {
-                                    "$ref": "#/definitions/implements"
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/implements/{id}": {
-            "put": {
-                "description": "Update implements",
-                "tags": [
-                    "feature"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "format": "int64",
-                        "name": "id",
-                        "description": "ID of implements to update",
-                        "type": "integer",
-                        "required": true
-                    },
-                    {
-                        "name": "implements",
-                        "in": "body",
-                        "description": "Implements properties to update",
-                        "schema": {
-                            "properties": {
-                                "implements": {
-                                    "$ref": "#/definitions/implements"
-                                }
-                            }
-                        },
-                        "required": true
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "operationId": "updateImplements",
-                "responses": {
-                    "200": {
-                        "description": "implements response",
-                        "schema": {
-                            "$ref": "#/definitions/implements"
-                        }
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/provides": {
-            "post": {
-                "description": "Creates a new provides",
-                "tags": [
-                    "feature"
-                ],
-                "parameters": [
-                    {
-                        "name": "provides",
-                        "in": "body",
-                        "description": "Provides to add",
-                        "schema": {
-                            "properties": {
-                                "capability": {
-                                    "$ref": "#/definitions/provides"
-                                }
-                            }
-                        },
-                        "required": true
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "operationId": "addProvides",
-                "responses": {
-                    "200": {
-                        "description": "provides response",
-                        "schema": {
-                            "properties": {
-                                "provides": {
-                                    "$ref": "#/definitions/provides"
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/provides/{id}": {
-            "put": {
-                "description": "Update provides",
-                "tags": [
-                    "feature"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "format": "int64",
-                        "name": "id",
-                        "description": "ID of provides to update",
-                        "type": "integer",
-                        "required": true
-                    },
-                    {
-                        "name": "provides",
-                        "in": "body",
-                        "description": "Provides properties to update",
-                        "schema": {
-                            "properties": {
-                                "provides": {
-                                    "$ref": "#/definitions/provides"
-                                }
-                            }
-                        },
-                        "required": true
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "operationId": "updateProvides",
-                "responses": {
-                    "200": {
-                        "description": "provides response",
-                        "schema": {
-                            "$ref": "#/definitions/provides"
-                        }
                     },
                     "default": {
                         "description": "unexpected error",
@@ -588,22 +400,10 @@
                                         "$ref": "#/definitions/tool"
                                     }
                                 },
-                                "implements": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/implements"
-                                    }
-                                },
                                 "features": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/feature"
-                                    }
-                                },
-                                "provides": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/provides"
                                     }
                                 },
                                 "capabilities": {
@@ -652,22 +452,10 @@
                                 "tool": {
                                     "$ref": "#/definitions/tool"
                                 },
-                                "implements": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/implements"
-                                    }
-                                },
                                 "features": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/feature"
-                                    }
-                                },
-                                "provides": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/provides"
                                     }
                                 },
                                 "capabilities": {
@@ -773,6 +561,10 @@
     "definitions": {
         "feature": {
             "properties": {
+                "capability": {
+                    "description": "Capability unique id",
+                    "type": "number"
+                },
                 "created": {
                     "description": "When this item was created",
                     "format": "dateTime",
@@ -785,14 +577,6 @@
                 "id": {
                     "description": "Unique identifier",
                     "type": "number"
-                },
-                "provides": {
-                    "description": "List of provides relationships with Capabilities",
-                    "type": "array",
-                    "items": {
-                        "description": "provides unique id",
-                        "type": "number"
-                    }
                 },
                 "keywords": {
                     "description": "List of applicable keywords",
@@ -809,58 +593,6 @@
                 "title": {
                     "description": "Human readable title",
                     "type": "string"
-                },
-                "updated": {
-                    "description": "When this item was last modified",
-                    "format": "dateTime",
-                    "type": "string"
-                }
-            }
-        },
-        "provides": {
-            "properties": {
-                "created": {
-                    "description": "When this item was created",
-                    "format": "dateTime",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "Unique identifier",
-                    "type": "number"
-                },
-                "feature": {
-                    "description": "Feature unique id (from)",
-                    "type": "number"
-                },
-                "capability": {
-                    "description": "Capability unique id (to)",
-                    "type": "number"
-                },
-                "updated": {
-                    "description": "When this item was last modified",
-                    "format": "dateTime",
-                    "type": "string"
-                }
-            }
-        },
-        "implements": {
-            "properties": {
-                "created": {
-                    "description": "When this item was created",
-                    "format": "dateTime",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "Unique identifier",
-                    "type": "number"
-                },
-                "feature": {
-                    "description": "Feature unique id (to)",
-                    "type": "number"
-                },
-                "tool": {
-                    "description": "Tool unique id (from)",
-                    "type": "number"
                 },
                 "updated": {
                     "description": "When this item was last modified",
@@ -922,11 +654,11 @@
                     "description": "Unique identifier",
                     "type": "number"
                 },
-                "implements": {
+                "features": {
                     "description": "List of implemented features",
                     "type": "array",
                     "items": {
-                        "description": "implements unique id",
+                        "description": "feature unique id",
                         "type": "number"
                     }
                 },

@@ -169,4 +169,5 @@ CREATE (orientdbDatastorage:Feature {
   id: 308,
   title: 'orientdbDatastorage'
 }) SET orientdbDatastorage.created = timestamp(), orientdbDatastorage.updated = timestamp()
-CREATE (orientdb)-[:IMPLEMENTS {id: 3081}]->(orientdbDatastorage)
+CREATE (orientdb)-[:IMPLEMENTS {id: 3081}]->(orientdbDatastorage),
+(orientdbDatastorage)-[:PROVIDES {id: 3082}]->(datastorage)
