@@ -11,6 +11,8 @@ Router.map(function() {
   this.route('tools');
   this.route('capability', { path: '/capabilities/:capability_id' });
   this.route('capabilities');
+  this.route('concept', { path: '/concepts/:concept_id' });
+  this.route('concepts');
   //set up all of your known routes, and then...
   this.route("404", { path: "*path"});
 });

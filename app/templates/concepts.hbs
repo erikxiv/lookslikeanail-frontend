@@ -1,0 +1,33 @@
+<p>Can't find the concept you are looking for? Contribute by {{#link-to 'concept' 'new'}}adding it{{/link-to}} to the directory.</p>
+
+<ul class="list-group items concepts">
+  {{#each model as |concept|}}
+    <li {{bind-attr class=":list-group-item :row :item :concept concept.isExpanded:expanded:collapsed"}} {{action 'toggle' concept}}>
+      <div class="" style="position:relative">
+        <div {{bind-attr class=":collapsed-item concept.isExpanded:collapsed:expanded"}}>
+          <div class="concept-icon-title col-md-3 col-xs-12">
+            <div><span class="glyphicon glyphicon-tag item-icon concept-icon" aria-hidden="true"></span></div>
+            <div class="ellipsis concept-title">{{#link-to 'concept' concept}}{{concept.title}}{{/link-to}}</div>
+          </div>
+          <div class="col-md-9 hidden-xs">
+            <div class="ellipsis concept-description-shortened">{{concept.description}}</div>
+          </div>
+        </div>
+        <div {{bind-attr class=":expanded-item concept.isExpanded:expanded:collapsed"}}>
+          <div class="concept-icon-title col-md-6 col-xs-12">
+            <div>
+              <span class="glyphicon glyphicon-tag item-icon concept-icon" aria-hidden="true"/>
+            </div>
+            <div class="ellipsis concept-title">{{#link-to 'concept' concept}}{{concept.title}}{{/link-to}}</div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="ellipsis concept-sub-title">{{concept.subTitle}}</div>
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <div class="item-description concept-description">{{concept.description}}</div>
+          </div>
+        </div>
+      </div>
+    </li>
+  {{/each}}
+</ul>
