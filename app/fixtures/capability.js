@@ -8,7 +8,7 @@ export default {
         { id: 202, features: [305], title: 'Hosting', subTitle: 'Capability', description: 'HostingDescription' },
         { id: 203, features: [], title: 'Testing', subTitle: 'Capability', description: 'TestingDescription' },
         { id: 204, features: [302], title: 'Connecting', subTitle: 'Capability', description: 'ConnectingDescription' },
-        { id: 205, features: [303, 304, 306, 307], title: 'Datastorage', subTitle: 'Capability', description: 'DatastorageDescription' }
+        { id: 205, features: [303, 304, 306, 307, 308], title: 'Datastorage', subTitle: 'Capability', description: 'DatastorageDescription' }
       ]
     });
   }
