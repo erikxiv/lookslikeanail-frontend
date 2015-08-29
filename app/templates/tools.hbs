@@ -29,11 +29,22 @@
           <div class="col-md-12 col-xs-12">
             <div class="tool-features"><i>
               Features:
-            {{#each tool.features as |feature|}}
-              {{#link-to 'capability' feature.capability classNames='capability-title'}}
-                {{feature.capability.title}}
-              {{/link-to}}
-            {{/each}}
+              <ul class="list-unstyled comma">
+                {{~#each tool.features as |feature|~}}
+                  <li>
+                    {{~#link-to 'capability' feature.capability classNames='capability-title'}}
+                      {{~feature.capability.title}}
+                    {{/link-to}}
+                    {{~#if feature.supportsSomething}}
+                      (<ul class="list-unstyled comma">
+                        {{~#each feature.supports as |supports|~}}
+                          <li class="supports-title">{{supports.concept.title}}</li>
+                        {{~/each~}}
+                      </ul>)
+                    {{~/if~}}
+                  </li>
+                {{~/each}}
+              </ul>
             </i></div>     
           </div>
         </div>

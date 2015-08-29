@@ -1,4 +1,5 @@
 var jsonBody = require('body/json');
+var cors = require('cors');
 
 module.exports = function(app) {
   var express = require('express');
@@ -64,5 +65,6 @@ module.exports = function(app) {
     res.status(204).end();
   });
 
+  app.use(cors());
   app.use('/api/capabilities', capabilitiesRouter);
 };

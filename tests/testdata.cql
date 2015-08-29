@@ -6,63 +6,63 @@ WITH DISTINCT timestamp() as t
 //
 // Tools
 //
-CREATE (java:Tool {
+CREATE (java:Tool:Concept {
   id: 101,
   title: 'Java',
   subTitle: 'Programming Language',
   description: 'JavaDescription'
 }) SET java.created = timestamp(), java.updated = timestamp()
 
-CREATE (tortoise:Tool {
+CREATE (tortoise:Tool:Concept {
   id: 102,
   title: 'TortoiseSVN',
   subTitle: 'Application',
   description: 'TortoiseSVNDescription'
 }) SET tortoise.created = timestamp(), tortoise.updated = timestamp()
 
-CREATE (mix:Tool {
+CREATE (mix:Tool:Concept {
   id: 103,
   title: 'Mix',
   subTitle: 'Build Tool',
   description: 'MixDescription'
 }) SET mix.created = timestamp(), mix.updated = timestamp()
 
-CREATE (elixir:Tool {
+CREATE (elixir:Tool:Concept {
   id: 104,
   title: 'Elixir',
   subTitle: 'Programming Langugage',
   description: 'Elixir is a functional, concurrent, general-purpose programming language that runs on the Erlang virtual machine (BEAM). Elixir builds on top of Erlang to provide distributed, fault-tolerant, soft real-time, non-stop applications but also extends it to support metaprogramming with macros and polymorphism via protocols.'
 }) SET elixir.created = timestamp(), elixir.updated = timestamp()
 
-CREATE (postgres:Tool {
+CREATE (postgres:Tool:Concept {
   id: 105,
   title: 'Postgres',
   subTitle: 'Database',
   description: 'PostgresDescription'
 }) SET postgres.created = timestamp(), postgres.updated = timestamp()
 
-CREATE (mysql:Tool {
+CREATE (mysql:Tool:Concept {
   id: 106,
   title: 'MySQL',
   subTitle: 'Database',
   description: 'MySQLDescription'
 }) SET mysql.created = timestamp(), mysql.updated = timestamp()
 
-CREATE (heroku:Tool {
+CREATE (heroku:Tool:Concept {
   id: 107,
   title: 'Heroku',
   subTitle: 'Platform as a Service',
   description: 'HerokuDescription'
 }) SET heroku.created = timestamp(), heroku.updated = timestamp()
 
-CREATE (neo4j:Tool {
+CREATE (neo4j:Tool:Concept {
   id: 108,
   title: 'Neo4J',
   subTitle: 'Database',
   description: 'Graph Database'
 }) SET neo4j.created = timestamp(), neo4j.updated = timestamp()
 
-CREATE (orientdb:Tool {
+CREATE (orientdb:Tool:Concept {
   id: 109,
   title: 'OrientDB',
   subTitle: 'Database',

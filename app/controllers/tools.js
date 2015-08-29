@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
       that.get('application').get('tools').every(function(toolFilter) {
         return ! toolFilter.get('filter') || tool.get('features').some(function(feature) {
           return feature.get('supports').some(function(supports) {
-            return supports.get('tool').get('id') === toolFilter.get('id');
+            return supports.get('concept').get('id') === toolFilter.get('id');
           });
         });
       });

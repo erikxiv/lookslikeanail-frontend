@@ -1,13 +1,10 @@
 import DS from 'ember-data';
+import Concept from './concept';
 
-var Capability = DS.Model.extend({
-  created: DS.attr(),
-  description: DS.attr(),
-  features: DS.hasMany('feature'),
-  keywords: DS.attr(),
-  subTitle: DS.attr(),
-  title: DS.attr(),
-  updated: DS.attr()
+var Capability = Concept.extend({
+  features: DS.hasMany('feature', {
+    inverse: 'capability'
+  })
 });
 
 Capability.reopenClass({

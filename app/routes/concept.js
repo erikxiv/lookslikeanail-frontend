@@ -1,21 +1,16 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  setupController: function(controller, model) {
-    controller.set('model', model);
-    controller.set('capabilities', this.store.find('capability'));
-    controller.set('concepts', this.store.find('concept'));
-  },
   model: function(params) {
-    if (params.tool_id === 'new') {
-      return this.store.createRecord('tool', {
-        title: 'NewTool',
+    if (params.concept_id === 'new') {
+      return this.store.createRecord('concept', {
+        title: 'NewConcept',
         subTitle: 'Subtitle',
         description: 'Description goes here'
       });
     }
     else {
-      return this.store.find('tool', params.tool_id);
+      return this.store.find('concept', params.concept_id);
     }
   },
   afterModel: function(model) {

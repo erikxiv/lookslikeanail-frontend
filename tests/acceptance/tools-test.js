@@ -38,6 +38,13 @@ test('Get /tools should return 8 capability titles', function(assert) {
   });
 });
 
+test('Get /tools should return supporting tools', function(assert) {
+  visit('/tools');
+  andThen(function() {
+    assert.notEqual(find('.supports-title').length, 0);
+  });
+});
+
 test('Get /tools/101 should return Java', function(assert) {
   visit('/tools/101');
   andThen(function() {
@@ -76,6 +83,13 @@ test('Get /tools/103 should present capability Building', function(assert) {
   });
 });
 
+test('Get /tools/103 should support Elixir', function(assert) {
+  visit('/tools/103');
+  andThen(function() {
+    assert.equal(find('.supports-title').text().trim(), 'Elixir');
+  });
+});
+
 test('Add capability Building to Java should work', function(assert) {
   visit('/tools/101');
   triggerEvent('a.add-feature', 'click');
@@ -97,7 +111,7 @@ test('It should be possible to filter on capability', function(assert) {
   visit('/tools');
   triggerEvent('.capability-filter:contains("Building") .capability-filter-checkbox', 'click');
   andThen(function() {
-    assert.equal(find('.capability-title').length, 1);
+    assert.equal(find('.collapsed-item .tool-title').length, 2);
   });
 });
 
@@ -115,7 +129,7 @@ test('It should be possible to filter on capability after adding a new one', fun
   });
   triggerEvent('.capability-filter:contains("Building") .capability-filter-checkbox', 'click');
   andThen(function() {
-    assert.equal(find('.capability-title').length, 2);
+    assert.equal(find('.collapsed-item .tool-title').length, 3);
     assert.equal(find('.alert').length > 0 ? find('.alert').text().trim() : '', '');
   });
 });

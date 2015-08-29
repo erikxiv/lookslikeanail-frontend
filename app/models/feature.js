@@ -1,15 +1,20 @@
 import DS from 'ember-data';
+import Concept from './concept';
 
-var Feature = DS.Model.extend({
-  created: DS.attr(),
-  description: DS.attr(),
-  tool: DS.belongsTo('tool'),
-  capability: DS.belongsTo('capability'),
-  keywords: DS.attr(),
-  subTitle: DS.attr(),
-  supports: DS.hasMany('supports'),
-  title: DS.attr(),
-  updated: DS.attr()
+var Feature = Concept.extend({
+  tool: DS.belongsTo('tool', {
+    inverse: 'features'
+  }),
+  capability: DS.belongsTo('capability', {
+    inverse: 'features'
+  }),
+  supports: DS.hasMany('supports', {
+    inverse: 'feature'
+  }),
+
+  supportsSomething: function() {
+    return this.get('supports') && this.get('supports').length > 0;
+  }.property('supports')
 });
 
 Feature.reopenClass({

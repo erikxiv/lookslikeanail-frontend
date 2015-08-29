@@ -6,7 +6,7 @@
     "host": "api.tool.directory",
     "info": {
         "description": "An API to discover and contribute information about software tools",
-        "version": "0.3.0",
+        "version": "0.4.0",
         "title": "Tool Directory API"
     },
     "basePath": "/api/v1",
@@ -17,128 +17,6 @@
         "http"
     ],
     "paths": {
-        "/features": {
-            "post": {
-                "description": "Creates a new feature",
-                "tags": [
-                    "feature"
-                ],
-                "parameters": [
-                    {
-                        "name": "feature",
-                        "in": "body",
-                        "description": "Feature to add",
-                        "schema": {
-                            "properties": {
-                                "feature": {
-                                    "$ref": "#/definitions/feature"
-                                }
-                            }
-                        },
-                        "required": true
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "operationId": "addFeature",
-                "responses": {
-                    "200": {
-                        "description": "feature response",
-                        "schema": {
-                            "properties": {
-                                "feature": {
-                                    "$ref": "#/definitions/feature"
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/features/{id}": {
-            "put": {
-                "description": "Update feature",
-                "tags": [
-                    "feature"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "format": "int64",
-                        "name": "id",
-                        "description": "ID of feature to update",
-                        "type": "integer",
-                        "required": true
-                    },
-                    {
-                        "name": "feature",
-                        "in": "body",
-                        "description": "Feature properties to update",
-                        "schema": {
-                            "properties": {
-                                "feature": {
-                                    "$ref": "#/definitions/feature"
-                                }
-                            }
-                        },
-                        "required": true
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "operationId": "updateFeature",
-                "responses": {
-                    "200": {
-                        "description": "feature response",
-                        "schema": {
-                            "$ref": "#/definitions/feature"
-                        }
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "deletes a single feature based on the ID supplied",
-                "tags": [
-                    "feature"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "format": "int64",
-                        "name": "id",
-                        "description": "ID of feature to delete",
-                        "type": "integer",
-                        "required": true
-                    }
-                ],
-                "operationId": "deleteFeature",
-                "responses": {
-                    "204": {
-                        "description": "feature deleted"
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/errorModel"
-                        }
-                    }
-                }
-            }
-        },
         "/capabilities": {
             "post": {
                 "description": "Creates a new capability",
@@ -336,6 +214,203 @@
                 }
             }
         },
+        "/concepts": {
+            "post": {
+                "description": "Creates a new concept",
+                "tags": [
+                    "concept"
+                ],
+                "parameters": [
+                    {
+                        "name": "concept",
+                        "in": "body",
+                        "description": "Concept to add",
+                        "schema": {
+                            "properties": {
+                                "concept": {
+                                    "$ref": "#/definitions/concept"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "addConcept",
+                "responses": {
+                    "200": {
+                        "description": "concept response",
+                        "schema": {
+                            "properties": {
+                                "concept": {
+                                    "$ref": "#/definitions/concept"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Returns all concepts",
+                "tags": [
+                    "concept"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "findConcepts",
+                "responses": {
+                    "200": {
+                        "description": "concept response",
+                        "schema": {
+                            "properties": {
+                                "concepts": {
+                                    "items": {
+                                        "$ref": "#/definitions/concept"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/concepts/{id}": {
+            "get": {
+                "description": "Returns a concept based on ID",
+                "tags": [
+                    "concept"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of concept to fetch",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "findConceptById",
+                "responses": {
+                    "200": {
+                        "description": "concept response",
+                        "schema": {
+                            "properties": {
+                                "concept": {
+                                    "$ref": "#/definitions/concept"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No concept with specified id exist",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update concept",
+                "tags": [
+                    "concept"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of concept to update",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "concept",
+                        "in": "body",
+                        "description": "Concept properties to update",
+                        "schema": {
+                            "properties": {
+                                "concept": {
+                                    "$ref": "#/definitions/concept"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "updateConcept",
+                "responses": {
+                    "200": {
+                        "description": "concept response",
+                        "schema": {
+                            "$ref": "#/definitions/concept"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "deletes a single concept based on the ID supplied",
+                "tags": [
+                    "concept"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of concept to delete",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "operationId": "deleteConcept",
+                "responses": {
+                    "204": {
+                        "description": "concept deleted"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
+        },
         "/tools": {
             "post": {
                 "description": "Creates a new tool",
@@ -411,6 +486,12 @@
                                     "items": {
                                         "$ref": "#/definitions/capability"
                                     }
+                                },
+                                "concepts": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/concept"
+                                    }
                                 }
                             }
                         }
@@ -462,6 +543,12 @@
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/capability"
+                                    }
+                                },
+                                "concepts": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/concept"
                                     }
                                 }
                             }
@@ -556,15 +643,157 @@
                     }
                 }
             }
+        },
+        "/tools/{id}/features": {
+            "post": {
+                "description": "Creates a new feature",
+                "tags": [
+                    "feature"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of tool that the feature belongs to",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "feature",
+                        "in": "body",
+                        "description": "Feature to add",
+                        "schema": {
+                            "properties": {
+                                "feature": {
+                                    "$ref": "#/definitions/feature"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "addFeature",
+                "responses": {
+                    "200": {
+                        "description": "feature response",
+                        "schema": {
+                            "properties": {
+                                "feature": {
+                                    "$ref": "#/definitions/feature"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/tools/{id}/features/{fid}": {
+            "put": {
+                "description": "Update feature",
+                "tags": [
+                    "feature"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of tool that the feature belongs to",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "fid",
+                        "description": "ID of feature to update",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "feature",
+                        "in": "body",
+                        "description": "Feature properties to update",
+                        "schema": {
+                            "properties": {
+                                "feature": {
+                                    "$ref": "#/definitions/feature"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "updateFeature",
+                "responses": {
+                    "200": {
+                        "description": "feature response",
+                        "schema": {
+                            "$ref": "#/definitions/feature"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "deletes a single feature based on the ID supplied",
+                "tags": [
+                    "feature"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "id",
+                        "description": "ID of tool that the feature belongs to",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "format": "int64",
+                        "name": "fid",
+                        "description": "ID of feature to delete",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "operationId": "deleteFeature",
+                "responses": {
+                    "204": {
+                        "description": "feature deleted"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
-        "feature": {
+        "capability": {
             "properties": {
-                "capability": {
-                    "description": "Capability unique id",
-                    "type": "number"
-                },
                 "created": {
                     "description": "When this item was created",
                     "format": "dateTime",
@@ -601,7 +830,7 @@
                 }
             }
         },
-        "capability": {
+        "concept": {
             "properties": {
                 "created": {
                     "description": "When this item was created",
@@ -627,6 +856,56 @@
                 "subTitle": {
                     "description": "Human readable sub title",
                     "type": "string"
+                },
+                "title": {
+                    "description": "Human readable title",
+                    "type": "string"
+                },
+                "updated": {
+                    "description": "When this item was last modified",
+                    "format": "dateTime",
+                    "type": "string"
+                }
+            }
+        },
+        "feature": {
+            "properties": {
+                "capability": {
+                    "description": "Capability unique id",
+                    "type": "number"
+                },
+                "created": {
+                    "description": "When this item was created",
+                    "format": "dateTime",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A description of this item",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier",
+                    "type": "number"
+                },
+                "keywords": {
+                    "description": "List of applicable keywords",
+                    "type": "array",
+                    "items": {
+                        "description": "keyword / alias",
+                        "type": "string"
+                    }
+                },
+                "subTitle": {
+                    "description": "Human readable sub title",
+                    "type": "string"
+                },
+                "supports": {
+                    "description": "List of supported concepts",
+                    "type": "array",
+                    "items": {
+                        "description": "concept unique id",
+                        "type": "number"
+                    }
                 },
                 "title": {
                     "description": "Human readable title",
