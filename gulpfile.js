@@ -19,7 +19,7 @@ var pwd = __dirname;
 var projectName = __dirname.split(path.sep).pop();
 var mainDockerImage = dockerCompose[mainDockerName].image;
 var mainContainerName = projectName.replace(/\W/g, '')+'_'+mainDockerName+'_1';
-var boot2dockerWasRunning = true;
+var dockerMachineWasRunning = true;
 var dockerComposeWasStarted = false;
 
 //////
@@ -33,7 +33,7 @@ gulp.task('up', ['docker-up', 'watch'], function () {
 // Execute an ember task in the container
 // Usage: gulp run --cmd "help generate"
 //////
-gulp.task('run', ['boot2docker-up'], function () {
+gulp.task('run', ['dockerMachine-up'], function () {
   if (gutil.env.cmd) {
     var args = 'run --rm -t -v ' + pwd + ':' + mainDockerPath + ' ' + mainDockerImage + ' ' + gutil.env.cmd;
     gutil.log('cmd: docker ' + args);
@@ -53,10 +53,10 @@ process.on('SIGINT', function() {
     gutil.log('Stopping docker-compose');
     child_process.spawnSync('docker-compose', ['stop'], { stdio: 'pipe' });
   }
-  // Stop boot2docker if it wasn't running
-  if (process.platform === 'darwin' && ! boot2dockerWasRunning) {
-    gutil.log('Stopping boot2docker');
-    child_process.spawnSync('boot2docker', ['down'], { stdio: 'pipe' });
+  // Stop docker-machine if it wasn't running
+  if (process.platform === 'darwin' && ! dockerMachineWasRunning) {
+    gutil.log('Stopping docker-machine');
+    child_process.spawnSync('docker-machine', ['stop', 'default'], { stdio: 'pipe' });
   }
   // Quit
   process.exit();
@@ -65,7 +65,7 @@ process.on('SIGINT', function() {
 /////
 // Start docker
 /////
-gulp.task('docker-up', ['tar', 'boot2docker-up'], function() {
+gulp.task('docker-up', ['tar', 'dockerMachine-up'], function() {
   // Start docker-compose
   gutil.log('Starting docker-compose');
   child_process.spawn('docker-compose', ['up'], { stdio: 'inherit' });
@@ -73,24 +73,25 @@ gulp.task('docker-up', ['tar', 'boot2docker-up'], function() {
 });
 
 /////
-// Start boot2docker
+// Start docker-machine
 /////
-gulp.task('boot2docker-up', function() {
-  // If on Mac, start boot2docker if needed
+gulp.task('dockerMachine-up', function() {
+  // If on Mac, start docker-machine if needed
   if (process.platform === 'darwin') {
-    var b2dstatus = child_process.spawnSync('boot2docker', ['status'], { stdio: 'pipe' })
-    boot2dockerWasRunning = b2dstatus.stdout.toString().indexOf('running') === 0;
-    if (! boot2dockerWasRunning) {
-      gutil.log('Starting boot2docker (was not running)');
-      child_process.spawnSync('boot2docker', ['up'], { stdio: 'inherit' });
+    var b2dstatus = child_process.spawnSync('docker-machine', ['status', 'default'], { stdio: 'pipe' })
+    dockerMachineWasRunning = b2dstatus.stdout.toString().indexOf('Running') === 0;
+    if (! dockerMachineWasRunning) {
+      gutil.log('Starting docker-machine (was not running)');
+      child_process.spawnSync('docker-machine', ['start', 'default'], { stdio: 'inherit' });
     }
-    // Set boot2docker environment variables
-    var stdout = child_process.execSync('boot2docker shellinit', { stdio: 'pipe' });
+    // Set docker-machine environment variables
+    var stdout = child_process.execSync('docker-machine env default', { stdio: 'pipe' });
     var envs = stdout.toString().match(/(DOCKER.*=\S+)/g);
     if (envs) {
       envs.forEach(function (e) {
         var key = e.split('=')[0];
         var value = e.split('=')[1];
+        value = value.substring(1, value.length-1); // trim quotes
         gutil.log('Setting environment variable ' + key + '=' + value);
         process.env[key] = value;
       });
