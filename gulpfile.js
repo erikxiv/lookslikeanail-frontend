@@ -31,13 +31,16 @@ gulp.task('up', ['docker-up', 'watch'], function () {
 
 //////
 // Execute an ember task in the container
-// Usage: gulp run --cmd "help generate"
+// Usage: gulp run --cmd "ember help generate"
 //////
 gulp.task('run', ['dockerMachine-up'], function () {
   if (gutil.env.cmd) {
-    var args = 'run --rm -t -v ' + pwd + ':' + mainDockerPath + ' ' + mainDockerImage + ' ' + gutil.env.cmd;
-    gutil.log('cmd: docker ' + args);
-    child_process.spawn('docker', args.split(' '), { stdio: 'inherit' });
+    var cmd = 'bower install --allow-root && ' + gutil.env.cmd;
+    var args = 'run --rm -t --entrypoint=sh -v ' + pwd + ':' + mainDockerPath + ' ' + mainDockerImage + ' -c';
+    gutil.log('cmd: docker ' + args + ' ' + cmd);
+    var argsArray = args.split(' ');
+    argsArray.push(cmd);
+    child_process.spawn('docker', argsArray, { stdio: 'inherit' });
   }
   else
     gutil.log(gutil.colors.red('Usage: gulp run --cmd "some command to run"'));

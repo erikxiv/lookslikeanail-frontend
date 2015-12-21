@@ -14,6 +14,9 @@ Router.map(function() {
   this.route('capabilities');
   this.route('concept', { path: '/concepts/:concept_id' });
   this.route('concepts');
+  this.route('protected');
+  this.route('home');
+  this.route('sign_in');
   //set up all of your known routes, and then...
   this.route("404", { path: "*path"});
 });

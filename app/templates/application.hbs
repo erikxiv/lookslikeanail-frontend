@@ -28,6 +28,16 @@
     </li>
     <li class="list-group-item">
       <div class="icon"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></div>
+      <div class="text ellipsis">
+        {{#if session.isAuthenticated}}
+          <a {{ action 'invalidateSession' }}>Logout</a>
+        {{else}}
+          <a {{ action 'authenticateSession' }}>Login</a>
+        {{/if}}
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="icon"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></div>
       <div class="text ellipsis">{{#link-to 'tools'}}Tools{{/link-to}}</div>
     </li>
     <li class="list-group-item">
@@ -77,6 +87,11 @@
 
   <footer class="footer">
     <p>&copy; Looks like a nail 2015</p>
+    <div class="user-info">
+  <span class="user-info__leader">Hi,</span>
+  <img class="user-info__avatar" src="{{session.secure.profile.picture}}">
+  <span class="user-info__name">{{session.secure.profile.name}}</span>
+</div>
   </footer>
 
 </div> <!-- /container -->

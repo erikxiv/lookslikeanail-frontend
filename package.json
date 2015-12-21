@@ -19,6 +19,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "auth0-ember-simple-auth": "1.0.4",
     "body": "^5.1.0",
     "broccoli-asset-rev": "^2.0.2",
     "cors": "^2.7.1",

@@ -11,6 +11,17 @@ module.exports = function(environment) {
     rollbarVerbose: false,
     rollbarCodeVersion: process.env.TRAVIS_COMMIT || 'unknown',
 
+    'simple-auth': {
+      authorizer: 'simple-auth-authorizer:jwt',
+      authenticationRoute: 'sign_in',
+      routeAfterAuthentication: 'home',
+      routeIfAlreadyAuthenticated: 'home'
+    },
+    'auth0-ember-simple-auth': {
+      clientID: "ppNCu1rL06HgBO0SyyF0OFzIyAsq9ILY",
+      domain: "erikxiv.eu.auth0.com"
+    },
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -20,10 +31,10 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' boot2docker:35729 *.cloudfront.net",
-      'font-src': "'self'",
-      'connect-src': "'self' ws://boot2docker:35729 looks-like-a-nail-backend.herokuapp.com api.rollbar.com boot2dockerapi hex.pm api.github.com dbpedia.org",
-      'img-src': "'self' *.githubusercontent.com",
+      'script-src': "'self' 'unsafe-eval' 'unsafe-inline' docker.local:35729 *.cloudfront.net *.auth0.com",
+      'font-src': "'self' data: https://cdn.auth0.com",
+      'connect-src': "'self' ws://docker.local:35729 looks-like-a-nail-backend.herokuapp.com api.rollbar.com boot2dockerapi hex.pm api.github.com dbpedia.org *.auth0.com",
+      'img-src': "'self' *.githubusercontent.com *.gravatar.com",
       'style-src': "'self' 'unsafe-inline'",
       'frame-src': ""
     },

@@ -44,22 +44,25 @@ ok 43 PhantomJS 1.9 - JSHint - routes: routes/capabilities.js should pass jshint
 ok 44 PhantomJS 1.9 - JSHint - routes: routes/capability.js should pass jshint
 ok 45 PhantomJS 1.9 - JSHint - routes: routes/concept.js should pass jshint
 ok 46 PhantomJS 1.9 - JSHint - routes: routes/concepts.js should pass jshint
-ok 47 PhantomJS 1.9 - JSHint - routes: routes/index.js should pass jshint
-ok 48 PhantomJS 1.9 - JSHint - routes: routes/search.js should pass jshint
-ok 49 PhantomJS 1.9 - JSHint - routes: routes/tool.js should pass jshint
-ok 50 PhantomJS 1.9 - JSHint - routes: routes/tools.js should pass jshint
-ok 51 PhantomJS 1.9 - JSHint - serializers: serializers/application.js should pass jshint
-ok 52 PhantomJS 1.9 - JSHint - .: test-helper.js should pass jshint
-ok 53 PhantomJS 1.9 - controller:tools: it exists
-ok 54 PhantomJS 1.9 - JSHint - unit/controllers: unit/controllers/tools-test.js should pass jshint
-ok 55 PhantomJS 1.9 - Unit | Model | tool: it exists
-ok 56 PhantomJS 1.9 - JSHint - unit/models: unit/models/tool-test.js should pass jshint
-ok 57 PhantomJS 1.9 - Unit | Route | tools: it exists
-ok 58 PhantomJS 1.9 - JSHint - unit/routes: unit/routes/tools-test.js should pass jshint
+ok 47 PhantomJS 1.9 - JSHint - routes: routes/home.js should pass jshint
+ok 48 PhantomJS 1.9 - JSHint - routes: routes/index.js should pass jshint
+ok 49 PhantomJS 1.9 - JSHint - routes: routes/protected.js should pass jshint
+ok 50 PhantomJS 1.9 - JSHint - routes: routes/search.js should pass jshint
+ok 51 PhantomJS 1.9 - JSHint - routes: routes/sign_in.js should pass jshint
+ok 52 PhantomJS 1.9 - JSHint - routes: routes/tool.js should pass jshint
+ok 53 PhantomJS 1.9 - JSHint - routes: routes/tools.js should pass jshint
+ok 54 PhantomJS 1.9 - JSHint - serializers: serializers/application.js should pass jshint
+ok 55 PhantomJS 1.9 - JSHint - .: test-helper.js should pass jshint
+ok 56 PhantomJS 1.9 - controller:tools: it exists
+ok 57 PhantomJS 1.9 - JSHint - unit/controllers: unit/controllers/tools-test.js should pass jshint
+ok 58 PhantomJS 1.9 - Unit | Model | tool: it exists
+ok 59 PhantomJS 1.9 - JSHint - unit/models: unit/models/tool-test.js should pass jshint
+ok 60 PhantomJS 1.9 - Unit | Route | tools: it exists
+ok 61 PhantomJS 1.9 - JSHint - unit/routes: unit/routes/tools-test.js should pass jshint
 
-1..58
-# tests 58
-# pass  58
+1..61
+# tests 61
+# pass  61
 # fail  0
 
 # ok
